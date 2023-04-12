@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://www.0xfree.top/2019/11/11/android-jsbridge/</loc>
+    <lastmod>2023-04-11</lastmod>
+  </url>
+  <url>
+    <loc>http://www.0xfree.top/2020/06/07/how-to-reproguard-by-mapping/</loc>
+    <lastmod>2023-04-11</lastmod>
+  </url>
+  <url>
     <loc>http://www.0xfree.top/2019/08/12/listview-scrollmode-parse/</loc>
     <lastmod>2020-06-27</lastmod>
   </url>
   <url>
     <loc>http://www.0xfree.top/2018/10/12/trilogy-of-invalidate/</loc>
-    <lastmod>2020-06-27</lastmod>
-  </url>
-  <url>
-    <loc>http://www.0xfree.top/2020/06/07/how-to-reproguard-by-mapping/</loc>
     <lastmod>2020-06-27</lastmod>
   </url>
   <url>
@@ -26,10 +30,6 @@
   </url>
   <url>
     <loc>http://www.0xfree.top/2019/08/31/git_and_gerrit/</loc>
-    <lastmod>2020-06-27</lastmod>
-  </url>
-  <url>
-    <loc>http://www.0xfree.top/2019/11/11/android-jsbridge/</loc>
     <lastmod>2020-06-27</lastmod>
   </url>
   <url>
