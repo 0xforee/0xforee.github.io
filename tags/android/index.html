@@ -404,6 +404,39 @@ However, a coroutine is not bound to any particular thread. It may suspend its e
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2023/07/02/begging_of_glide_code_design/" >
+            
+                <span>从代码设计看 Glide 之写在开头</span>
+        </a>
+        <div class="abstract-content">
+            为什么要写这篇文章？你日常中一定遇到过，想要设计一个模块，但是力不从心，不知道如何下手，更别说随手撸一个图片加载器，网络，埋点通信，这种级别的库了。那有没有一些什么好的方法可以帮助我们建立这样的能力呢，当然是有的，那就是从开源库中学习，一个好的开源库一定是大众认可才被广泛传播。所以，找到一个有代表性的库，深入浅出剖析这个库的代码设计和编程思想，就是我们这个系列要做的事情。
+为什么是 Glide？当然，你也从标题就看出来了，我们选的这个库就是 Glide。  
+说实话，Glide 是一个比较老的库了。第一行代码提交于 2012 年，至今已有 10 多个年头了。称之为一个老库不为过。那既然是...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/07/02</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "android">android</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "glide">glide</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2020/06/07/how-to-reproguard-by-mapping/" >
             
                 <span>如何通过 Mapping 文件反混淆</span>
@@ -716,53 +749,6 @@ invalidate() 方法可谓是自定义View的常客，不管是自己覆写onDraw
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/10/13</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "android">android</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "view">view</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "invalidate">invalidate</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/10/12/trilogy-of-invalidate/" >
-            
-                <span>invalidate 三部曲序</span>
-        </a>
-        <div class="abstract-content">
-            由于整个invalidate()周期较长，继续深入会涉及屏幕刷新等底层知识，所以我们会分为三个部分来讲，分别为View发起绘制、系统处理绘制请求的逻辑、View执行真实绘制。  
-时序图
-
-以scheduleTraversals()为第一个分割点，以doFrame()为第二个分割点，对应时序图的序列分别为：
-
-View 发起绘制： 1 - 8
-系统处理绘制请求的逻辑： 9 - 20
-View 执行真实绘制： 21 - 41
-
-目录
-invalidate 三部曲序 
-invalidate 三部曲之始于 invalidate
-invalidate 三部曲之历经 Choreographer
-
-
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/10/12</span>
             </div>
             <!-- tags  -->
             
@@ -1212,9 +1198,20 @@ invalidate 三部曲之历经 Choreographer
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 26
+        Total : 27
         </div>
         <!-- search  -->
         
@@ -1231,6 +1228,11 @@ invalidate 三部曲之历经 Choreographer
     
         <li class="archive-post-item">
             <span class="archive-post-date">08/01</span><a class="archive-post-title" href= "/2023/08/01/how-to-use-kotlin-coroutine/" >一文帮你快速理解协程使用模型</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/02</span><a class="archive-post-title" href= "/2023/07/02/begging_of_glide_code_design/" >从代码设计看 Glide 之写在开头</a>
         </li>
     
     
@@ -1431,9 +1433,9 @@ invalidate 三部曲之历经 Choreographer
     
         <span class="sidebar-tag-name" data-tags="make"><span class="iconfont-archer">&#xe606;</span>make</span>
     
-        <span class="sidebar-tag-name" data-tags="PRODUCT_PROPERTY_OVERRIDES"><span class="iconfont-archer">&#xe606;</span>PRODUCT_PROPERTY_OVERRIDES</span>
-    
         <span class="sidebar-tag-name" data-tags="PRODUCT_COPY_FILES"><span class="iconfont-archer">&#xe606;</span>PRODUCT_COPY_FILES</span>
+    
+        <span class="sidebar-tag-name" data-tags="PRODUCT_PROPERTY_OVERRIDES"><span class="iconfont-archer">&#xe606;</span>PRODUCT_PROPERTY_OVERRIDES</span>
     
         <span class="sidebar-tag-name" data-tags="jsbridge"><span class="iconfont-archer">&#xe606;</span>jsbridge</span>
     
@@ -1445,21 +1447,23 @@ invalidate 三部曲之历经 Choreographer
     
         <span class="sidebar-tag-name" data-tags="layoutParams"><span class="iconfont-archer">&#xe606;</span>layoutParams</span>
     
+        <span class="sidebar-tag-name" data-tags="PowerUI"><span class="iconfont-archer">&#xe606;</span>PowerUI</span>
+    
+        <span class="sidebar-tag-name" data-tags="SystemUI"><span class="iconfont-archer">&#xe606;</span>SystemUI</span>
+    
         <span class="sidebar-tag-name" data-tags="quickSettings"><span class="iconfont-archer">&#xe606;</span>quickSettings</span>
     
         <span class="sidebar-tag-name" data-tags="mobileDataTile"><span class="iconfont-archer">&#xe606;</span>mobileDataTile</span>
     
         <span class="sidebar-tag-name" data-tags="mobileData"><span class="iconfont-archer">&#xe606;</span>mobileData</span>
     
-        <span class="sidebar-tag-name" data-tags="PowerUI"><span class="iconfont-archer">&#xe606;</span>PowerUI</span>
-    
-        <span class="sidebar-tag-name" data-tags="SystemUI"><span class="iconfont-archer">&#xe606;</span>SystemUI</span>
-    
         <span class="sidebar-tag-name" data-tags="wifiTIle"><span class="iconfont-archer">&#xe606;</span>wifiTIle</span>
     
         <span class="sidebar-tag-name" data-tags="wifi"><span class="iconfont-archer">&#xe606;</span>wifi</span>
     
         <span class="sidebar-tag-name" data-tags="touchevent"><span class="iconfont-archer">&#xe606;</span>touchevent</span>
+    
+        <span class="sidebar-tag-name" data-tags="glide"><span class="iconfont-archer">&#xe606;</span>glide</span>
     
         <span class="sidebar-tag-name" data-tags="gentoo"><span class="iconfont-archer">&#xe606;</span>gentoo</span>
     
@@ -1477,6 +1481,10 @@ invalidate 三部曲之历经 Choreographer
     
         <span class="sidebar-tag-name" data-tags="ubuntu"><span class="iconfont-archer">&#xe606;</span>ubuntu</span>
     
+        <span class="sidebar-tag-name" data-tags="kotlin"><span class="iconfont-archer">&#xe606;</span>kotlin</span>
+    
+        <span class="sidebar-tag-name" data-tags="coroutine"><span class="iconfont-archer">&#xe606;</span>coroutine</span>
+    
         <span class="sidebar-tag-name" data-tags="invalidate"><span class="iconfont-archer">&#xe606;</span>invalidate</span>
     
         <span class="sidebar-tag-name" data-tags="listView"><span class="iconfont-archer">&#xe606;</span>listView</span>
@@ -1486,10 +1494,6 @@ invalidate 三部曲之历经 Choreographer
         <span class="sidebar-tag-name" data-tags="performance"><span class="iconfont-archer">&#xe606;</span>performance</span>
     
         <span class="sidebar-tag-name" data-tags="vsync"><span class="iconfont-archer">&#xe606;</span>vsync</span>
-    
-        <span class="sidebar-tag-name" data-tags="kotlin"><span class="iconfont-archer">&#xe606;</span>kotlin</span>
-    
-        <span class="sidebar-tag-name" data-tags="coroutine"><span class="iconfont-archer">&#xe606;</span>coroutine</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -1532,13 +1536,15 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="SystemUI解析"><span class="iconfont-archer">&#xe60a;</span>SystemUI解析</span>
     
+        <span class="sidebar-category-name" data-categories="Glide"><span class="iconfont-archer">&#xe60a;</span>Glide</span>
+    
         <span class="sidebar-category-name" data-categories="Gentoo"><span class="iconfont-archer">&#xe60a;</span>Gentoo</span>
     
         <span class="sidebar-category-name" data-categories="效率工具"><span class="iconfont-archer">&#xe60a;</span>效率工具</span>
     
-        <span class="sidebar-category-name" data-categories="Android性能调优"><span class="iconfont-archer">&#xe60a;</span>Android性能调优</span>
-    
         <span class="sidebar-category-name" data-categories="kotlin"><span class="iconfont-archer">&#xe60a;</span>kotlin</span>
+    
+        <span class="sidebar-category-name" data-categories="Android性能调优"><span class="iconfont-archer">&#xe60a;</span>Android性能调优</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
