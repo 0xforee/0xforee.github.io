@@ -22,7 +22,7 @@
     <meta name="description" content="Read The Fuck Code">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>invalidate 三部曲之始于 invalidate · 0xforee&#39;s Blog</title>
+    <title>从代码设计看 Glide 之核心功能 · 0xforee&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -238,7 +238,7 @@
                 <a href="/" >0xforee&#39;s Blog.</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">invalidate 三部曲之始于 invalidate</a>
+                <a href="#" class="post-name">从代码设计看 Glide 之核心功能</a>
             </div>
     </div>
     
@@ -268,7 +268,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            invalidate 三部曲之始于 invalidate
+            从代码设计看 Glide 之核心功能
             <!-- 404 -->
             
         </h1>
@@ -289,20 +289,18 @@ height:50vh;
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "android">android</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "view">view</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "invalidate">invalidate</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "glide">glide</a>
     
 </div>
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1.8k</span>阅读时长: <span class="post-count reading-time">8 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">2.5k</span>阅读时长: <span class="post-count reading-time">8 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2018/10/13</span>
+                    <span class="post-intro-time">2023/08/11</span>
                     <!-- 
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -427,69 +425,125 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p><strong>Choreographyer 三部曲</strong></p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>接上文。这篇我们主要关注于 Glide 的核心能力，来看一看构建出 Glide 核心的能力的模块或者类是哪些。</p>
+<h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><p>如果用过 Glide 肯定记得通过 Glide 加载一个图片最简单的写法是什么。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Glide.with(applicationContext).load(<span class="string">&quot;https://xx.image/test&quot;</span>).into(view)</span><br></pre></td></tr></table></figure></p>
+<center> 加载某张图片到某个 View。 </center>
+
+<p>这就是 Glide 最核心的代码。  </p>
+<p>Glide 中其他的代码和模块都是围绕在这个核心链路周围的。比如通过 load 可以拓展出不同的数据来源，通过 Target 拓展出不同的展示目标。还比如说给 load 的所要加载的数据增加缓存，给 load 本身增加生命周期等等。</p>
+<p>所有的这一切都是在加载图片到 View 上这个核心功能基础之上的。</p>
+<p>所以，我们这篇文章就从这个核心代码开始。</p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>Glide 的 with 传入的是 Android 的 Context，Glide 主要用 Context 来做生命周期管理。所以本文我们先不考虑 Context 的实例究竟是 Activity 还是 Fragment，我们就默认他只能为全局的 Application（反正本章也不会讲到^_^），关于 Activity 和 Fragment 相关的内容，我们会在后续的生命周期篇章中详述。</p>
+<h2 id="从简单的图片加载功能开始"><a href="#从简单的图片加载功能开始" class="headerlink" title="从简单的图片加载功能开始"></a>从简单的图片加载功能开始</h2><p>我们先抛开文章开头的 Glide 示例，来思考：如果让你实现一个最简单的图片加载功能，将网络图片加载到 View 上，你会怎么写？</p>
+<p>我们的思路肯定是：</p>
+<ol>
+<li><p>下载网络图片</p>
+</li>
+<li><p>下载完成后，通过回调将图片设置到 View 上</p>
+</li>
+</ol>
+<p>实现方案就是将下载封装到一个类中，然后给出一个回调就行了。<br></br><br>如果我们再考虑多一些：要同时加载的链接可能会有多个，要同时加载的 View 也可能会有多个的情况下，一个类可能就有点放不下了。</p>
+<p>我们适当拆点职责出来，将每个下载过程都封装成独立的请求（Request），然后使用一个类（RequestManager）统一管理<br></br></p>
+<p>那么新的图片加载功能就包含有这几个职责了</p>
 <ul>
-<li><a href="https://www.0xfree.top/2018/10/12/trilogy-of-invalidate/">invalidate 三部曲序</a> </li>
-<li><a href="https://www.0xfree.top/2018/10/13/invalidate-of-invalidate/">invalidate 三部曲之始于 invalidate</a></li>
-<li><a href="https://www.0xfree.top/2018/12/18/invalidate-of-choreographer/">invalidate 三部曲之历经 Choreographer</a></li>
+<li><p><strong>Glide</strong>：统一对外的类</p>
+</li>
+<li><p><strong>Request</strong>：封装单个下载请求的类，会通过 into 关联到我们要加载的 Target</p>
+</li>
+<li><p><strong>RequestManager</strong>：管理多个请求的类，我们通过 With 来获取 RequestManager</p>
+</li>
+<li><p><strong>Target</strong>：图片要加载到哪个 View 的抽象类（例如 View 可能是 TextView 也可能是 ImageView）  </p>
+</li>
 </ul>
-<hr>
+<p></br><br>我们来画一个简单的类图描述一下这几个类的关系</p>
+<p>其中 RequestManager 和 Request 是聚合的关系（注意聚合关系和组合关系的区别）</p>
+<p><img src="./D55B006B-E60A-49B2-B39B-09050AFFDABB.png" width=50% /></p>
+<h2 id="框架核心逻辑尽量内聚"><a href="#框架核心逻辑尽量内聚" class="headerlink" title="框架核心逻辑尽量内聚"></a>框架核心逻辑尽量内聚</h2><p>如果这个时候我们想对 Request 请求做一些参数修改和定制的话，这个调用链有个地方就不合适了。</p>
+<p>Request 是我们框架内的原始的请求抽象，是不能随意对外暴漏出去，因为这样会影响到我们框架的稳定性。即使使用者有修改定制 Request 的需求，我们也要让使用者按照我们约束的参数来使用，而设计模式中有一个模式非常适合做这个事情。</p>
 <blockquote>
-<p>invalidate  - to make invalid.</p>
+<p>Builder : 你是在说我吗？你一定是在说我。</p>
 </blockquote>
-<p><code>invalidate()</code> 方法可谓是自定义View的常客，不管是自己覆写<code>onDraw()</code>方法还是触发动画效果，以及其他种种需要更新界面元素的情况，都只需要调用一句<code>invalidate()</code>，剩下的交给系统即可，可谓省时又省力<br>如果说我们在一些简单的View中是可以这样直接使用而不加思索，那么当我们的view足够复杂时，在面对庞大的逻辑运算，不规范的系统调用等等所带来的性能开销面前，我们就不能熟视无睹。</p>
-<p>因此深入系统内部，可以让我们规避很多不必要的麻烦，要知道系统代码也是人写出来的，不会为你考虑所有的复杂情况而优化，而了解内部实现机制，了解实现者的意图，就可以做针对性的优化，进而提升性能和稳定性。</p>
-<p><code>invalidate</code>，直译，使失效。<br>使什么失效？使当前的状态失效<br>为什么要失效？因为只有标记为失效之后，系统才会在下一次屏幕刷新时执行重绘<br>什么时候失效？在例如点击效果，背景颜色，高度，长度等等当前屏幕元素需要更新的时候。<br>那么失效做了什么？为什么等下一次屏幕刷新？而不是直接触发重新绘制？这样做的好处是什么？</p>
-<h3 id="写在前边"><a href="#写在前边" class="headerlink" title="写在前边"></a>写在前边</h3><p>这篇文章是第一部分，主要讲View发起绘制</p>
-<p>View发起绘制主要涉及三个类：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">android.view.View</span><br><span class="line">android.view.ViewGroup</span><br><span class="line">android.view.ViewParent</span><br><span class="line">android.view.ViewRootImpl</span><br></pre></td></tr></table></figure></p>
-<h3 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h3><p>三个类的结构大概是这样的：</p>
-<p><img src="https://s1.ax1x.com/2018/12/02/FuCOWq.png" alt="FuCOWq.png"></p>
-<p>ViewParent指明了父View要实现的职责，我们熟知的ViewGroup就实现了这个接口，那么ViewGroup是包裹View的对象，ViewRootImpl是做什么的？  </p>
-<p>我们知道Android中Window是View的载体，每个Window下都挂着一棵View树，那与window直接相关的View是谁？没错，就是ViewRootImpl，不过这不是一个View，因为没有继承自View，而只是实现了ViewParent标明的父View职责，可以理解为他是所有View的顶辈儿，要对View树做什么，都会经过这个实体的居中调停</p>
-<p>View和ViewParent的关系就不用多说了，ViewParent只是一个可以容纳子View的特殊View</p>
-<h3 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h3><p>这个流程并不复杂，只涉及10个函数，那么复杂的是什么，复杂的是其中类的关系，以及要处理的各种情况，我们分开来看</p>
+<p>（由于 Glide 中太多 Builder 和他的兄弟 Factory 了，所以后边有一期会专门讲 Glide 中 Factory 和 Buidler 的范例，大家可以多多关注点赞一下）</p>
+<p>那么我们在这里增加新的一个角色，RequestBuilder，代替 Request 放到调用链中，方便我们对 Request 参数做一些定制。当前，他只有一个功能就是接管了 Request 的构建过程，通过 into 将 Target 传递进来</p>
+<p>现在，我们的类图变成这样了</p>
+<p><img src="./7BD757C1-E50F-444B-A362-22048FA4EE82.png" width=50% /></p>
+<p>这个时候，如果我们去看示例中 Glide 每一段调用链所返回的对象，你会发现，和我们上图中所展示的一模一样。</p>
+<p>我们已经有了一个初步可以使用的图片加载功能版本了。</p>
+<h2 id="Request-表示我很难"><a href="#Request-表示我很难" class="headerlink" title="Request 表示我很难"></a>Request 表示我很难</h2><p>但实际我们在写的时候，不会将图片下载的全部过程都要交给 Request 来做，因为这个职责太重了，会导致 Request 类变得特别大，后边如果要做缓存，网络库解耦，本地加载等功能的时候，也会频繁修改到这个类，不符合设计原则中的开闭原则</p>
+<p>因此我们把图片下载和加载的这部分职责从 Request 拆出来，等我们图片下载和加载准备就绪了再通知 Request 就好，让 Request 专一和 Target（View） 打交道。</p>
+<p>对于下载和加载的部分我们这里就简单设计一个任务管理类，内部包含一个线程池，可以支持多任务调度下载加载，并且在每个任务的图片加载结束后通过回调通知 Request。</p>
+<p>根据这个需求我们再新增加 2 个角色和 1 个回调：</p>
+<ul>
+<li><p><strong>Engine</strong>：负责管理下载任务的运行和调度</p>
+</li>
+<li><p><strong>EngineJob</strong>：是下载图片和加载图片的任务抽象</p>
+</li>
+<li><p><strong>ResourceCallback</strong>：EngineJob 加载资源完成后，通过这个回调通知 Request。</p>
+</li>
+</ul>
+<p>好了，我们在类图中再加几员大将，类图现在如下：<br><img src="./5002C865-919B-41E5-A6C3-3B61BAF73061.png" width=50% /></p>
+<p>但…</p>
+<h2 id="图片尺寸怎么办？"><a href="#图片尺寸怎么办？" class="headerlink" title="图片尺寸怎么办？"></a>图片尺寸怎么办？</h2><p>如果你直接就开始按照我们上边设计的去实现，你会发现有一个问题：</p>
+<p>我们应该在什么时候去调用框架去做图片加载呢，之所以考虑调用的时机是因为这会关系到两个问题：</p>
+<ol>
+<li><p>View 是不是准备好要展示了？（比如 <code>Visibility.GONE</code> 的时候加载图片干什么？嫌电量掉的不够快吗？）</p>
+</li>
+<li><p>图片应该加载多大尺寸呢？</p>
+</li>
+</ol>
+<p>也就是说，最好有个回调 SizeReadyCallback 可以告诉我们开始加载的时机，让我们可以触发我们真实的资源加载，而不至于在 view 原本不打算展示的场景下，还会继续触发加载。</p>
+<p>对于 Android 来说，要感知到这个时机，有一个名为 <code>OnPreDrawListener</code> 的回调可以帮到我们</p>
+<p>一者，在 onPreDraw 触发的时候，预示着 view 即将要被展示出来了。</p>
+<p>二者，可以通过 onPreDraw 不断检测当前 view 的尺寸是否合法了。</p>
+<p>这样等我们可以获取到合法的尺寸之后，就通过 SizeReadyCallback 回调给 Request，推动 Request 开始做真正的请求。</p>
+<p>那这个 ResourceCallback 谁来调用呢？当然是我们的 Target 了（view），因为他可以知道自己什么时候能真的准备好。</p>
+<p>好了，那我们再这个回调补充到我们的类图中</p>
+<p><img src="./76F42427-A270-4FA4-A212-6C4A88CB3E47.png" width=50% /></p>
 <blockquote>
-<p>全部流程请参考序中的时序图：<a href="https://www.0xfree.top/2018/10/12/trilogy-of-invalidate/">invalidate 三部曲序</a> </p>
+<p>额外补充</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Invalidate the whole view. If the view is visible,</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@link</span> #onDraw(android.graphics.Canvas)&#125; will be called at some point in</span></span><br><span class="line"><span class="comment"> * the future.</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * This must be called from a UI thread. To call from a non-UI thread, call</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@link</span> #postInvalidate()&#125;.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">// android.view.View#invalidate()</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">invalidate</span><span class="params">()</span> &#123;</span><br><span class="line">    invalidate(<span class="literal">true</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * This is where the invalidate() work actually happens. A full invalidate()</span></span><br><span class="line"><span class="comment"> * causes the drawing cache to be invalidated, but this function can be</span></span><br><span class="line"><span class="comment"> * called with invalidateCache set to false to skip that invalidation step</span></span><br><span class="line"><span class="comment"> * for cases that do not need it (for example, a component that remains at</span></span><br><span class="line"><span class="comment"> * the same dimensions with the same content).</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> invalidateCache Whether the drawing cache for this view should be</span></span><br><span class="line"><span class="comment"> *            invalidated as well. This is usually true for a full</span></span><br><span class="line"><span class="comment"> *            invalidate, but may be set to false if the View&#x27;s contents or</span></span><br><span class="line"><span class="comment"> *            dimensions have not changed.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@hide</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">// android.view.View#invalidate(boolean)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">invalidate</span><span class="params">(<span class="type">boolean</span> invalidateCache)</span> &#123;</span><br><span class="line">    invalidateInternal(<span class="number">0</span>, <span class="number">0</span>, mRight - mLeft, mBottom - mTop, invalidateCache, <span class="literal">true</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>标记View失效，然后会在接下来某个时间点调用<code>onDraw()</code>来重绘，且这个函数只能在主线程调用，要在非主线程调用，请使用<code>postInvalidate()</code>，这个我们会在最后讲述两个的区别。</p>
-<p>另外，参数<code>invalidateCache</code>很重要，用来标记缓存是否失效。像如位移，alpha变换等这种大小和内容没有改变的情况，是不需要重新绘制内容的，系统会将view缓存到<code>layer</code>（层）中，通过对整个层进行变换来避免再次绘制。  </p>
-<p>这对于提高很多动画的性能是很有帮忙的，例如位移动画或者alpha动画。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// android.view.View#invalidateInternal</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">invalidateInternal</span><span class="params">(<span class="type">int</span> l, <span class="type">int</span> t, <span class="type">int</span> r, <span class="type">int</span> b, <span class="type">boolean</span> invalidateCache, <span class="type">boolean</span> fullInvalidate)</span> &#123;</span><br><span class="line">    ......</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ((mPrivateFlags &amp; (PFLAG_DRAWN | PFLAG_HAS_BOUNDS)) == (PFLAG_DRAWN | PFLAG_HAS_BOUNDS)</span><br><span class="line">            || (invalidateCache &amp;&amp; (mPrivateFlags &amp; PFLAG_DRAWING_CACHE_VALID) == PFLAG_DRAWING_CACHE_VALID)</span><br><span class="line">            || (mPrivateFlags &amp; PFLAG_INVALIDATED) != PFLAG_INVALIDATED</span><br><span class="line">            || (fullInvalidate &amp;&amp; isOpaque() != mLastIsOpaque)) &#123;</span><br><span class="line">        <span class="keyword">if</span> (fullInvalidate) &#123;</span><br><span class="line">            mLastIsOpaque = isOpaque();</span><br><span class="line">            mPrivateFlags &amp;= ~PFLAG_DRAWN;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        mPrivateFlags |= PFLAG_DIRTY; <span class="comment">// 增加脏区标记位</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (invalidateCache) &#123;  <span class="comment">// 如果缓存失效</span></span><br><span class="line">            mPrivateFlags |= PFLAG_INVALIDATED; <span class="comment">// 标记失效</span></span><br><span class="line">            mPrivateFlags &amp;= ~PFLAG_DRAWING_CACHE_VALID; <span class="comment">// 清除正在绘制缓存标记位</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Propagate the damage rectangle to the parent view.</span></span><br><span class="line">        <span class="keyword">final</span> <span class="type">AttachInfo</span> <span class="variable">ai</span> <span class="operator">=</span> mAttachInfo;</span><br><span class="line">        <span class="keyword">final</span> <span class="type">ViewParent</span> <span class="variable">p</span> <span class="operator">=</span> mParent;</span><br><span class="line">        <span class="keyword">if</span> (p != <span class="literal">null</span> &amp;&amp; ai != <span class="literal">null</span> &amp;&amp; l &lt; r &amp;&amp; t &lt; b) &#123;</span><br><span class="line">            <span class="keyword">final</span> <span class="type">Rect</span> <span class="variable">damage</span> <span class="operator">=</span> ai.mTmpInvalRect;</span><br><span class="line">            damage.set(l, t, r, b);</span><br><span class="line">            p.invalidateChild(<span class="built_in">this</span>, damage); <span class="comment">// 向父View报告脏区位置</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        ......</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>invalidateInternal()</code>为内部实现，包括增加脏区标记，失效标记，并向父View报告脏区位置</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * All or part of a child is dirty and needs to be redrawn.</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> child The child which is dirty</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> r The area within the child that is invalid</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@deprecated</span> Use &#123;<span class="doctag">@link</span> #onDescendantInvalidated(View, View)&#125; instead.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"> <span class="comment">// android.view.ViewParent#invalidateChild</span></span><br><span class="line"><span class="meta">@Deprecated</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">invalidateChild</span><span class="params">(View child, Rect r)</span>;</span><br></pre></td></tr></table></figure>
-<p>ViewParent的接口，对于ViewGroup和ViewRootImple有各自的实现，用于触发<code>child</code>的<code>r</code>标志的脏区重绘</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Don&#x27;t call or override this method. It is used for the implementation of</span></span><br><span class="line"><span class="comment"> * the view hierarchy.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@deprecated</span> Use &#123;<span class="doctag">@link</span> #onDescendantInvalidated(View, View)&#125; instead to observe updates to</span></span><br><span class="line"><span class="comment"> * draw state in descendants.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">// android.view.ViewGroup#invalidateChild</span></span><br><span class="line"><span class="meta">@Deprecated</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title function_">invalidateChild</span><span class="params">(View child, <span class="keyword">final</span> Rect dirty)</span> &#123;</span><br><span class="line">    ......</span><br><span class="line"></span><br><span class="line">    <span class="type">ViewParent</span> <span class="variable">parent</span> <span class="operator">=</span> <span class="built_in">this</span>;</span><br><span class="line">    <span class="keyword">if</span> (attachInfo != <span class="literal">null</span>) &#123;</span><br><span class="line">        </span><br><span class="line">        ......</span><br><span class="line"></span><br><span class="line">        <span class="keyword">do</span> &#123;</span><br><span class="line">            <span class="type">View</span> <span class="variable">view</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">            <span class="keyword">if</span> (parent <span class="keyword">instanceof</span> View) &#123;</span><br><span class="line">                view = (View) parent;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            ......</span><br><span class="line"></span><br><span class="line">            parent = parent.invalidateChildInParent(location, dirty);</span><br><span class="line">            </span><br><span class="line">            ......</span><br><span class="line">            </span><br><span class="line">        &#125; <span class="keyword">while</span> (parent != <span class="literal">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// android.view.ViewRootImpl#invalidateChild</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">invalidateChild</span><span class="params">(View child, Rect dirty)</span> &#123;</span><br><span class="line">    invalidateChildInParent(<span class="literal">null</span>, dirty);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>上下两个方法分别是：ViewGroup的<code>invalidateChild</code>的实现 和 ViewRootImpl的<code>invalidateChild</code>实现</p>
-</blockquote>
-<p>我们知道view的父控件肯定是ViewGroup，但ViewGroup的父控件除了ViewGroup，还有ViewRootImpl  </p>
-<p>所以在触发<code>invalidateChild</code>后，会递归向上依次调用父控件的<code>invalidateChildInParent</code>，然后返回父控件的父控件，一直到顶层，也就是ViewRootImpl，最终调用ViewRootImpl的<code>invalidateChildInParent</code>，结束递归</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Don&#x27;t call or override this method. It is used for the implementation of</span></span><br><span class="line"><span class="comment"> * the view hierarchy.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * This implementation returns null if this ViewGroup does not have a parent,</span></span><br><span class="line"><span class="comment"> * if this ViewGroup is already fully invalidated or if the dirty rectangle</span></span><br><span class="line"><span class="comment"> * does not intersect with this ViewGroup&#x27;s bounds.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@deprecated</span> Use &#123;<span class="doctag">@link</span> #onDescendantInvalidated(View, View)&#125; instead to observe updates to</span></span><br><span class="line"><span class="comment"> * draw state in descendants.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">// android.view.ViewGroup#invalidateChildInParent</span></span><br><span class="line"><span class="meta">@Deprecated</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> ViewParent <span class="title function_">invalidateChildInParent</span><span class="params">(<span class="keyword">final</span> <span class="type">int</span>[] location, <span class="keyword">final</span> Rect dirty)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> ((mPrivateFlags &amp; (PFLAG_DRAWN | PFLAG_DRAWING_CACHE_VALID)) != <span class="number">0</span>) &#123;</span><br><span class="line">        </span><br><span class="line">        ......</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> mParent;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// android.view.ViewRootImpl#invalidateChildInParent</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> ViewParent <span class="title function_">invalidateChildInParent</span><span class="params">(<span class="type">int</span>[] location, Rect dirty)</span> &#123;</span><br><span class="line">    .....</span><br><span class="line"></span><br><span class="line">    invalidateRectOnScreen(dirty);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>二者实现，不再多说。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">invalidateRectOnScreen</span><span class="params">(Rect dirty)</span> &#123;</span><br><span class="line">    ......</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!mWillDrawSoon &amp;&amp; (intersected || mIsAnimating)) &#123;</span><br><span class="line">        scheduleTraversals();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>结束递归的最后，触发了view树的刷新，也就是我们的终极大boss<code>scheduleTraversals</code>。</p>
-<blockquote>
-<p><code>sechduleTraversals</code>，拆开来分别是调度，递归</p>
-</blockquote>
-<p>什么递归？view树的递归，为什么是调度，因为不是立刻执行，还需要时机触发。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> <span class="title function_">scheduleTraversals</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!mTraversalScheduled) &#123;</span><br><span class="line">        mTraversalScheduled = <span class="literal">true</span>; <span class="comment">// 标记已经触发过调度了，所以如果有多次invalidate，其实并没有实际产生调度</span></span><br><span class="line">        mTraversalBarrier = mHandler.getLooper().getQueue().postSyncBarrier();</span><br><span class="line">        mChoreographer.postCallback(</span><br><span class="line">                Choreographer.CALLBACK_TRAVERSAL, mTraversalRunnable, <span class="literal">null</span>); <span class="comment">// 加入回调队列</span></span><br><span class="line">        <span class="keyword">if</span> (!mUnbufferedInputDispatch) &#123;</span><br><span class="line">            scheduleConsumeBatchedInput();</span><br><span class="line">        &#125;</span><br><span class="line">        notifyRendererOfFramePending();</span><br><span class="line">        pokeDrawLockIfNeeded();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>终于来到最后一步，并没看到所谓的触发刷新逻辑，只是将一个Runnable任务加入了一个任务队列中？？说好的触发刷新呢？<br>一切的一切，都在这里的新面孔<code>Choreographer</code></p>
-<blockquote>
-<p><code>Choreographer</code>直译：编舞者</p>
-</blockquote>
-<h3 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h3><p>欲知  </p>
-<p>编舞者<code>Choreographer</code>怎样接管后续工作？<br>刷新逻辑何时才能执行？</p>
-<p>请听下回分解。</p>
+<p>如果你直接去看 Glide 主流程的调用链路，盯着 request 一直往下走，会发现在 request 启动之后，没有后续了。那么真正的 load 在哪里开始的，request 并没有体现。</p>
+<p>我们会在 Request 的实现 SingleRequest 中看到一个不起眼的代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">target.getSize(<span class="built_in">this</span>);</span><br></pre></td></tr></table></figure></p>
+<p>SingleRquest 将自己注册给 Target，而 Target 则监听了 Android 的 ViewObserver<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ViewTreeObserver</span> <span class="variable">observer</span> <span class="operator">=</span> view.getViewTreeObserver(); layoutListener = <span class="keyword">new</span> <span class="title class_">SizeDeterminerLayoutListener</span>(<span class="built_in">this</span>); observer.addOnPreDrawListener(layoutListener);</span><br></pre></td></tr></table></figure></p>
+<p>在 PreDraw 的时候，Target 就会不断检测当前 View 的尺寸是否合法了。这样等尺寸准备好之后，就通过 SizeReadyCallback 回调通知 Request，推动 Request 开始做真正的请求。</p>
+<h2 id="最后检查"><a href="#最后检查" class="headerlink" title="最后检查"></a>最后检查</h2><p>看到这里，我们已经完成了自己设计的一个简易图片加载库的核心功能了（其实是Glide的），我们最后以面向对象的思想来看一下每个类的职责：</p>
+<ul>
+<li><p><strong>Glide</strong>： 是我们作为图片加载库的总入口，触发图片加载和其他一些功能。同时单例实现。使用 <strong>Facade Pattern</strong> 设计模式，将内部复杂的使用逻辑封装为简易的使用接口，降低使用者的接入成本。</p>
+</li>
+<li><p><strong>RequestManager</strong>：请求管理者，RequestManager 根据 load 的具体内容创建 RequestBuilder，来让用户进一步定制 Request 的细节。同时，RequestManager 也负责多个 Request 的管理，例如启动暂停等。</p>
+</li>
+<li><p><strong>RequestBuilder</strong>： 将用户传入的参数（例如 Target）和其他 options 一起构建出 Request</p>
+</li>
+<li><p><strong>Request</strong>： 是链接加载到图片的这一行为的抽象。方便我们把控这个过程。而每个 Request 实现</p>
+<ul>
+<li><strong>SizeReadyCallback 接口</strong>：这个标识真实应该触发 load 的时机</li>
+<li><strong>ResourceCallback 接口</strong>：这个标识资源加载完成，可以设置到 View 的时机</li>
+</ul>
+</li>
+<li><p><strong>Engine</strong>：下载图片和加载图片任务的管理类，提供线程池的能力，方便异步加载和调度系统资源。</p>
+</li>
+<li><p><strong>EngineJob</strong>：下载图片和加载图片的任务抽象。</p>
+</li>
+<li><p><strong>SizeReadyCallback</strong> <strong>接口</strong>：只有 target 才知道的自身尺寸准备好的时机（比如 view 要在 onPreDraw 才知道自己的尺寸大小），所以这个 Callback 需要 target 回调</p>
+</li>
+<li><p><strong>ResourceCallback</strong> <strong>接口</strong>：图片下载 job 可以知道图片资源什么时候就绪，这个 Callback 需要 Job 回调</p>
+</li>
+</ul>
+<p>最后的最后，我们将其所有的功能简单分为三个模块：</p>
+<p><img src="./CAD3B13C-BCF6-4EEA-9E85-F33734709423.png" width=50% /></p>
+<h1 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h1><p>至此，我们第一个章节内容就结束了。</p>
+<p>我们从 Glide 最基础的图片库的核心能力开始，打造出了一个简易的图片框架。包含了基本的图片加载主流程。</p>
+<p>当然，这个图片框架拓展性不够，加载的数据很单一，另外缓存能力也缺失，也没法做生命周期管理，可能会造成内存泄漏等等之类的。当然我们后边的系列文章会逐步完善这个框架。</p>
+<p>下一期，我们将为这个框架增加生命周期的能力，让这个框架可以实现自我管理。</p>
 
     </article>
     <!-- license  -->
     
         <div class="license-wrapper">
             <p>原文作者：<a href="http://www.0xfree.top">0xforee</a>
-            <p>原文链接：<a href="http://www.0xfree.top/2018/10/13/invalidate-of-invalidate/">http://www.0xfree.top/2018/10/13/invalidate-of-invalidate/</a>
-            <p>发表日期：<a href="http://www.0xfree.top/2018/10/13/invalidate-of-invalidate/">October 13th 2018, 12:33:52 am</a>
-            <p>更新日期：<a href="http://www.0xfree.top/2018/10/13/invalidate-of-invalidate/">November 22nd 2018, 7:57:12 pm</a>
+            <p>原文链接：<a href="http://www.0xfree.top/2023/08/11/core_of_glide_code_design/">http://www.0xfree.top/2023/08/11/core_of_glide_code_design/</a>
+            <p>发表日期：<a href="http://www.0xfree.top/2023/08/11/core_of_glide_code_design/">August 11th 2023, 10:06:00 pm</a>
+            <p>更新日期：<a href="http://www.0xfree.top/2023/08/11/core_of_glide_code_design/">August 11th 2023, 10:29:55 pm</a>
             <p>版权声明：本文采用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -498,17 +552,12 @@ height:50vh;
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "/2018/10/12/trilogy-of-invalidate/" title= "invalidate 三部曲序">
-                    <div class="prevTitle">invalidate 三部曲序</div>
+                <a href= "/2023/08/01/how-to-use-kotlin-coroutine/" title= "一文帮你快速理解协程使用模型">
+                    <div class="prevTitle">一文帮你快速理解协程使用模型</div>
                 </a>
             
         </li>
         <li class="next">
-            
-                <div class="nextSlogan">Next Post</div>
-                <a href= "/2018/12/18/invalidate-of-choreographer/" title= "invalidate 三部曲之历经 Choreographer">
-                    <div class="nextTitle">invalidate 三部曲之历经 Choreographer</div>
-                </a>
             
         </li>
     </ul>
@@ -646,7 +695,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E8%BE%B9"><span class="toc-number">1.</span> <span class="toc-text">写在前边</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%9B%BE"><span class="toc-number">2.</span> <span class="toc-text">类图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%81%E7%A8%8B"><span class="toc-number">3.</span> <span class="toc-text">流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9D%9F%E8%AF%AD"><span class="toc-number">4.</span> <span class="toc-text">结束语</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B"><span class="toc-number">2.</span> <span class="toc-text">示例</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%AD%A3%E6%96%87"><span class="toc-number">3.</span> <span class="toc-text">正文</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E7%AE%80%E5%8D%95%E7%9A%84%E5%9B%BE%E7%89%87%E5%8A%A0%E8%BD%BD%E5%8A%9F%E8%83%BD%E5%BC%80%E5%A7%8B"><span class="toc-number">3.1.</span> <span class="toc-text">从简单的图片加载功能开始</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A1%86%E6%9E%B6%E6%A0%B8%E5%BF%83%E9%80%BB%E8%BE%91%E5%B0%BD%E9%87%8F%E5%86%85%E8%81%9A"><span class="toc-number">3.2.</span> <span class="toc-text">框架核心逻辑尽量内聚</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Request-%E8%A1%A8%E7%A4%BA%E6%88%91%E5%BE%88%E9%9A%BE"><span class="toc-number">3.3.</span> <span class="toc-text">Request 表示我很难</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E5%B0%BA%E5%AF%B8%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F"><span class="toc-number">3.4.</span> <span class="toc-text">图片尺寸怎么办？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%90%8E%E6%A3%80%E6%9F%A5"><span class="toc-number">3.5.</span> <span class="toc-text">最后检查</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E6%9D%9F%E8%AF%AD"><span class="toc-number">4.</span> <span class="toc-text">结束语</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>

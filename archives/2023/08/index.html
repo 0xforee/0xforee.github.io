@@ -368,6 +368,42 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2023/08/11/core_of_glide_code_design/" >
+            
+                <span>从代码设计看 Glide 之核心功能</span>
+        </a>
+        <div class="abstract-content">
+            前言接上文。这篇我们主要关注于 Glide 的核心能力，来看一看构建出 Glide 核心的能力的模块或者类是哪些。
+示例如果用过 Glide 肯定记得通过 Glide 加载一个图片最简单的写法是什么。1Glide.with(applicationContext).load(&quot;https://xx.image/test&quot;).into(view)
+ 加载某张图片到某个 View。 
+
+这就是 Glide 最核心的代码。  
+Glide 中其他的代码和模块都是围绕在这个核心链路周围的。比如通过 load 可以拓展出不同的数据来源，通过 Target 拓展出不同的展示目标。还...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/08/11</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "android">android</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "glide">glide</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2023/08/01/how-to-use-kotlin-coroutine/" >
             
                 <span>一文帮你快速理解协程使用模型</span>
@@ -838,9 +874,24 @@ However, a coroutine is not bound to any particular thread. It may suspend its e
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 27
+        Total : 28
         </div>
         <!-- search  -->
         
@@ -853,6 +904,11 @@ However, a coroutine is not bound to any particular thread. It may suspend its e
     
     <div class="archive-year"> 2023 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/11</span><a class="archive-post-title" href= "/2023/08/11/core_of_glide_code_design/" >从代码设计看 Glide 之核心功能</a>
+        </li>
     
     
         <li class="archive-post-item">
