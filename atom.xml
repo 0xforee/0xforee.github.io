@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>0xforee&#39;s blog</title>
+  
+  
+  <link href="http://www.0xfree.top/atom.xml" rel="self"/>
+  
+  <link href="http://www.0xfree.top/"/>
+  <updated>2023-08-15T14:40:04.490Z</updated>
+  <id>http://www.0xfree.top/</id>
+  
+  <author>
+    <name>0xforee</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【周知】站点升级&amp;域名切换</title>
+    <link href="http://www.0xfree.top/2023/08/15/upgrade-my-site-config/"/>
+    <id>http://www.0xfree.top/2023/08/15/upgrade-my-site-config/</id>
+    <published>2023-08-15T14:32:03.000Z</published>
+    <updated>2023-08-15T14:40:04.490Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="Other" scheme="http://www.0xfree.top/categories/Other/"/>
+    
+    
+    <category term="hexo" scheme="http://www.0xfree.top/tags/hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>从代码设计看 Glide 之核心功能</title>
+    <link href="http://www.0xfree.top/2023/08/11/core_of_glide_code_design/"/>
+    <id>http://www.0xfree.top/2023/08/11/core_of_glide_code_design/</id>
+    <published>2023-08-11T14:06:00.000Z</published>
+    <updated>2023-08-12T10:12:10.428Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;接上文。这篇我们主要关注于 Glide 的核心能力，来看一看构建出 Glide 核心的能力的模块或者类是哪些。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Glide" scheme="http://www.0xfree.top/categories/Glide/"/>
+    
+    
+    <category term="android" scheme="http://www.0xfree.top/tags/android/"/>
+    
+    <category term="glide" scheme="http://www.0xfree.top/tags/glide/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>一文帮你快速理解协程使用模型</title>
+    <link href="http://www.0xfree.top/2023/08/01/how-to-use-kotlin-coroutine/"/>
+    <id>http://www.0xfree.top/2023/08/01/how-to-use-kotlin-coroutine/</id>
+    <published>2023-08-01T14:51:07.000Z</published>
+    <updated>2023-08-12T10:09:07.529Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;A &lt;strong&gt;coroutine&lt;/strong&gt; is an instance of suspendable computation.  &lt;/p&gt;
+&lt;p&gt;It is conceptually similar to a thread, in the sense that it takes a block of code to run that works concurrently with the rest of the code.   &lt;/p&gt;
+&lt;p&gt;However, a coroutine is not bound to any particular thread. It may suspend its execution in one thread and resume in another one.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;以上这段话出自官网。介绍协程的基本概念和一些特性。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="kotlin" scheme="http://www.0xfree.top/categories/kotlin/"/>
+    
+    
+    <category term="android" scheme="http://www.0xfree.top/tags/android/"/>
+    
+    <category term="kotlin" scheme="http://www.0xfree.top/tags/kotlin/"/>
+    
+    <category term="coroutine" scheme="http://www.0xfree.top/tags/coroutine/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>从代码设计看 Glide 之写在开头</title>
+    <link href="http://www.0xfree.top/2023/07/02/begging_of_glide_code_design/"/>
+    <id>http://www.0xfree.top/2023/07/02/begging_of_glide_code_design/</id>
+    <published>2023-07-02T15:57:00.000Z</published>
+    <updated>2023-08-12T10:11:47.492Z</updated>
+    
+    
+    <summary type="html">你日常中一定遇到过，想要设计一个模块，但是力不从心，不知道如何下手，更别说随手撸一个图片加载器，网络，埋点通信，这种级别的库了。</summary>
+    
+    
+    
+    <category term="Glide" scheme="http://www.0xfree.top/categories/Glide/"/>
+    
+    
+    <category term="android" scheme="http://www.0xfree.top/tags/android/"/>
+    
+    <category term="glide" scheme="http://www.0xfree.top/tags/glide/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>如何通过 Mapping 文件反混淆</title>
+    <link href="http://www.0xfree.top/2020/06/07/how-to-reproguard-by-mapping/"/>
+    <id>http://www.0xfree.top/2020/06/07/how-to-reproguard-by-mapping/</id>
+    <published>2020-06-07T15:57:00.000Z</published>
+    <updated>2023-08-12T10:13:21.469Z</updated>
+    
+    
+    <summary type="html">做过 Android 开发的应该或多或少都知道“混淆”这个技术点，它不仅可以帮助我们增加三方逆向的难度，还可以有效减少包体积，瘦身 APK</summary>
+    
+    
+    
+    <category term="Android" scheme="http://www.0xfree.top/categories/Android/"/>
+    
+    
+    <category term="android" scheme="http://www.0xfree.top/tags/android/"/>
+    
+    <category term="compile" scheme="http://www.0xfree.top/tags/compile/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>一篇写给 Android 刚入门小伙伴的 JSBridge 文章</title>
+    <link href="http://www.0xfree.top/2019/11/11/android-jsbridge/"/>
+    <id>http://www.0xfree.top/2019/11/11/android-jsbridge/</id>
+    <published>2019-11-10T16:10:22.000Z</published>
+    <updated>2023-08-12T06:57:23.435Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;复杂的程序都需要分层表达&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    <category term="Android" scheme="http://www.0xfree.top/categories/Android/"/>
+    
+    
+    <category term="android" scheme="http://www.0xfree.top/tags/android/"/>
+    
+    <category term="jsbridge" scheme="http://www.0xfree.top/tags/jsbridge/"/>
+    
+    <category term="html" scheme="http://www.0xfree.top/tags/html/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Git 与 Gerrit</title>
+    <link href="http://www.0xfree.top/2019/08/31/git_and_gerrit/"/>
+    <id>http://www.0xfree.top/2019/08/31/git_and_gerrit/</id>
+    <published>2019-08-31T15:55:26.000Z</published>
+    <updated>2023-08-12T06:57:04.851Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;为什么需要版本控制系统，我想点进这篇文章的读者应该都已经对这个问题了然于胸，所以不再废话。&lt;br&gt;我们会从版本是控制系统的历史发展开始着眼，到分布式系统仓库的概念，以及从仓库之间的数据传输协议，到最后的仓库的权限控制系统 Gerrit 一一讲过，来理解这些系统的使用方式和设计理念。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="效率工具" scheme="http://www.0xfree.top/categories/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/"/>
+    
+    
+    <category term="android" scheme="http://www.0xfree.top/tags/android/"/>
+    
+    <category term="Git" scheme="http://www.0xfree.top/tags/Git/"/>
+    
+    <category term="Gerrit" scheme="http://www.0xfree.top/tags/Gerrit/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>你要知道的 ListView 5种滑动模式全在这里了</title>
+    <link href="http://www.0xfree.top/2019/08/12/listview-scrollmode-parse/"/>
+    <id>http://www.0xfree.top/2019/08/12/listview-scrollmode-parse/</id>
+    <published>2019-08-11T16:08:24.000Z</published>
+    <updated>2023-08-12T06:56:44.989Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;前段时间在使用 ListView 的过程中，需要对一个子 Item 优化横向 Bannar 的滑动体验，于是借此机会，深入了解了一下 ListView 滑动的一些知识，来探究一下，一个 View 滑动，究竟需要做哪些事情。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="View解析" scheme="http://www.0xfree.top/categories/View%E8%A7%A3%E6%9E%90/"/>
+    
+    
+    <category term="android" scheme="http://www.0xfree.top/tags/android/"/>
+    
+    <category term="view" scheme="http://www.0xfree.top/tags/view/"/>
+    
+    <category term="listView" scheme="http://www.0xfree.top/tags/listView/"/>
+    
+    <category term="scrollMode" scheme="http://www.0xfree.top/tags/scrollMode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MeasureSpec 与 LayoutParams 不得不说的二三事</title>
+    <link href="http://www.0xfree.top/2019/07/01/android-measurespec-layoutparams/"/>
+    <id>http://www.0xfree.top/2019/07/01/android-measurespec-layoutparams/</id>
+    <published>2019-06-30T16:16:18.000Z</published>
+    <updated>2023-08-12T06:57:27.290Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;MesureSpec，测量规格&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    <category term="View解析" scheme="http://www.0xfree.top/categories/View%E8%A7%A3%E6%9E%90/"/>
+    
+    
+    <category term="android" scheme="http://www.0xfree.top/tags/android/"/>
+    
+    <category term="view" scheme="http://www.0xfree.top/tags/view/"/>
+    
+    <category term="measureSpec" scheme="http://www.0xfree.top/tags/measureSpec/"/>
+    
+    <category term="layoutParams" scheme="http://www.0xfree.top/tags/layoutParams/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>从零开始搭建Android源码调试环境</title>
+    <link href="http://www.0xfree.top/2019/04/22/how-to-build-android-source-code/"/>
+    <id>http://www.0xfree.top/2019/04/22/how-to-build-android-source-code/</id>
+    <published>2019-04-22T01:49:00.000Z</published>
+    <updated>2023-08-12T10:13:45.574Z</updated>
+    
+    
+    <summary type="html">最近在公司遇到的很多问题都是通过翻看 Android 源码来解决的，例如</summary>
+    
+    
+    
+    <category term="Android编译系统解析" scheme="http://www.0xfree.top/categories/Android%E7%BC%96%E8%AF%91%E7%B3%BB%E7%BB%9F%E8%A7%A3%E6%9E%90/"/>
+    
+    
+    <category term="android" scheme="http://www.0xfree.top/tags/android/"/>
+    
+    <category term="compile" scheme="http://www.0xfree.top/tags/compile/"/>
+    
+    <category term="ubuntu" scheme="http://www.0xfree.top/tags/ubuntu/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>invalidate 三部曲之历经 Choreographer</title>
+    <link href="http://www.0xfree.top/2018/12/18/invalidate-of-choreographer/"/>
+    <id>http://www.0xfree.top/2018/12/18/invalidate-of-choreographer/</id>
+    <published>2018-12-17T16:42:22.000Z</published>
+    <updated>2023-08-12T16:37:08.741Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;Choreographer，编舞者。&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    <category term="View解析" scheme="http://www.0xfree.top/categories/View%E8%A7%A3%E6%9E%90/"/>
+    
+    
+    <category term="android" scheme="http://www.0xfree.top/tags/android/"/>
+    
+    <category term="view" scheme="http://www.0xfree.top/tags/view/"/>
+    
+    <category term="invalidate" scheme="http://www.0xfree.top/tags/invalidate/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>invalidate 三部曲之始于 invalidate</title>
+    <link href="http://www.0xfree.top/2018/10/13/invalidate-of-invalidate/"/>
+    <id>http://www.0xfree.top/2018/10/13/invalidate-of-invalidate/</id>
+    <published>2018-10-12T16:33:52.000Z</published>
+    <updated>2018-11-22T11:57:12.000Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;invalidate  - to make invalid.&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    <category term="View解析" scheme="http://www.0xfree.top/categories/View%E8%A7%A3%E6%9E%90/"/>
+    
+    
+    <category term="android" scheme="http://www.0xfree.top/tags/android/"/>
+    
+    <category term="view" scheme="http://www.0xfree.top/tags/view/"/>
+    
+    <category term="invalidate" scheme="http://www.0xfree.top/tags/invalidate/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>invalidate 三部曲序</title>
+    <link href="http://www.0xfree.top/2018/10/12/trilogy-of-invalidate/"/>
+    <id>http://www.0xfree.top/2018/10/12/trilogy-of-invalidate/</id>
+    <published>2018-10-12T15:32:38.000Z</published>
+    <updated>2023-08-12T06:58:32.661Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;由于整个&lt;code&gt;invalidate()&lt;/code&gt;周期较长，继续深入会涉及屏幕刷新等底层知识，所以我们会分为三个部分来讲，分别为View发起绘制、系统处理绘制请求的逻辑、View执行真实绘制。  &lt;/p&gt;</summary>
+    
+    
+    
+    <category term="View解析" scheme="http://www.0xfree.top/categories/View%E8%A7%A3%E6%9E%90/"/>
+    
+    
+    <category term="android" scheme="http://www.0xfree.top/tags/android/"/>
+    
+    <category term="view" scheme="http://www.0xfree.top/tags/view/"/>
+    
+    <category term="invalidate" scheme="http://www.0xfree.top/tags/invalidate/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>为什么是VSYNC</title>
+    <link href="http://www.0xfree.top/2018/06/02/why-it-is-vsync/"/>
+    <id>http://www.0xfree.top/2018/06/02/why-it-is-vsync/</id>
+    <published>2018-06-02T15:31:52.000Z</published>
+    <updated>2018-07-12T14:09:11.000Z</updated>
+    
+    
+    <summary type="html">&lt;h3 id=&quot;单缓冲区&quot;&gt;&lt;a href=&quot;#单缓冲区&quot; class=&quot;headerlink&quot; title=&quot;单缓冲区&quot;&gt;&lt;/a&gt;单缓冲区&lt;/h3&gt;&lt;p&gt;显示器刷新的频率决定了人肉眼可感受的流畅度，刷新频率太低会导致出现PPT效果，刷新频率太高又没有太高的必要，所以显示器一般的刷新频率为60Hz，人眼可感知的最低限度，即1秒刷新60帧，也就是显示器会1秒从显卡中读取66帧的数据显示到屏幕上，那么这些数据是从哪里来的呢？&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Android性能调优" scheme="http://www.0xfree.top/categories/Android%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/"/>
+    
+    
+    <category term="android" scheme="http://www.0xfree.top/tags/android/"/>
+    
+    <category term="performance" scheme="http://www.0xfree.top/tags/performance/"/>
+    
+    <category term="vsync" scheme="http://www.0xfree.top/tags/vsync/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>触摸事件分析</title>
+    <link href="http://www.0xfree.top/2018/01/09/android-touch-event-dispatch/"/>
+    <id>http://www.0xfree.top/2018/01/09/android-touch-event-dispatch/</id>
+    <published>2018-01-09T11:33:50.000Z</published>
+    <updated>2018-04-22T12:22:12.000Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h2&gt;&lt;h4 id=&quot;初始化&quot;&gt;&lt;a href=&quot;#初始化&quot; class=&quot;headerlink&quot; title=&quot;初始化&quot;&gt;&lt;/a&gt;初始化&lt;/h4&gt;&lt;p&gt;每一个事件流，都是以ACTION_DOWN作为开始，以ACTION_UP或ACTION_CANCEL作为结束&lt;br&gt;在处理开始前，需要做一个安全处理，即是否有不可见的window覆盖其上，防止有恶意软件劫持用户输入事件&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="View解析" scheme="http://www.0xfree.top/categories/View%E8%A7%A3%E6%9E%90/"/>
+    
+    
+    <category term="android" scheme="http://www.0xfree.top/tags/android/"/>
+    
+    <category term="view" scheme="http://www.0xfree.top/tags/view/"/>
+    
+    <category term="touchevent" scheme="http://www.0xfree.top/tags/touchevent/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>低电量提醒</title>
+    <link href="http://www.0xfree.top/2017/08/07/android-powerui/"/>
+    <id>http://www.0xfree.top/2017/08/07/android-powerui/</id>
+    <published>2017-08-06T17:23:18.000Z</published>
+    <updated>2017-08-06T17:24:08.000Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;概览&quot;&gt;&lt;a href=&quot;#概览&quot; class=&quot;headerlink&quot; title=&quot;概览&quot;&gt;&lt;/a&gt;概览&lt;/h1&gt;&lt;p&gt;PowerUI继承于SystemUI，用于电源管理，目前承载了电量提醒和温度提醒的业务内容：&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="SystemUI解析" scheme="http://www.0xfree.top/categories/SystemUI%E8%A7%A3%E6%9E%90/"/>
+    
+    
+    <category term="android" scheme="http://www.0xfree.top/tags/android/"/>
+    
+    <category term="PowerUI" scheme="http://www.0xfree.top/tags/PowerUI/"/>
+    
+    <category term="SystemUI" scheme="http://www.0xfree.top/tags/SystemUI/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>快捷开关之无线网路</title>
+    <link href="http://www.0xfree.top/2017/04/14/android-quicksettings-wifi/"/>
+    <id>http://www.0xfree.top/2017/04/14/android-quicksettings-wifi/</id>
+    <published>2017-04-14T12:54:17.000Z</published>
+    <updated>2017-04-20T14:32:58.000Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h1&gt;&lt;p&gt;无线网络作为快捷开关三大金刚之一，重要性不言而喻。为用户提供开关wifi以及切换wifi的功能。无线网络虽然只是作为一个入口，和设置中无线网络页面扮演着相同的角色，但是因为可随时访问的特性，会比设置无线网络有着更多的用户场景，实时性，交互性，稳定性都有着更高的要求。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="SystemUI解析" scheme="http://www.0xfree.top/categories/SystemUI%E8%A7%A3%E6%9E%90/"/>
+    
+    
+    <category term="android" scheme="http://www.0xfree.top/tags/android/"/>
+    
+    <category term="quickSettings" scheme="http://www.0xfree.top/tags/quickSettings/"/>
+    
+    <category term="wifiTIle" scheme="http://www.0xfree.top/tags/wifiTIle/"/>
+    
+    <category term="wifi" scheme="http://www.0xfree.top/tags/wifi/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>快捷开关之移动数据</title>
+    <link href="http://www.0xfree.top/2017/03/05/android-quicksettings-mobiledata/"/>
+    <id>http://www.0xfree.top/2017/03/05/android-quicksettings-mobiledata/</id>
+    <published>2017-03-05T10:23:54.000Z</published>
+    <updated>2017-03-07T14:24:19.000Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;概览&quot;&gt;&lt;a href=&quot;#概览&quot; class=&quot;headerlink&quot; title=&quot;概览&quot;&gt;&lt;/a&gt;概览&lt;/h2&gt;&lt;p&gt;移动数据开关作为快捷开关的三大金刚之一，重要性不言而喻。作为日常高频使用的开关之一，承载了及其重要的功能。在Flyme6之前，4G还未普及，流量金贵，所以切换菜单中加入了2G，3G，4G的功能，而在Flyme7的过渡中，双卡用户增加，所以将切换菜单中网络模式切换更换为主副卡切换功能。后续跟随用户反馈，可能会将这两个功能同时加入&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="SystemUI解析" scheme="http://www.0xfree.top/categories/SystemUI%E8%A7%A3%E6%9E%90/"/>
+    
+    
+    <category term="android" scheme="http://www.0xfree.top/tags/android/"/>
+    
+    <category term="quickSettings" scheme="http://www.0xfree.top/tags/quickSettings/"/>
+    
+    <category term="mobileDataTile" scheme="http://www.0xfree.top/tags/mobileDataTile/"/>
+    
+    <category term="mobileData" scheme="http://www.0xfree.top/tags/mobileData/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>关于PRODUCT_PROPERTY_OVERRIDES属性的解析</title>
+    <link href="http://www.0xfree.top/2016/03/29/android-build-system-parse-PRODUCT_PROPERTY_OVERRIDES/"/>
+    <id>http://www.0xfree.top/2016/03/29/android-build-system-parse-PRODUCT_PROPERTY_OVERRIDES/</id>
+    <published>2016-03-29T11:39:12.000Z</published>
+    <updated>2016-04-28T15:23:49.000Z</updated>
+    
+    
+    <summary type="html">PRODUCT_PROPERTY_OVERRIDES属性需要怎么理解才能正确被使用？</summary>
+    
+    
+    
+    <category term="Android编译系统解析" scheme="http://www.0xfree.top/categories/Android%E7%BC%96%E8%AF%91%E7%B3%BB%E7%BB%9F%E8%A7%A3%E6%9E%90/"/>
+    
+    
+    <category term="android" scheme="http://www.0xfree.top/tags/android/"/>
+    
+    <category term="build" scheme="http://www.0xfree.top/tags/build/"/>
+    
+    <category term="PRODUCT_PROPERTY_OVERRIDES" scheme="http://www.0xfree.top/tags/PRODUCT-PROPERTY-OVERRIDES/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PRODUCT_COPY_FILES语法解析</title>
+    <link href="http://www.0xfree.top/2016/02/24/android-build-system-parse-PRODUCT_COPY_FILES/"/>
+    <id>http://www.0xfree.top/2016/02/24/android-build-system-parse-PRODUCT_COPY_FILES/</id>
+    <published>2016-02-24T11:12:48.000Z</published>
+    <updated>2016-03-05T15:20:36.000Z</updated>
+    
+    
+    <summary type="html">PRODUCT_COPY_FILES变量很常用，但是这个变量的作用方式却又与一般的定义符号作用不一样，所以单独提出来说说</summary>
+    
+    
+    
+    <category term="Android编译系统解析" scheme="http://www.0xfree.top/categories/Android%E7%BC%96%E8%AF%91%E7%B3%BB%E7%BB%9F%E8%A7%A3%E6%9E%90/"/>
+    
+    
+    <category term="android" scheme="http://www.0xfree.top/tags/android/"/>
+    
+    <category term="build" scheme="http://www.0xfree.top/tags/build/"/>
+    
+    <category term="PRODUCT_COPY_FILES" scheme="http://www.0xfree.top/tags/PRODUCT-COPY-FILES/"/>
+    
+  </entry>
+  
+</feed>

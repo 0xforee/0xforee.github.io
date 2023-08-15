@@ -1,441 +1,54 @@
-<!DOCTYPE html>
-<html lang="zh-Hans">
-    <!-- title -->
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>一文帮你快速理解协程使用模型 - 0xforee&#039;s blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="0xforee&#039;s blog"><meta name="msapplication-TileImage" content="/img/bbb.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="0xforee&#039;s blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="A coroutine is an instance of suspendable computation.   It is conceptually similar to a thread, in the sense that it takes a block of code to run that works concurrently with the rest of the code."><meta property="og:type" content="blog"><meta property="og:title" content="一文帮你快速理解协程使用模型"><meta property="og:url" content="http://www.0xfree.top/2023/08/01/how-to-use-kotlin-coroutine/"><meta property="og:site_name" content="0xforee&#039;s blog"><meta property="og:description" content="A coroutine is an instance of suspendable computation.   It is conceptually similar to a thread, in the sense that it takes a block of code to run that works concurrently with the rest of the code."><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://www.0xfree.top/2023/08/01/how-to-use-kotlin-coroutine/9E244A44-08C1-402D-9E85-86FB58641450.png"><meta property="og:image" content="http://www.0xfree.top/2023/08/01/how-to-use-kotlin-coroutine/9910E4B1-ACFD-4B20-A521-6627CC8A271B.png"><meta property="og:image" content="http://www.0xfree.top/2023/08/01/how-to-use-kotlin-coroutine/D72D5FBD-041E-431F-AF30-77FD4D7C8D91.png"><meta property="og:image" content="http://www.0xfree.top/2023/08/01/how-to-use-kotlin-coroutine/5150C32D-ABC1-4208-BF99-C48F0D896551.png"><meta property="og:image" content="http://www.0xfree.top/2023/08/01/how-to-use-kotlin-coroutine/9.gif"><meta property="og:image" content="http://www.0xfree.top/2023/08/01/how-to-use-kotlin-coroutine/9D3B86B4-44E4-4313-A75C-96BBF9D103DA.png"><meta property="og:image" content="http://www.0xfree.top/2023/08/01/how-to-use-kotlin-coroutine/5B191A1C-300A-45C5-914F-45C657791962.png"><meta property="og:image" content="http://www.0xfree.top/2023/08/01/how-to-use-kotlin-coroutine/A4017E4C-28F8-44FC-9E5F-0E4F3060EE1A.png"><meta property="article:published_time" content="2023-08-01T14:51:07.000Z"><meta property="article:modified_time" content="2023-08-12T10:09:07.529Z"><meta property="article:author" content="0xforee"><meta property="article:tag" content="android"><meta property="article:tag" content="kotlin"><meta property="article:tag" content="coroutine"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://www.0xfree.top/2023/08/01/how-to-use-kotlin-coroutine/9E244A44-08C1-402D-9E85-86FB58641450.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://www.0xfree.top/2023/08/01/how-to-use-kotlin-coroutine/"},"headline":"一文帮你快速理解协程使用模型","image":["http://www.0xfree.top/2023/08/01/how-to-use-kotlin-coroutine/9E244A44-08C1-402D-9E85-86FB58641450.png","http://www.0xfree.top/2023/08/01/how-to-use-kotlin-coroutine/9910E4B1-ACFD-4B20-A521-6627CC8A271B.png","http://www.0xfree.top/2023/08/01/how-to-use-kotlin-coroutine/D72D5FBD-041E-431F-AF30-77FD4D7C8D91.png","http://www.0xfree.top/2023/08/01/how-to-use-kotlin-coroutine/5150C32D-ABC1-4208-BF99-C48F0D896551.png","http://www.0xfree.top/2023/08/01/how-to-use-kotlin-coroutine/9.gif","http://www.0xfree.top/2023/08/01/how-to-use-kotlin-coroutine/9D3B86B4-44E4-4313-A75C-96BBF9D103DA.png","http://www.0xfree.top/2023/08/01/how-to-use-kotlin-coroutine/5B191A1C-300A-45C5-914F-45C657791962.png","http://www.0xfree.top/2023/08/01/how-to-use-kotlin-coroutine/A4017E4C-28F8-44FC-9E5F-0E4F3060EE1A.png"],"datePublished":"2023-08-01T14:51:07.000Z","dateModified":"2023-08-12T10:09:07.529Z","author":{"@type":"Person","name":"0xforee"},"publisher":{"@type":"Organization","name":"0xforee's blog","logo":{"@type":"ImageObject","url":"http://www.0xfree.top/img/bbb.png"}},"description":"A coroutine is an instance of suspendable computation.   It is conceptually similar to a thread, in the sense that it takes a block of code to run that works concurrently with the rest of the code."}</script><link rel="canonical" href="http://www.0xfree.top/2023/08/01/how-to-use-kotlin-coroutine/"><link rel="icon" href="/img/bbb.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><script>var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?7a3e0de2a2409ac715977a70cebe1750";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();</script><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
 
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
 
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
 
-
-<!-- keywords -->
-
-
-
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
-    <meta name="author" content="0xforee">
-    <meta name="renderer" content="webkit">
-    <meta name="copyright" content="0xforee">
-    
-    <meta name="keywords" content="android,build-system,0xforee-blog">
-    
-    <meta name="description" content="Read The Fuck Code">
-    <meta http-equiv="Cache-control" content="no-cache">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>一文帮你快速理解协程使用模型 · 0xforee&#39;s Blog</title>
-    <style type="text/css">
-    @font-face {
-        font-family: 'Oswald-Regular';
-        src: url("/font/Oswald-Regular.ttf");
-    }
-
-    body {
-        margin: 0;
-    }
-
-    header,
-    footer,
-    .back-top,
-    .sidebar,
-    .container,
-    .site-intro-meta,
-    .toc-wrapper {
-        display: none;
-    }
-
-    .site-intro {
-        position: relative;
-        z-index: 3;
-        width: 100%;
-        /* height: 50vh; */
-        overflow: hidden;
-    }
-
-    .site-intro-placeholder {
-        position: absolute;
-        z-index: -2;
-        top: 0;
-        left: 0;
-        width: calc(100% + 300px);
-        height: 100%;
-        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
-        background-position: center center;
-        transform: translate3d(-226px, 0, 0);
-        animation: gradient-move 2.5s ease-out 0s infinite;
-    }
-
-    @keyframes gradient-move {
-        0% {
-            transform: translate3d(-226px, 0, 0);
-        }
-        100% {
-            transform: translate3d(0, 0, 0);
-        }
-    }
-
-</style>
-
-    <link rel="preload" href= "/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <link rel="stylesheet" href= "/css/mobile.css?v=20180824" media="(max-width: 980px)">
-    
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    
-    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
-/* This file is meant as a standalone workflow for
-- testing support for link[rel=preload]
-- enabling async CSS loading in browsers that do not support rel=preload
-- applying rel preload css once loaded, whether supported or not.
-*/ -->
-<script>
-(function( w ){
-	"use strict";
-	// rel=preload support test
-	if( !w.loadCSS ){
-		w.loadCSS = function(){};
-	}
-	// define on the loadCSS obj
-	var rp = loadCSS.relpreload = {};
-	// rel=preload feature support test
-	// runs once and returns a function for compat purposes
-	rp.support = (function(){
-		var ret;
-		try {
-			ret = w.document.createElement( "link" ).relList.supports( "preload" );
-		} catch (e) {
-			ret = false;
-		}
-		return function(){
-			return ret;
-		};
-	})();
-
-	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
-	// then change that media back to its intended value on load
-	rp.bindMediaToggle = function( link ){
-		// remember existing media attr for ultimate state, or default to 'all'
-		var finalMedia = link.media || "all";
-
-		function enableStylesheet(){
-			link.media = finalMedia;
-		}
-
-		// bind load handlers to enable media
-		if( link.addEventListener ){
-			link.addEventListener( "load", enableStylesheet );
-		} else if( link.attachEvent ){
-			link.attachEvent( "onload", enableStylesheet );
-		}
-
-		// Set rel and non-applicable media type to start an async request
-		// note: timeout allows this to happen async to let rendering continue in IE
-		setTimeout(function(){
-			link.rel = "stylesheet";
-			link.media = "only x";
-		});
-		// also enable media after 3 seconds,
-		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
-		setTimeout( enableStylesheet, 3000 );
-	};
-
-	// loop through link elements in DOM
-	rp.poly = function(){
-		// double check this to prevent external calls from running
-		if( rp.support() ){
-			return;
-		}
-		var links = w.document.getElementsByTagName( "link" );
-		for( var i = 0; i < links.length; i++ ){
-			var link = links[ i ];
-			// qualify links to those with rel=preload and as=style attrs
-			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
-				// prevent rerunning on link
-				link.setAttribute( "data-loadcss", true );
-				// bind listeners to toggle media back
-				rp.bindMediaToggle( link );
-			}
-		}
-	};
-
-	// if unsupported, run the polyfill
-	if( !rp.support() ){
-		// run once at least
-		rp.poly();
-
-		// rerun poly on an interval until onload
-		var run = w.setInterval( rp.poly, 500 );
-		if( w.addEventListener ){
-			w.addEventListener( "load", function(){
-				rp.poly();
-				w.clearInterval( run );
-			} );
-		} else if( w.attachEvent ){
-			w.attachEvent( "onload", function(){
-				rp.poly();
-				w.clearInterval( run );
-			} );
-		}
-	}
-
-
-	// commonjs
-	if( typeof exports !== "undefined" ){
-		exports.loadCSS = loadCSS;
-	}
-	else {
-		w.loadCSS = loadCSS;
-	}
-}( typeof global !== "undefined" ? global : this ) );
-</script>
-
-    <link rel="icon" href= "/assets/favicon.ico" />
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script" />
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script" />
-    <link rel="preload" href="/scripts/main.js" as="script" />
-    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
-    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
-    
-    <!-- fancybox -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
-    <!-- 百度统计  -->
-    
-    <script>
-        var _hmt = _hmt || [];
-        (function () {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?7a3e0de2a2409ac715977a70cebe1750";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-        })();
-    </script>
-    
-    <!-- 谷歌统计  -->
-    
-    <script>
-        (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-        (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date(); a = s.createElement(o),
-        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-        ga('create', 'UA-131092737-1', 'auto');
-        ga('send', 'pageview');
-    </script>
-    
-<meta name="generator" content="Hexo 6.3.0"></head>
-
-    
-        <body class="post-body">
-    
-    
-<header class="header">
-
-    <div class="read-progress"></div>
-    <div class="header-sidebar-menu">&#xe775;</div>
-    <!-- post页的toggle banner  -->
-    
-    <div class="banner">
-            <div class="blog-title">
-                <a href="/" >0xforee&#39;s Blog.</a>
-            </div>
-            <div class="post-title">
-                <a href="#" class="post-name">一文帮你快速理解协程使用模型</a>
-            </div>
-    </div>
-    
-    <a class="home-link" href=/>0xforee's Blog.</a>
-</header>
-    <div class="wrapper">
-        <div class="site-intro" style="
-
-
-
-
-
-
-
-height:50vh;
-">
-    
-    <!-- 主页  -->
-    
-    
-    <!-- 404页  -->
-    
-    <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(https://source.unsplash.com/1600x900/?code)"></div>
-    <div class="site-intro-meta">
-        <!-- 标题  -->
-        <h1 class="intro-title">
-            <!-- 主页  -->
-            
-            一文帮你快速理解协程使用模型
-            <!-- 404 -->
-            
-        </h1>
-        <!-- 副标题 -->
-        <p class="intro-subtitle">
-            <!-- 主页副标题  -->
-            
-            
-            <!-- 404 -->
-            
-        </p>
-        <!-- 文章页meta -->
-        
-            <div class="post-intros">
-                <!-- 文章页标签  -->
-                
-                    <div class= post-intro-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "android">android</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "kotlin">kotlin</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "coroutine">coroutine</a>
-    
-</div>
-                
-                
-                    <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">5k</span>阅读时长: <span class="post-count reading-time">18 min</span></span>
-                    </div>
-                
-                <div class="post-intro-meta">
-                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2023/08/01</span>
-                    <!-- 
-                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
-                        <span class="iconfont-archer">&#xe602;</span>
-                        <span id="busuanzi_value_page_pv"></span>
-                    </span>
-                     -->
-                    <span class="shareWrapper">
-                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
-                        <span class="shareText">Share</span>
-                        <ul class="shareList">
-                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
-                                <div class="share-qrcode"></div>
-                            </li>
-                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
-                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
-                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
-                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
-                        </ul>
-                    </span>
-                </div>
-            </div>
-        
-    </div>
-</div>
-
-        <script>
- 
-  // get user agent
-  var browser = {
-    versions: function () {
-      var u = window.navigator.userAgent;
-      return {
-        userAgent: u,
-        trident: u.indexOf('Trident') > -1, //IE内核
-        presto: u.indexOf('Presto') > -1, //opera内核
-        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
-        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
-        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
-        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
-        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
-        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
-        iPad: u.indexOf('iPad') > -1, //是否为iPad
-        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
-        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
-        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
-      };
-    }()
-  }
-  console.log("userAgent:" + browser.versions.userAgent);
-
-  // callback
-  function fontLoaded() {
-    console.log('font loaded');
-    if (document.getElementsByClassName('site-intro-meta')) {
-      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
-      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
-      var postIntros = document.getElementsByClassName('post-intros')[0]
-      if (postIntros) {
-        postIntros.classList.add('post-fade-in');
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
       }
-    }
-  }
-
-  // UC不支持跨域，所以直接显示
-  function asyncCb(){
-    if (browser.versions.uc) {
-      console.log("UCBrowser");
-      fontLoaded();
-    } else {
-      WebFont.load({
-        custom: {
-          families: ['Oswald-Regular']
-        },
-        loading: function () {  //所有字体开始加载
-          // console.log('loading');
-        },
-        active: function () {  //所有字体已渲染
-          fontLoaded();
-        },
-        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
-          console.log('inactive: timeout');
-          fontLoaded();
-        },
-        timeout: 5000 // Set the timeout to two seconds
-      });
-    }
-  }
-
-  function asyncErr(){
-    console.warn('script load from CDN failed, will load local script')
-  }
-
-  // load webfont-loader async, and add callback function
-  function async(u, cb, err) {
-    var d = document, t = 'script',
-      o = d.createElement(t),
-      s = d.getElementsByTagName(t)[0];
-    o.src = u;
-    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
-    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
-    s.parentNode.insertBefore(o, s);
-  }
-
-  var asyncLoadWithFallBack = function(arr, success, reject) {
-      var currReject = function(){
-        reject()
-        arr.shift()
-        if(arr.length)
-          async(arr[0], success, currReject)
-        }
-
-      async(arr[0], success, currReject)
-  }
-
-  asyncLoadWithFallBack([
-    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
-    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
-    "/lib/webfontloader.min.js"
-  ], asyncCb, asyncErr)
-</script>
-        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
-        <div class="container container-unloaded">
-            <main class="main post-page">
-    <article class="article-entry">
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="0xforee's blog" type="application/atom+xml">
+</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/bbb.png" alt="0xforee&#039;s blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">首页</a><a class="navbar-item" href="/archives">时间轴</a><a class="navbar-item" href="/categories">栏目</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-9-tablet is-9-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-3 is-size-4-mobile">一文帮你快速理解协程使用模型</h1><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-08-01T14:51:07.000Z" title="8/1/2023, 10:51:07 PM">2023-08-01</time></span><span class="level-item"><a class="link-muted" href="/categories/kotlin/">kotlin</a></span><span class="level-item">35 分钟读完 (大约5209个字)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><div class="content"><blockquote>
 <p>A <strong>coroutine</strong> is an instance of suspendable computation.  </p>
 <p>It is conceptually similar to a thread, in the sense that it takes a block of code to run that works concurrently with the rest of the code.   </p>
 <p>However, a coroutine is not bound to any particular thread. It may suspend its execution in one thread and resume in another one.</p>
 </blockquote>
-<p>以上这段话出自官网。介绍协程的基本概念和一些特性。<br>其中提到了可挂起，计算实例，线程相似性，代码块，并行，不绑定特定线程，在一个线程挂起在另一个线程恢复等关键字。</p>
+<p>以上这段话出自官网。介绍协程的基本概念和一些特性。</p>
+<span id="more"></span>
+<p>其中提到了可挂起，计算实例，线程相似性，代码块，并行，不绑定特定线程，在一个线程挂起在另一个线程恢复等关键字。</p>
 <p>我们今天就围绕这些基本概念和关键字来探索一下协程的使用模型</p>
 <p>请放心，本文没有晦涩难懂的源码解析，也没有深奥的概念，只有大量的类比帮你快速理解协程。</p>
-<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="简单示例"><a href="#简单示例" class="headerlink" title="简单示例"></a>简单示例</h2><p>这大概是最简单的协程示例了。<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GlobalScope.launch&#123;   </span><br><span class="line">    print(<span class="string">&quot;hello coroutine&quot;</span>) </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="简单示例"><a href="#简单示例" class="headerlink" title="简单示例"></a>简单示例</h2><p>这大概是最简单的协程示例了。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GlobalScope.launch&#123;   </span><br><span class="line">    print(<span class="string">&quot;hello coroutine&quot;</span>) </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <center> 案例 1 </center>
 
 <p>你可以将它加入到任意的 kotlin 代码中运行看看。</p>
@@ -447,13 +60,15 @@ height:50vh;
 <p>而协程不行，协程是语言层级的概念，无法做到像线程那样成为所有函数的运行基础，所以我们需要在语言层面标识哪些是跑在协程的，哪些不是。</p>
 <p>而 Scope 的作用就是用来标识和限定哪些代码跑在协程中。</p>
 <p>协程框架提供了一些方式，可以快速的帮我们创建好 Scope，来包裹我们要跑在协程上的那些代码块。官方称之为 <code>Scope Builder</code>。</p>
-<p>常用的 <code>Scope Builder</code> 有这些<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">runBlocking&#123;&#125; </span><br><span class="line">GlobalScope&#123;&#125; </span><br><span class="line">coroutineScope&#123;&#125; </span><br><span class="line">withContext&#123;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>常用的 <code>Scope Builder</code> 有这些</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">runBlocking&#123;&#125; </span><br><span class="line">GlobalScope&#123;&#125; </span><br><span class="line">coroutineScope&#123;&#125; </span><br><span class="line">withContext&#123;&#125;</span><br></pre></td></tr></table></figure>
+
 <p>如果你在代码遇到这些关键字，就可以知道这里有一个协程了。</p>
 <blockquote>
 <p>注意，默认情况下，定义好一个 Scope 后，协程框架会启动协程来执行代码块，你可以通过参数控制这种默认行为。</p>
 </blockquote>
 <p>另外，IDE 也会在有 Scope 的地方提示你：</p>
-<p><img src="./9E244A44-08C1-402D-9E85-86FB58641450.png" alt=""></p>
+<p><img src="/2023/08/01/how-to-use-kotlin-coroutine/9E244A44-08C1-402D-9E85-86FB58641450.png"></p>
 <p>图中的那个灰色的提示： <code>this:CoroutineScope</code> 标识了当前有个 Scope 存在。</p>
 <p>上边我们也提到，协程并没有突破线程这一束缚，还是运行在线程上的，但同时协程却又被称为轻量级线程，这又是为什么呢？</p>
 <p>我们先来看看操作系统是怎么定义和描述线程的。</p>
@@ -465,10 +80,10 @@ height:50vh;
 <li>M:1（多个用户线程对应一个内核线程）</li>
 <li>M:N（多个用户线程对应多个内核线程）</li>
 </ol>
-<p><img src="./9910E4B1-ACFD-4B20-A521-6627CC8A271B.png" alt=""></p>
+<p><img src="/2023/08/01/how-to-use-kotlin-coroutine/9910E4B1-ACFD-4B20-A521-6627CC8A271B.png"></p>
 <center> 线程实现模型 1:1 示意图（来源网络）</center>
 
-<p><img src="./D72D5FBD-041E-431F-AF30-77FD4D7C8D91.png" alt=""></p>
+<p><img src="/2023/08/01/how-to-use-kotlin-coroutine/D72D5FBD-041E-431F-AF30-77FD4D7C8D91.png"></p>
 <center> 线程实现模型 M:N 示意图（来源网络）</center>
 
 <p>之所以出现这几种调度模型，是因为内核线程的使用是有一定成本的，每次切换线程都要切换线程上下文和保存寄存器状态，切换 CPU 上下文等。如果我们实现了在用户空间切换线程，可以省略和缩短 CPU 和内核空间切换上下文的开销。</p>
@@ -486,19 +101,28 @@ height:50vh;
 <p>没错，就是我们耳熟能详的 Handler</p>
 <p>Handler 内部实现了一个消息队列 MessageQueue，Handler 会不断的从这个 MessageQueue 中获取消息，然后在对应的线程上执行。</p>
 <p>而协程执行的过程，其实和消息队列差不多。</p>
-<p>比如以下的协程执行<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GlobalScope.launch&#123;   </span><br><span class="line">    print(<span class="string">&quot;hello coroutine&quot;</span>) </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>可以类比到 Handler 中<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 发送普通 Handler 消息 </span></span><br><span class="line">handler.<span class="keyword">post</span>&#123; </span><br><span class="line">  <span class="keyword">print</span>(<span class="string">&quot;hello coroutine&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>比如以下的协程执行</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GlobalScope.launch&#123;   </span><br><span class="line">    print(<span class="string">&quot;hello coroutine&quot;</span>) </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>可以类比到 Handler 中</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 发送普通 Handler 消息 </span></span><br><span class="line">handler.<span class="keyword">post</span>&#123; </span><br><span class="line">  <span class="keyword">print</span>(<span class="string">&quot;hello coroutine&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <center> 案例 2</center>
 
 <p>所以我们也可以将协程称之为一个任务调度框架。</p>
 <p>但协程和 Handler 的不同点就在于协程底层并不是运行在某个线程上的，而是可能在多个线程上。<br>既然可能是多个线程，那么协程怎么知道我哪些代码要运行在 A 线程，哪些代码要运行在 B 线程呢？<br>换句话说，他是怎么调度的呢？什么时候会调度呢？</p>
 <p>这就涉及到协程的另一个关键字 <code>suspend</code></p>
-<h2 id="Suspend-做了什么？"><a href="#Suspend-做了什么？" class="headerlink" title="Suspend 做了什么？"></a>Suspend 做了什么？</h2><p>我们将案例 2 扩展一下，思考这么一段代码<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 发送普通Handler 的延迟消息</span></span><br><span class="line">handler.<span class="keyword">post</span>&#123;</span><br><span class="line">  <span class="keyword">print</span>(<span class="string">&quot;hello coroutine&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line">handler.postDelayed(</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">print</span>(<span class="string">&quot;hello world&quot;</span>)</span><br><span class="line">  &#125;,300</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
-<p>然后我们看看协程的实现：<br><figure class="highlight isbl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 等价于协程</span></span><br><span class="line"><span class="variable">GlobalScope.launch</span>&#123;</span><br><span class="line">  <span class="function"><span class="title">print</span>(<span class="string">&quot;hello coroutine&quot;</span>)</span></span><br><span class="line">  <span class="function"><span class="title">delay</span>(<span class="number">300</span>)</span></span><br><span class="line">  <span class="function"><span class="title">print</span>(<span class="string">&quot;hello world&quot;</span>)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Suspend-做了什么？"><a href="#Suspend-做了什么？" class="headerlink" title="Suspend 做了什么？"></a>Suspend 做了什么？</h2><p>我们将案例 2 扩展一下，思考这么一段代码</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 发送普通Handler 的延迟消息</span></span><br><span class="line">handler.<span class="keyword">post</span>&#123;</span><br><span class="line">  <span class="keyword">print</span>(<span class="string">&quot;hello coroutine&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line">handler.postDelayed(</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">print</span>(<span class="string">&quot;hello world&quot;</span>)</span><br><span class="line">  &#125;,300</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>然后我们看看协程的实现：</p>
+<figure class="highlight isbl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 等价于协程</span></span><br><span class="line"><span class="variable">GlobalScope.launch</span>&#123;</span><br><span class="line">  <span class="function"><span class="title">print</span>(<span class="string">&quot;hello coroutine&quot;</span>)</span></span><br><span class="line">  <span class="function"><span class="title">delay</span>(<span class="number">300</span>)</span></span><br><span class="line">  <span class="function"><span class="title">print</span>(<span class="string">&quot;hello world&quot;</span>)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <center> 案例 3 </center>
 
 <p>其中的 delay 是一个 suspend 函数。源码如下：</p>
-<p><img src="./5150C32D-ABC1-4208-BF99-C48F0D896551.png" alt=""></p>
+<p><img src="/2023/08/01/how-to-use-kotlin-coroutine/5150C32D-ABC1-4208-BF99-C48F0D896551.png"></p>
 <p>其中 suspend 是表示挂起的意思。那么这个挂起函数起到了什么作用呢？</p>
 <p>我们知道，指定某个线程执行一段代码块，会有两个结果：</p>
 <ol>
@@ -509,26 +133,33 @@ height:50vh;
 <p>那么，有 suspend 就一定会被挂起吗？<br>当然不是，带 suspend 关键字的函数被称为挂起函数。挂起函数仅仅标识当前函数内可能有挂起点，协程真正会挂起的位置被称为挂起点。</p>
 <p>我们将协程可以执行的代码块分为两种：普通函数（普通代码块）和挂起函数（有挂起点的代码块）<br><strong>普通函数</strong>：就是指一段串行的代码，如果开始执行，就一定会被在当前线程上顺序执行完毕。<br><strong>挂起函数</strong>：包含了普通代码块和可能穿插的挂起点。普通代码块如上规则，而挂起点就是指以下关键字</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">delay</span><span class="params">(time)</span></span>, await 等</span><br></pre></td></tr></table></figure>
+
+
 <p>遇到挂起点，协程就会在这个点上挂起，这时其他满足条件的协程就会被调度到这个协程底层的线程上继续执行。直到当前协程恢复的条件满足，才会被继续调度执行。</p>
 <p>我们用一个实际的例子来看看，协程和线程中阻塞和挂起的区别</p>
-<p>线程：<br><figure class="highlight roboconf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Thread&#123;</span><br><span class="line">  <span class="attribute">println(&quot;$&#123;Date().time&#125;</span>: $&#123;Thread<span class="variable">.currentThread</span>()<span class="variable">.name</span>&#125; hello&quot;)</span><br><span class="line">  Thread<span class="variable">.sleep</span>(1400)</span><br><span class="line">  println(&quot;$&#123;Date()<span class="variable">.time</span>&#125;: $&#123;Thread<span class="variable">.currentThread</span>()<span class="variable">.name</span>&#125; world&quot;)</span><br><span class="line">  println(&quot;$&#123;Date()<span class="variable">.time</span>&#125;: $&#123;Thread<span class="variable">.currentThread</span>()<span class="variable">.name</span>&#125; an &quot;)</span><br><span class="line">  println(&quot;$&#123;Date()<span class="variable">.time</span>&#125;: $&#123;Thread<span class="variable">.currentThread</span>()<span class="variable">.name</span>&#125; another&quot;)</span><br><span class="line">&#125;<span class="variable">.start</span>()</span><br></pre></td></tr></table></figure></p>
+<p>线程：</p>
+<figure class="highlight roboconf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Thread&#123;</span><br><span class="line">  <span class="attribute">println(&quot;$&#123;Date().time&#125;</span>: $&#123;Thread<span class="variable">.currentThread</span>()<span class="variable">.name</span>&#125; hello&quot;)</span><br><span class="line">  Thread<span class="variable">.sleep</span>(1400)</span><br><span class="line">  println(&quot;$&#123;Date()<span class="variable">.time</span>&#125;: $&#123;Thread<span class="variable">.currentThread</span>()<span class="variable">.name</span>&#125; world&quot;)</span><br><span class="line">  println(&quot;$&#123;Date()<span class="variable">.time</span>&#125;: $&#123;Thread<span class="variable">.currentThread</span>()<span class="variable">.name</span>&#125; an &quot;)</span><br><span class="line">  println(&quot;$&#123;Date()<span class="variable">.time</span>&#125;: $&#123;Thread<span class="variable">.currentThread</span>()<span class="variable">.name</span>&#125; another&quot;)</span><br><span class="line">&#125;<span class="variable">.start</span>()</span><br></pre></td></tr></table></figure>
+
 <p>协程：</p>
 <p>这段代码是启动了三个协程，并让他们都在同一个线程上调度</p>
 <blockquote>
 <p>注意：这里将调度器指向了一个单线程池。</p>
 </blockquote>
 <figure class="highlight isbl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">val</span> <span class="variable">dispatcher</span> = <span class="variable">Executors.newSingleThreadExecutor</span>().asCoroutineDispatcher()</span><br><span class="line"><span class="variable">runBlocking</span> &#123;</span><br><span class="line">  <span class="function"><span class="title">CoroutineScope</span>(<span class="variable">dispatcher</span>).launch&#123;</span></span><br><span class="line"><span class="function">    <span class="title">println</span>(<span class="string">&quot;$&#123;Date().time&#125;: $&#123;Thread.currentThread().name&#125; hello&quot;</span>)</span></span><br><span class="line">    <span class="function"><span class="title">delay</span>(<span class="number">1400</span>)</span></span><br><span class="line">    <span class="function"><span class="title">println</span>(<span class="string">&quot;$&#123;Date().time&#125;: $&#123;Thread.currentThread().name&#125; world&quot;</span>)</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">CoroutineScope</span>(<span class="variable">dispatcher</span>).launch&#123;</span></span><br><span class="line"><span class="function">    <span class="title">println</span>(<span class="string">&quot;$&#123;Date().time&#125;: $&#123;Thread.currentThread().name&#125; an &quot;</span>)</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">CoroutineScope</span>(<span class="variable">dispatcher</span>).launch&#123;</span></span><br><span class="line"><span class="function">    <span class="title">println</span>(<span class="string">&quot;$&#123;Date().time&#125;: $&#123;Thread.currentThread().name&#125; another&quot;</span>)</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>我们停下来先思考一下他们的输出分别是什么？</p>
 <p>线程输出结果：</p>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">1690337539395</span>: Thread-<span class="number">0</span> hello</span><br><span class="line"><span class="attribute">1690337540800</span>: Thread-<span class="number">0</span> world</span><br><span class="line"><span class="attribute">1690337540800</span>: Thread-<span class="number">0</span> an </span><br><span class="line"><span class="attribute">1690337540800</span>: Thread-<span class="number">0</span> another</span><br></pre></td></tr></table></figure>
+
 <p>协程的输出结果：</p>
 <blockquote>
-<p>VM options 设置-Dkotlinx.coroutines.debug=on 即可开启协程名称</p>
+<p>VM options 设置-Dkotlinx.coroutines.debug&#x3D;on 即可开启协程名称</p>
 </blockquote>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">1690337474719</span>: pool-<span class="number">1</span>-thread-<span class="number">1</span> @coroutine#<span class="number">2</span> hello</span><br><span class="line"><span class="attribute">1690337474725</span>: pool-<span class="number">1</span>-thread-<span class="number">1</span> @coroutine#<span class="number">3</span> an </span><br><span class="line"><span class="attribute">1690337474725</span>: pool-<span class="number">1</span>-thread-<span class="number">1</span> @coroutine#<span class="number">4</span> another</span><br><span class="line"><span class="attribute">1690337476132</span>: pool-<span class="number">1</span>-thread-<span class="number">1</span> @coroutine#<span class="number">2</span> world</span><br></pre></td></tr></table></figure>
+
 <p>从线程的输出结果中，我们可以看到，整个线程 Thread-0 被 Thread.sleep() 这行代码阻塞，无法继续往下执行，直到1.4s 后被唤醒了才继续往下执行</p>
 <p>而协程就不一样了，2 号协程因为 delay 而挂起，但是并没有阻塞他所在的 Thread-1，协程框架会继续调度其他可执行的协程跑在 Thread-1 上，所以我们可以看到紧接着 3，4 号协程被调度执行。delay 1.4s 后，2 号协程被唤醒，继续往下执行。</p>
-<p><img src="./9.gif" alt=""></p>
+<p><img src="/2023/08/01/how-to-use-kotlin-coroutine/9.gif"></p>
 <center> 动图展示 </center>
 
 <p>有些人可能还会有一个疑问，挂起操作会导致协程先执行到后边的代码吗？<br>比如上边的代码中，协程 2 号挂起之后，“world”的输出会被调度到其他线程上，从而比 “an” 或者 ”another” 先输出吗？</p>
@@ -541,11 +172,14 @@ height:50vh;
 <p>简单来说就是单个线程内部代码是串行的，控制流前边的代码会先行发生于后边的代码。<br>而协程也有这样的规则，同一个协程内会遵循先行发生原则，即输出 world 之前，协程 2 号会被 delay 挂起暂停执行。<br>上边的例子我们解释了协程挂起这个特性究竟是怎么回事，下边我们再看看协程在面对多线程调度时的另一个特性。</p>
 <p>我们将协程代码稍微修改一下，并且让他调度在多线程池上呢？代码执行结果会有什么不同吗？</p>
 <figure class="highlight isbl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">val</span> <span class="variable">dispatcher</span> = <span class="variable">Dispatchers.IO</span> <span class="comment">// 替换为多线程调度器</span></span><br><span class="line"><span class="variable">runBlocking</span> &#123;</span><br><span class="line">  <span class="function"><span class="title">CoroutineScope</span>(<span class="variable">dispatcher</span>).launch&#123;</span></span><br><span class="line"><span class="function">    <span class="title">println</span>(<span class="string">&quot;$&#123;Date().time&#125;: $&#123;Thread.currentThread().name&#125; hello&quot;</span>)</span></span><br><span class="line">    <span class="function"><span class="title">delay</span>(<span class="number">1400</span>)</span></span><br><span class="line">    <span class="function"><span class="title">println</span>(<span class="string">&quot;$&#123;Date().time&#125;: $&#123;Thread.currentThread().name&#125; world&quot;</span>)</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">CoroutineScope</span>(<span class="variable">dispatcher</span>).launch&#123;</span></span><br><span class="line"><span class="function">    <span class="title">delay</span>(<span class="number">300</span>) <span class="comment">// 注意这里也有一个 delay 挂起</span></span></span><br><span class="line"><span class="function">    <span class="title">println</span>(<span class="string">&quot;$&#123;Date().time&#125;: $&#123;Thread.currentThread().name&#125; an&quot;</span>)</span></span><br><span class="line">    <span class="function"><span class="title">println</span>(<span class="string">&quot;$&#123;Date().time&#125;: $&#123;Thread.currentThread().name&#125; another&quot;</span>)</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>我们运行以上代码，输出 1：</p>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">1690338849816</span>: DefaultDispatcher-worker-<span class="number">2</span> @coroutine#<span class="number">2</span> hello</span><br><span class="line"><span class="attribute">1690338850124</span>: DefaultDispatcher-worker-<span class="number">1</span> @coroutine#<span class="number">3</span> an</span><br><span class="line"><span class="attribute">1690338850124</span>: DefaultDispatcher-worker-<span class="number">1</span> @coroutine#<span class="number">3</span> another</span><br><span class="line"><span class="attribute">1690338851224</span>: DefaultDispatcher-worker-<span class="number">1</span> @coroutine#<span class="number">2</span> world</span><br></pre></td></tr></table></figure>
+
 <p>我们再运行一遍呢</p>
 <p>输出 2：</p>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">1690338877016</span>: DefaultDispatcher-worker-<span class="number">1</span> @coroutine#<span class="number">2</span> hello</span><br><span class="line"><span class="attribute">1690338877327</span>: DefaultDispatcher-worker-<span class="number">1</span> @coroutine#<span class="number">3</span> an</span><br><span class="line"><span class="attribute">1690338877327</span>: DefaultDispatcher-worker-<span class="number">1</span> @coroutine#<span class="number">3</span> another</span><br><span class="line"><span class="attribute">1690338878425</span>: DefaultDispatcher-worker-<span class="number">1</span> @coroutine#<span class="number">2</span> world</span><br></pre></td></tr></table></figure>
+
 <p>我们会发现字符串输出顺序一致，但是指向的线程却不一样了。</p>
 <p>输出 1：2 号协程在 2 号线程上输出 hello 之后挂起，然后在 1 号线程恢复执行，输出 world<br>输出 2：2 号协程在 1 号线程上输出 hello 之后挂起，然后在 1 号线程恢复执行，输出 world</p>
 <p><strong>这说明：同一个协程并不一定总是会被调度在同一个线程上的。但它依然会保证协程内部的先行发生原则。</strong></p>
@@ -553,13 +187,14 @@ height:50vh;
 <h3 id="挂起函数不能被普通函数调用"><a href="#挂起函数不能被普通函数调用" class="headerlink" title="挂起函数不能被普通函数调用"></a>挂起函数不能被普通函数调用</h3><p>挂起函数是指包含挂起点，拥有挂起能力的函数。但是挂起这个特性属于是 kt 新增的黑魔法，普通的函数无法正确被协程框架所识别和使用挂起能力。所以挂起函数不能被普通函数调用，不然遇到挂起点，就无能无力了。</p>
 <p>所以挂起函数只能在协程作用域中使用，也就是我们上边提到的 Scope 中。在这个 Scope 中，可以识别和理解协程的挂起能力，挂起函数就可以按照我们预期的正常工作。</p>
 <h3 id="挂起函数只能被挂起函数调用"><a href="#挂起函数只能被挂起函数调用" class="headerlink" title="挂起函数只能被挂起函数调用"></a>挂起函数只能被挂起函数调用</h3><p>上边我们说过，挂起函数只能在协程作用域中使用，因为函数嵌套的特点，自然可以推导出挂起函数只能被挂起函数调用了。</p>
-<p><img src="./9D3B86B4-44E4-4313-A75C-96BBF9D103DA.png" alt=""></p>
+<p><img src="/2023/08/01/how-to-use-kotlin-coroutine/9D3B86B4-44E4-4313-A75C-96BBF9D103DA.png"></p>
 <p>我们如果误在普通函数中调用挂起函数的话，AndroidStudio 会贴心的提示我们以上内容。</p>
 <h3 id="挂起函数可以调用普通函数"><a href="#挂起函数可以调用普通函数" class="headerlink" title="挂起函数可以调用普通函数"></a>挂起函数可以调用普通函数</h3><p>这个也很好理解，因为我们上边说了，挂起函数其实是包含了普通代码块和一些穿插的挂起点。普通函数就是包裹普通代码块的函数，挂起函数自然是可以调用普通函数了。</p>
 <h3 id="挂起函数可以只包含普通代码，不包含挂起点"><a href="#挂起函数可以只包含普通代码，不包含挂起点" class="headerlink" title="挂起函数可以只包含普通代码，不包含挂起点"></a>挂起函数可以只包含普通代码，不包含挂起点</h3><p>可以，但没必要，编辑器会提示我们 suspend 是多余的。</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">suspend</span> <span class="function"><span class="keyword">fun</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">  print(<span class="string">&quot;hello coroutine&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>如上，编辑器会提示我们</p>
-<p><img src="./5B191A1C-300A-45C5-914F-45C657791962.png" alt=""></p>
+<p><img src="/2023/08/01/how-to-use-kotlin-coroutine/5B191A1C-300A-45C5-914F-45C657791962.png"></p>
 <p>总结一下，suspend（挂起） 是一个协程的机制，同时也是一个关键字。<br>作为机制来说，它指明的是和线程阻塞相区别的挂起能力。<br>作为关键字来说，它用来标识那些可以被挂起的函数，那些有挂起点的函数。换句话说，是标识那些只能在协程作用域内调用的函数。</p>
 <p>这个 suspend 关键字以方便提示我们这些是协程的作用域，一方面也是告诉框架这些代码是要被运行在协程上的。这就是 suspend 的作用。</p>
 <p>接下来我们看下协程另一个之前已经在示例代码中出现过的关键字 Dispatcher。</p>
@@ -567,7 +202,7 @@ height:50vh;
 <p>我们上边已经用到过两个调度器。其中 Dispatcher.IO 就是线程框架默认提供给我们的四个调度器之一。<br>协程框架总共提供了四个默认的调度器给我们使用：</p>
 <p><strong>Default</strong>：协程框架默认使用的调度器。如果调用协程时未指定任何调度器就会使用这个。内部使用一个公共共享的线程池，官方推荐我们可以用这个调度器来做一些耗费 CPU 的，计算密集的任务。<br><strong>IO</strong>：从名称我们就能看出来，这是是用来处理 IO（例如文件 IO 和阻塞式 socketIO）的一个调度器。内部使用一个按需创建的线程池。<br><strong>Main</strong>：主线程，在不同平台上都会指代主线程，用来操作一些 UI 相关的内容<br><strong>UnConfined</strong>：这个调度器和上边的不太一样，它启动执行的线程和 suspend 回来之后的线程是不一样的。这个调度器会在当前的线程启动执行，直到遇到第一个挂起点。，然后这个挂起会在任意的不会特别指定的（UnConfined）线程上恢复。官方不推荐我们用在正常的场景中，除非你真的明白你需要这个特性。</p>
 <p>除此之外呢，当然也可以自定义调度器，比如我们上边案例中使用到的单线程调度器，就是 Executor 转过来的。<br>你可以使用 ExecutorService 中的 <code>asCoroutineDispathcer</code> 这个拓展函数来将任意的 Executor 转义过来，非常方便</p>
-<p><img src="./A4017E4C-28F8-44FC-9E5F-0E4F3060EE1A.png" alt=""></p>
+<p><img src="/2023/08/01/how-to-use-kotlin-coroutine/A4017E4C-28F8-44FC-9E5F-0E4F3060EE1A.png"></p>
 <p>当然官方也非常贴心的提供了两个默认的从 Executor 转来的调度器，你可以通过 <code>newSingleThreadContext</code> 和 <code>newFixedThreadPoolContext</code> 这两个关键字来调用。</p>
 <p>接下来，我们来看协程最后的一个关键特性，结构化协程</p>
 <h2 id="Structured-Coroutine"><a href="#Structured-Coroutine" class="headerlink" title="Structured Coroutine"></a>Structured Coroutine</h2><p>协程内是可以启动无数个协程的，就像线程内可以启动无数个线程一样。不同点在与，线程内启动的线程和原有的线程并没有什么关联关系，他们是平级的。而协程多了一个结构化的概念（structured coroutine)，协程内启动的协程被称为子协程。</p>
@@ -579,929 +214,66 @@ height:50vh;
 <p>（这么看，更像一个任务调度器了）</p>
 <h1 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h1><p>探索完以上的内容，我们对协程的关键特性都已经有了一个初步的概念。我们发现，各种特性其实并不陌生，都和我们其他的概念有或多多少的关联，我们也会发现其实： <strong>协程就是一个有语言关键字支持的运行在线程池上的任务调度框架。</strong> 这个调度框架可以让你更加便捷的进行多线程编程，避免进行复杂的线程切换和调度管理，从而专注于业务开发。仅此而已。</p>
 <p>当然，如果你想要使用好协程，仅仅了解这些基础的概念还是不够的，我们还需要更多的练习，协程的使用才能游刃有余。</p>
-
-    </article>
-    <!-- license  -->
-    
-        <div class="license-wrapper">
-            <p>原文作者：<a href="http://www.0xfree.top">0xforee</a>
-            <p>原文链接：<a href="http://www.0xfree.top/2023/08/01/how-to-use-kotlin-coroutine/">http://www.0xfree.top/2023/08/01/how-to-use-kotlin-coroutine/</a>
-            <p>发表日期：<a href="http://www.0xfree.top/2023/08/01/how-to-use-kotlin-coroutine/">August 1st 2023, 10:51:07 pm</a>
-            <p>更新日期：<a href="http://www.0xfree.top/2023/08/01/how-to-use-kotlin-coroutine/">August 1st 2023, 11:50:36 pm</a>
-            <p>版权声明：本文采用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
-        </div>
-    
-    <!-- paginator  -->
-    <ul class="post-paginator">
-        <li class="previous">
+</div><div class="article-licensing box"><div class="licensing-title"><p>一文帮你快速理解协程使用模型</p><p><a href="http://www.0xfree.top/2023/08/01/how-to-use-kotlin-coroutine/">http://www.0xfree.top/2023/08/01/how-to-use-kotlin-coroutine/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>0xforee</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2023-08-01</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2023-08-12</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/android/">android</a><a class="link-muted mr-2" rel="tag" href="/tags/kotlin/">kotlin</a><a class="link-muted mr-2" rel="tag" href="/tags/coroutine/">coroutine</a></div><div class="a2a_kit a2a_kit_size_32 a2a_default_style"><i class="fas fa-share-nodes fa-2xl" style="float:left;margin-right: 10px;"></i><a class="a2a_dd" target="_blank" rel="noopener" href="https://www.addtoany.com/share"></a><a class="a2a_button_wechat"></a><a class="a2a_button_telegram"></a><a class="a2a_button_evernote"></a><a class="a2a_button_pocket"></a><a class="a2a_button_flipboard"></a><a class="a2a_button_douban"></a><a class="a2a_button_instapaper"></a><a class="a2a_button_kindle_it"></a><a class="a2a_button_email"></a><a class="a2a_button_copy_link"></a><i class="fa-light fa-share"></i></div><script async src="https://static.addtoany.com/menu/page.js"></script><script src="https://static.addtoany.com/menu/page.js" defer></script></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="/img/alipay.jpg" alt="支付宝"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="/img/wechat.jpg" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2023/08/11/core_of_glide_code_design/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">从代码设计看 Glide 之核心功能</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2023/07/02/begging_of_glide_code_design/"><span class="level-item">从代码设计看 Glide 之写在开头</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div class="content" id="valine-thread"></div><script src="//cdn.jsdelivr.net/npm/leancloud-storage@3/dist/av-min.js"></script><script src="https://cdn.jsdelivr.net/npm/valine@1.4.16/dist/Valine.min.js"></script><script>new Valine({
+            el: '#valine-thread',
+            appId: "syj6F1Y9iqTJ7vzM2sniKUYz-gzGzoHsz",
+            appKey: "Ox2jK9gEuEEsz0gyfOiCSf8P",
+            placeholder: "gogo",
+            avatar: "mm",
+            avatarForce: false,
+            meta: ["nick","mail","link"],
+            pageSize: 10,
+            lang: "zh-CN",
+            visitor: false,
+            highlight: true,
+            recordIP: false,
             
-                <div class="prevSlogan">Previous Post</div>
-                <a href= "/2023/07/02/begging_of_glide_code_design/" title= "从代码设计看 Glide 之写在开头">
-                    <div class="prevTitle">从代码设计看 Glide 之写在开头</div>
-                </a>
             
-        </li>
-        <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href= "/2023/08/11/core_of_glide_code_design/" title= "从代码设计看 Glide 之核心功能">
-                    <div class="nextTitle">从代码设计看 Glide 之核心功能</div>
-                </a>
-            
-        </li>
-    </ul>
-    <!-- 评论插件 -->
-    <!-- 来必力City版安装代码 -->
-
-<!-- City版安装代码已完成 -->
-    
-    
-    <!-- partial('_partial/comment/changyan') -->
-    <!--PC版-->
-
-
-    
-    
-    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
-    <div id="comment"></div>
-    <script>
-    new Valine({
-        el: '#comment' ,
-        notify:false, 
-        verify:false, 
-        appId: "syj6F1Y9iqTJ7vzM2sniKUYz-gzGzoHsz",
-        appKey: "Ox2jK9gEuEEsz0gyfOiCSf8P",
-        placeholder: "gogo",
-        path:window.location.pathname, 
-        avatar:'mm' 
-    });
-    </script>
-
-
-    <!-- 评论 -->
-</main>
-            <!-- profile -->
-            
-        </div>
-        <footer class="footer footer-unloaded">
-    <!-- social  -->
-    
-    <div class="social">
-        
-    
-        
-            
-                <a href="mailto:0xforee@gmail.com" class="iconfont-archer email" title=email ></a>
-            
-        
-    
-        
-            
-                <a href="//github.com/0xforee" class="iconfont-archer github" target="_blank" title=github></a>
-            
-        
-    
-        
-            
-                <span class="iconfont-archer wechat" title=wechat>
-                  
-                  <img class="profile-qr" src="/assets/myself-low.png" />
-                </span>
-            
-        
-    
-        
-    
-        
-    
-        
-    
-        
-            
-                <a href="https://www.zhihu.com/people/li-xiao-92-82/activities" class="iconfont-archer zhihu" target="_blank" title=zhihu></a>
-            
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-
-    </div>
-    
-    <!-- powered by Hexo  -->
-    <div class="copyright">
-        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
-    </div>
-    <!-- 不蒜子  -->
-    
-    <div class="busuanzi-container">
-    
-     
-    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
-    
-    </div>
-    
-</footer>
-    </div>
-    <!-- toc -->
-    
-    <div class="toc-wrapper" style=
-    
-
-
-
-
-
-
-
-top:50vh;
-
-    >
-        <div class="toc-catalog">
-            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
-        </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%AD%A3%E6%96%87"><span class="toc-number">2.</span> <span class="toc-text">正文</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E7%A4%BA%E4%BE%8B"><span class="toc-number">2.1.</span> <span class="toc-text">简单示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-Scope%EF%BC%9F"><span class="toc-number">2.2.</span> <span class="toc-text">什么是 Scope？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E6%A0%B8%E7%BA%BF%E7%A8%8B-or-%E7%94%A8%E6%88%B7%E7%BA%BF%E7%A8%8B"><span class="toc-number">2.3.</span> <span class="toc-text">内核线程 or 用户线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%8F%E7%A8%8B%E8%BF%90%E8%A1%8C%E5%9C%A8%E7%BA%BF%E7%A8%8B%E4%B8%8A"><span class="toc-number">2.4.</span> <span class="toc-text">协程运行在线程上</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Suspend-%E5%81%9A%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">2.5.</span> <span class="toc-text">Suspend 做了什么？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%82%E8%B5%B7%E5%87%BD%E6%95%B0%E4%B8%8D%E8%83%BD%E8%A2%AB%E6%99%AE%E9%80%9A%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8"><span class="toc-number">2.5.1.</span> <span class="toc-text">挂起函数不能被普通函数调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%82%E8%B5%B7%E5%87%BD%E6%95%B0%E5%8F%AA%E8%83%BD%E8%A2%AB%E6%8C%82%E8%B5%B7%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8"><span class="toc-number">2.5.2.</span> <span class="toc-text">挂起函数只能被挂起函数调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%82%E8%B5%B7%E5%87%BD%E6%95%B0%E5%8F%AF%E4%BB%A5%E8%B0%83%E7%94%A8%E6%99%AE%E9%80%9A%E5%87%BD%E6%95%B0"><span class="toc-number">2.5.3.</span> <span class="toc-text">挂起函数可以调用普通函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%82%E8%B5%B7%E5%87%BD%E6%95%B0%E5%8F%AF%E4%BB%A5%E5%8F%AA%E5%8C%85%E5%90%AB%E6%99%AE%E9%80%9A%E4%BB%A3%E7%A0%81%EF%BC%8C%E4%B8%8D%E5%8C%85%E5%90%AB%E6%8C%82%E8%B5%B7%E7%82%B9"><span class="toc-number">2.5.4.</span> <span class="toc-text">挂起函数可以只包含普通代码，不包含挂起点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dispatcher"><span class="toc-number">2.6.</span> <span class="toc-text">Dispatcher</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Structured-Coroutine"><span class="toc-number">2.7.</span> <span class="toc-text">Structured Coroutine</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E6%9D%9F%E8%AF%AD"><span class="toc-number">3.</span> <span class="toc-text">结束语</span></a></li></ol>
-    </div>
-    
-    <div class="back-top iconfont-archer">&#xe639;</div>
-    <div class="sidebar sidebar-hide">
-    <ul class="sidebar-tabs sidebar-tabs-active-0">
-        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
-        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
-        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
-    </ul>
-    <div class="sidebar-content sidebar-content-show-archive">
-          <div class="sidebar-panel-archives">
-    <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <div class="total-and-search">
-        <div class="total-archive">
-        Total : 28
-        </div>
-        <!-- search  -->
-        
-    </div>
-    
-    <div class="post-archive">
-    
-    
-    
-    
-    <div class="archive-year"> 2023 </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">08/11</span><a class="archive-post-title" href= "/2023/08/11/core_of_glide_code_design/" >从代码设计看 Glide 之核心功能</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">08/01</span><a class="archive-post-title" href= "/2023/08/01/how-to-use-kotlin-coroutine/" >一文帮你快速理解协程使用模型</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">07/02</span><a class="archive-post-title" href= "/2023/07/02/begging_of_glide_code_design/" >从代码设计看 Glide 之写在开头</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> 2020 </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/07</span><a class="archive-post-title" href= "/2020/06/07/how-to-reproguard-by-mapping/" >如何通过 Mapping 文件反混淆</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> 2019 </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">11/11</span><a class="archive-post-title" href= "/2019/11/11/android-jsbridge/" >一篇写给 Android 刚入门小伙伴的 JSBridge 文章</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">08/31</span><a class="archive-post-title" href= "/2019/08/31/git_and_gerrit/" >Git 与 Gerrit</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">08/12</span><a class="archive-post-title" href= "/2019/08/12/listview-scrollmode-parse/" >你要知道的 ListView 5种滑动模式全在这里了</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">07/01</span><a class="archive-post-title" href= "/2019/07/01/android-measurespec-layoutparams/" >MeasureSpec 与 LayoutParams 不得不说的二三事</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/03</span><a class="archive-post-title" href= "/2019/05/03/glide-contents/" >glide-contents</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/22</span><a class="archive-post-title" href= "/2019/04/22/how-to-build-android-source-code/" >从零开始搭建Android源码调试环境</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> 2018 </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">12/18</span><a class="archive-post-title" href= "/2018/12/18/invalidate-of-choreographer/" >invalidate 三部曲之历经 Choreographer</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">10/13</span><a class="archive-post-title" href= "/2018/10/13/invalidate-of-invalidate/" >invalidate 三部曲之始于 invalidate</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">10/12</span><a class="archive-post-title" href= "/2018/10/12/trilogy-of-invalidate/" >invalidate 三部曲序</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/02</span><a class="archive-post-title" href= "/2018/06/02/why-it-is-vsync/" >为什么是VSYNC</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">01/09</span><a class="archive-post-title" href= "/2018/01/09/android-touch-event-dispatch/" >触摸事件分析</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> 2017 </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">08/07</span><a class="archive-post-title" href= "/2017/08/07/android-powerui/" >低电量提醒</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/14</span><a class="archive-post-title" href= "/2017/04/14/android-quicksettings-wifi/" >快捷开关之无线网路</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/05</span><a class="archive-post-title" href= "/2017/03/05/android-quicksettings-mobiledata/" >快捷开关之移动数据</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> 2016 </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/29</span><a class="archive-post-title" href= "/2016/03/29/android-build-system-parse-PRODUCT_PROPERTY_OVERRIDES/" >关于PRODUCT_PROPERTY_OVERRIDES属性的解析</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">02/24</span><a class="archive-post-title" href= "/2016/02/24/android-build-system-parse-PRODUCT_COPY_FILES/" >PRODUCT_COPY_FILES语法解析</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">01/08</span><a class="archive-post-title" href= "/2016/01/08/android-build-systemui-keypoint-third/" >Android编译系统分析之几个关键点（三）</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> 2015 </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">12/28</span><a class="archive-post-title" href= "/2015/12/28/android-build-system-keypoint-second/" >Android编译系统分析之几个关键点（二）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">12/22</span><a class="archive-post-title" href= "/2015/12/22/android-build-system-keypoint-first/" >Android编译系统分析之几个关键点（一）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">12/08</span><a class="archive-post-title" href= "/2015/12/08/android-build-system-make/" >Android编译系统分析之make分析</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">12/01</span><a class="archive-post-title" href= "/2015/12/01/android-build-system-lunch/" >Android编译系统分析之lunch分析</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">11/25</span><a class="archive-post-title" href= "/2015/11/25/gentoo-local-overlay/" >【译】Gentoo Local Overlay</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">11/24</span><a class="archive-post-title" href= "/2015/11/24/gentoo-basic-guide-ebuilds/" >【译】如何书写 Gentoo Ebuilds 的基本规则</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">11/05</span><a class="archive-post-title" href= "/2015/11/05/android-build-system-envsetup/" >source build/envsetup.sh 做了什么？</a>
-        </li>
-    
-    </div>
-  </div>
-        <div class="sidebar-panel-tags">
-    <div class="sidebar-tags-name">
-    
-        <span class="sidebar-tag-name" data-tags="lunch"><span class="iconfont-archer">&#xe606;</span>lunch</span>
-    
-        <span class="sidebar-tag-name" data-tags="android"><span class="iconfont-archer">&#xe606;</span>android</span>
-    
-        <span class="sidebar-tag-name" data-tags="compile"><span class="iconfont-archer">&#xe606;</span>compile</span>
-    
-        <span class="sidebar-tag-name" data-tags="envsetup"><span class="iconfont-archer">&#xe606;</span>envsetup</span>
-    
-        <span class="sidebar-tag-name" data-tags="build"><span class="iconfont-archer">&#xe606;</span>build</span>
-    
-        <span class="sidebar-tag-name" data-tags="makefile"><span class="iconfont-archer">&#xe606;</span>makefile</span>
-    
-        <span class="sidebar-tag-name" data-tags="make"><span class="iconfont-archer">&#xe606;</span>make</span>
-    
-        <span class="sidebar-tag-name" data-tags="PRODUCT_COPY_FILES"><span class="iconfont-archer">&#xe606;</span>PRODUCT_COPY_FILES</span>
-    
-        <span class="sidebar-tag-name" data-tags="PRODUCT_PROPERTY_OVERRIDES"><span class="iconfont-archer">&#xe606;</span>PRODUCT_PROPERTY_OVERRIDES</span>
-    
-        <span class="sidebar-tag-name" data-tags="jsbridge"><span class="iconfont-archer">&#xe606;</span>jsbridge</span>
-    
-        <span class="sidebar-tag-name" data-tags="html"><span class="iconfont-archer">&#xe606;</span>html</span>
-    
-        <span class="sidebar-tag-name" data-tags="view"><span class="iconfont-archer">&#xe606;</span>view</span>
-    
-        <span class="sidebar-tag-name" data-tags="measureSpec"><span class="iconfont-archer">&#xe606;</span>measureSpec</span>
-    
-        <span class="sidebar-tag-name" data-tags="layoutParams"><span class="iconfont-archer">&#xe606;</span>layoutParams</span>
-    
-        <span class="sidebar-tag-name" data-tags="PowerUI"><span class="iconfont-archer">&#xe606;</span>PowerUI</span>
-    
-        <span class="sidebar-tag-name" data-tags="SystemUI"><span class="iconfont-archer">&#xe606;</span>SystemUI</span>
-    
-        <span class="sidebar-tag-name" data-tags="quickSettings"><span class="iconfont-archer">&#xe606;</span>quickSettings</span>
-    
-        <span class="sidebar-tag-name" data-tags="mobileDataTile"><span class="iconfont-archer">&#xe606;</span>mobileDataTile</span>
-    
-        <span class="sidebar-tag-name" data-tags="mobileData"><span class="iconfont-archer">&#xe606;</span>mobileData</span>
-    
-        <span class="sidebar-tag-name" data-tags="wifiTIle"><span class="iconfont-archer">&#xe606;</span>wifiTIle</span>
-    
-        <span class="sidebar-tag-name" data-tags="wifi"><span class="iconfont-archer">&#xe606;</span>wifi</span>
-    
-        <span class="sidebar-tag-name" data-tags="touchevent"><span class="iconfont-archer">&#xe606;</span>touchevent</span>
-    
-        <span class="sidebar-tag-name" data-tags="glide"><span class="iconfont-archer">&#xe606;</span>glide</span>
-    
-        <span class="sidebar-tag-name" data-tags="gentoo"><span class="iconfont-archer">&#xe606;</span>gentoo</span>
-    
-        <span class="sidebar-tag-name" data-tags="ebuild"><span class="iconfont-archer">&#xe606;</span>ebuild</span>
-    
-        <span class="sidebar-tag-name" data-tags="linux"><span class="iconfont-archer">&#xe606;</span>linux</span>
-    
-        <span class="sidebar-tag-name" data-tags="overlay"><span class="iconfont-archer">&#xe606;</span>overlay</span>
-    
-        <span class="sidebar-tag-name" data-tags="local"><span class="iconfont-archer">&#xe606;</span>local</span>
-    
-        <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
-    
-        <span class="sidebar-tag-name" data-tags="Gerrit"><span class="iconfont-archer">&#xe606;</span>Gerrit</span>
-    
-        <span class="sidebar-tag-name" data-tags="ubuntu"><span class="iconfont-archer">&#xe606;</span>ubuntu</span>
-    
-        <span class="sidebar-tag-name" data-tags="kotlin"><span class="iconfont-archer">&#xe606;</span>kotlin</span>
-    
-        <span class="sidebar-tag-name" data-tags="coroutine"><span class="iconfont-archer">&#xe606;</span>coroutine</span>
-    
-        <span class="sidebar-tag-name" data-tags="invalidate"><span class="iconfont-archer">&#xe606;</span>invalidate</span>
-    
-        <span class="sidebar-tag-name" data-tags="listView"><span class="iconfont-archer">&#xe606;</span>listView</span>
-    
-        <span class="sidebar-tag-name" data-tags="scrollMode"><span class="iconfont-archer">&#xe606;</span>scrollMode</span>
-    
-        <span class="sidebar-tag-name" data-tags="performance"><span class="iconfont-archer">&#xe606;</span>performance</span>
-    
-        <span class="sidebar-tag-name" data-tags="vsync"><span class="iconfont-archer">&#xe606;</span>vsync</span>
-    
-    </div>
-    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
-    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
-    缺失模块。<br/>
-    1、请确保node版本大于6.2<br/>
-    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
-    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
-    3、在根目录_config.yml里添加配置：
-    <pre style="color: #787878; font-size: 0.6rem;">
-jsonContent:
-  meta: false
-  pages: false
-  posts:
-    title: true
-    date: true
-    path: true
-    text: false
-    raw: false
-    content: false
-    slug: false
-    updated: false
-    comments: false
-    link: false
-    permalink: false
-    excerpt: false
-    categories: true
-    tags: true</pre>
-    </div> 
-    <div class="sidebar-tags-list"></div>
-</div>
-        <div class="sidebar-panel-categories">
-    <div class="sidebar-categories-name">
-    
-        <span class="sidebar-category-name" data-categories="Android编译系统解析"><span class="iconfont-archer">&#xe60a;</span>Android编译系统解析</span>
-    
-        <span class="sidebar-category-name" data-categories="Android"><span class="iconfont-archer">&#xe60a;</span>Android</span>
-    
-        <span class="sidebar-category-name" data-categories="View解析"><span class="iconfont-archer">&#xe60a;</span>View解析</span>
-    
-        <span class="sidebar-category-name" data-categories="SystemUI解析"><span class="iconfont-archer">&#xe60a;</span>SystemUI解析</span>
-    
-        <span class="sidebar-category-name" data-categories="Glide"><span class="iconfont-archer">&#xe60a;</span>Glide</span>
-    
-        <span class="sidebar-category-name" data-categories="Gentoo"><span class="iconfont-archer">&#xe60a;</span>Gentoo</span>
-    
-        <span class="sidebar-category-name" data-categories="效率工具"><span class="iconfont-archer">&#xe60a;</span>效率工具</span>
-    
-        <span class="sidebar-category-name" data-categories="kotlin"><span class="iconfont-archer">&#xe60a;</span>kotlin</span>
-    
-        <span class="sidebar-category-name" data-categories="Android性能调优"><span class="iconfont-archer">&#xe60a;</span>Android性能调优</span>
-    
-    </div>
-    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
-    <div class="sidebar-categories-list"></div>
-</div>
-    </div>
-</div> 
-    <script>
-    var siteMeta = {
-        root: "/",
-        author: "0xforee"
-    }
-</script>
-    <!-- CDN failover -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
-    <script type="text/javascript">
-        if (typeof window.$ === 'undefined')
-        {
-            console.warn('jquery load from jsdelivr failed, will load local script')
-            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
-        }
-    </script>
-    <script src="/scripts/main.js"></script>
-    <!-- algolia -->
-    
-    <!-- busuanzi  -->
-    
-    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    
-    <!-- CNZZ  -->
-    
-    </div>
-    <!-- async load share.js -->
-    
-        <script src="/scripts/share.js" async></script>
-    
-    <!-- baidu static -->
-    <script>
-      (function(){
-          var bp = document.createElement('script');
-          var curProtocol = window.location.protocol.split(':')[0];
-          if (curProtocol === 'https') {
-              bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-          }
-          else {
-              bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-          }
-          var s = document.getElementsByTagName("script")[0];
-          s.parentNode.insertBefore(bp, s);
-      })();
-    </script>
-    </body>
-</html>
+            enableQQ: false,
+            requiredFields: [],
+        });</script></div></div></div><!--!--><div class="column column-right is-3-tablet is-3-desktop is-3-widescreen  order-3"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/img/head.png" alt="0xforee"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">0xforee</p><p class="is-size-6 is-block">Read The Fuck Code</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Earth</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">28</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">栏目</p><a href="/categories"><p class="title">10</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">39</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/0xforee" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/0xforee"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="JueJin" href="https://juejin.cn/user/2518350422615987"><i class="fas fa-j"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="CSDN" href="https://blog.csdn.net/beijing2008lm?type=blog"><i class="fas fa-c"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Mail" href="mailto:0xforee@gmail.com"><i class="fas fa-envelope"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-08-15T14:32:03.000Z">2023-08-15</time></p><p class="title"><a href="/2023/08/15/upgrade-my-site-config/">【周知】站点升级&amp;域名切换</a></p><p class="categories"><a href="/categories/Other/">Other</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-08-11T14:06:00.000Z">2023-08-11</time></p><p class="title"><a href="/2023/08/11/core_of_glide_code_design/">从代码设计看 Glide 之核心功能</a></p><p class="categories"><a href="/categories/Glide/">Glide</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-08-01T14:51:07.000Z">2023-08-01</time></p><p class="title"><a href="/2023/08/01/how-to-use-kotlin-coroutine/">一文帮你快速理解协程使用模型</a></p><p class="categories"><a href="/categories/kotlin/">kotlin</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-07-02T15:57:00.000Z">2023-07-02</time></p><p class="title"><a href="/2023/07/02/begging_of_glide_code_design/">从代码设计看 Glide 之写在开头</a></p><p class="categories"><a href="/categories/Glide/">Glide</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-06-07T15:57:00.000Z">2020-06-07</time></p><p class="title"><a href="/2020/06/07/how-to-reproguard-by-mapping/">如何通过 Mapping 文件反混淆</a></p><p class="categories"><a href="/categories/Android/">Android</a></p></div></article></div></div><div class="card widget is-sticky" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#正文"><span class="level-left"><span class="level-item">1</span><span class="level-item">正文</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#简单示例"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">简单示例</span></span></a></li><li><a class="level is-mobile" href="#什么是-Scope？"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">什么是 Scope？</span></span></a></li><li><a class="level is-mobile" href="#内核线程-or-用户线程"><span class="level-left"><span class="level-item">1.3</span><span class="level-item">内核线程 or 用户线程</span></span></a></li><li><a class="level is-mobile" href="#协程运行在线程上"><span class="level-left"><span class="level-item">1.4</span><span class="level-item">协程运行在线程上</span></span></a></li><li><a class="level is-mobile" href="#Suspend-做了什么？"><span class="level-left"><span class="level-item">1.5</span><span class="level-item">Suspend 做了什么？</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#挂起函数不能被普通函数调用"><span class="level-left"><span class="level-item">1.5.1</span><span class="level-item">挂起函数不能被普通函数调用</span></span></a></li><li><a class="level is-mobile" href="#挂起函数只能被挂起函数调用"><span class="level-left"><span class="level-item">1.5.2</span><span class="level-item">挂起函数只能被挂起函数调用</span></span></a></li><li><a class="level is-mobile" href="#挂起函数可以调用普通函数"><span class="level-left"><span class="level-item">1.5.3</span><span class="level-item">挂起函数可以调用普通函数</span></span></a></li><li><a class="level is-mobile" href="#挂起函数可以只包含普通代码，不包含挂起点"><span class="level-left"><span class="level-item">1.5.4</span><span class="level-item">挂起函数可以只包含普通代码，不包含挂起点</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Dispatcher"><span class="level-left"><span class="level-item">1.6</span><span class="level-item">Dispatcher</span></span></a></li><li><a class="level is-mobile" href="#Structured-Coroutine"><span class="level-left"><span class="level-item">1.7</span><span class="level-item">Structured Coroutine</span></span></a></li></ul></li><li><a class="level is-mobile" href="#结束语"><span class="level-left"><span class="level-item">2</span><span class="level-item">结束语</span></span></a></li></ul></div></div><script src="/js/toc.js" defer></script></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/bbb.png" alt="0xforee&#039;s blog" height="28"></a><p class="is-size-7"><span>&copy; 2023 0xforee</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"栏目","tags":"标签"});
+        });</script></body></html>
