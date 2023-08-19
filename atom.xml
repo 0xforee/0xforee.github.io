@@ -6,7 +6,7 @@
   <link href="http://www.0xforee.top/atom.xml" rel="self"/>
   
   <link href="http://www.0xforee.top/"/>
-  <updated>2023-08-15T16:31:01.675Z</updated>
+  <updated>2023-08-19T13:10:31.903Z</updated>
   <id>http://www.0xforee.top/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>从代码设计看 Glide 之生命周期（上）</title>
+    <link href="http://www.0xforee.top/2023/08/18/lifecycle-i-of-glide-code-design/"/>
+    <id>http://www.0xforee.top/2023/08/18/lifecycle-i-of-glide-code-design/</id>
+    <published>2023-08-17T18:23:34.000Z</published>
+    <updated>2023-08-19T13:10:31.903Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;从代码设计看 Glide 之生命周期（上）&lt;/p&gt;
+&lt;p&gt;上期我们探索了一个具备核心功能的图片加载库该怎么设计。这一期我们来看看如何给这个图片加载库关联生命周期管理。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Glide" scheme="http://www.0xforee.top/categories/Glide/"/>
+    
+    
+    <category term="android" scheme="http://www.0xforee.top/tags/android/"/>
+    
+    <category term="glide" scheme="http://www.0xforee.top/tags/glide/"/>
+    
+  </entry>
   
   <entry>
     <title>【公告】站点升级&amp;域名切换</title>
@@ -467,29 +489,6 @@
     <category term="build" scheme="http://www.0xforee.top/tags/build/"/>
     
     <category term="PRODUCT_PROPERTY_OVERRIDES" scheme="http://www.0xforee.top/tags/PRODUCT-PROPERTY-OVERRIDES/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>PRODUCT_COPY_FILES语法解析</title>
-    <link href="http://www.0xforee.top/2016/02/24/android-build-system-parse-PRODUCT_COPY_FILES/"/>
-    <id>http://www.0xforee.top/2016/02/24/android-build-system-parse-PRODUCT_COPY_FILES/</id>
-    <published>2016-02-24T11:12:48.000Z</published>
-    <updated>2016-03-05T15:20:36.000Z</updated>
-    
-    
-    <summary type="html">PRODUCT_COPY_FILES变量很常用，但是这个变量的作用方式却又与一般的定义符号作用不一样，所以单独提出来说说</summary>
-    
-    
-    
-    <category term="Android编译系统解析" scheme="http://www.0xforee.top/categories/Android%E7%BC%96%E8%AF%91%E7%B3%BB%E7%BB%9F%E8%A7%A3%E6%9E%90/"/>
-    
-    
-    <category term="android" scheme="http://www.0xforee.top/tags/android/"/>
-    
-    <category term="build" scheme="http://www.0xforee.top/tags/build/"/>
-    
-    <category term="PRODUCT_COPY_FILES" scheme="http://www.0xforee.top/tags/PRODUCT-COPY-FILES/"/>
     
   </entry>
   
