@@ -3,11 +3,11 @@
   <title>0xforee&#39;s blog</title>
   
   
-  <link href="http://www.0xfree.top/atom.xml" rel="self"/>
+  <link href="http://www.0xforee.top/atom.xml" rel="self"/>
   
-  <link href="http://www.0xfree.top/"/>
+  <link href="http://www.0xforee.top/"/>
   <updated>2023-08-15T16:31:01.675Z</updated>
-  <id>http://www.0xfree.top/</id>
+  <id>http://www.0xforee.top/</id>
   
   <author>
     <name>0xforee</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>【公告】站点升级&amp;域名切换</title>
-    <link href="http://www.0xfree.top/2023/08/15/upgrade-my-site-config/"/>
-    <id>http://www.0xfree.top/2023/08/15/upgrade-my-site-config/</id>
+    <link href="http://www.0xforee.top/2023/08/15/upgrade-my-site-config/"/>
+    <id>http://www.0xforee.top/2023/08/15/upgrade-my-site-config/</id>
     <published>2023-08-15T14:32:03.000Z</published>
     <updated>2023-08-15T16:31:01.675Z</updated>
     
@@ -34,17 +34,17 @@
     
     
     
-    <category term="Other" scheme="http://www.0xfree.top/categories/Other/"/>
+    <category term="Other" scheme="http://www.0xforee.top/categories/Other/"/>
     
     
-    <category term="hexo" scheme="http://www.0xfree.top/tags/hexo/"/>
+    <category term="hexo" scheme="http://www.0xforee.top/tags/hexo/"/>
     
   </entry>
   
   <entry>
     <title>从代码设计看 Glide 之核心功能</title>
-    <link href="http://www.0xfree.top/2023/08/11/core_of_glide_code_design/"/>
-    <id>http://www.0xfree.top/2023/08/11/core_of_glide_code_design/</id>
+    <link href="http://www.0xforee.top/2023/08/11/core_of_glide_code_design/"/>
+    <id>http://www.0xforee.top/2023/08/11/core_of_glide_code_design/</id>
     <published>2023-08-11T14:06:00.000Z</published>
     <updated>2023-08-12T10:12:10.428Z</updated>
     
@@ -53,19 +53,19 @@
     
     
     
-    <category term="Glide" scheme="http://www.0xfree.top/categories/Glide/"/>
+    <category term="Glide" scheme="http://www.0xforee.top/categories/Glide/"/>
     
     
-    <category term="android" scheme="http://www.0xfree.top/tags/android/"/>
+    <category term="android" scheme="http://www.0xforee.top/tags/android/"/>
     
-    <category term="glide" scheme="http://www.0xfree.top/tags/glide/"/>
+    <category term="glide" scheme="http://www.0xforee.top/tags/glide/"/>
     
   </entry>
   
   <entry>
     <title>一文帮你快速理解协程使用模型</title>
-    <link href="http://www.0xfree.top/2023/08/01/how-to-use-kotlin-coroutine/"/>
-    <id>http://www.0xfree.top/2023/08/01/how-to-use-kotlin-coroutine/</id>
+    <link href="http://www.0xforee.top/2023/08/01/how-to-use-kotlin-coroutine/"/>
+    <id>http://www.0xforee.top/2023/08/01/how-to-use-kotlin-coroutine/</id>
     <published>2023-08-01T14:51:07.000Z</published>
     <updated>2023-08-12T10:09:07.529Z</updated>
     
@@ -79,21 +79,21 @@
     
     
     
-    <category term="kotlin" scheme="http://www.0xfree.top/categories/kotlin/"/>
+    <category term="kotlin" scheme="http://www.0xforee.top/categories/kotlin/"/>
     
     
-    <category term="android" scheme="http://www.0xfree.top/tags/android/"/>
+    <category term="android" scheme="http://www.0xforee.top/tags/android/"/>
     
-    <category term="kotlin" scheme="http://www.0xfree.top/tags/kotlin/"/>
+    <category term="kotlin" scheme="http://www.0xforee.top/tags/kotlin/"/>
     
-    <category term="coroutine" scheme="http://www.0xfree.top/tags/coroutine/"/>
+    <category term="coroutine" scheme="http://www.0xforee.top/tags/coroutine/"/>
     
   </entry>
   
   <entry>
     <title>从代码设计看 Glide 之写在开头</title>
-    <link href="http://www.0xfree.top/2023/07/02/begging_of_glide_code_design/"/>
-    <id>http://www.0xfree.top/2023/07/02/begging_of_glide_code_design/</id>
+    <link href="http://www.0xforee.top/2023/07/02/begging_of_glide_code_design/"/>
+    <id>http://www.0xforee.top/2023/07/02/begging_of_glide_code_design/</id>
     <published>2023-07-02T15:57:00.000Z</published>
     <updated>2023-08-12T10:11:47.492Z</updated>
     
@@ -102,19 +102,19 @@
     
     
     
-    <category term="Glide" scheme="http://www.0xfree.top/categories/Glide/"/>
+    <category term="Glide" scheme="http://www.0xforee.top/categories/Glide/"/>
     
     
-    <category term="android" scheme="http://www.0xfree.top/tags/android/"/>
+    <category term="android" scheme="http://www.0xforee.top/tags/android/"/>
     
-    <category term="glide" scheme="http://www.0xfree.top/tags/glide/"/>
+    <category term="glide" scheme="http://www.0xforee.top/tags/glide/"/>
     
   </entry>
   
   <entry>
     <title>如何通过 Mapping 文件反混淆</title>
-    <link href="http://www.0xfree.top/2020/06/07/how-to-reproguard-by-mapping/"/>
-    <id>http://www.0xfree.top/2020/06/07/how-to-reproguard-by-mapping/</id>
+    <link href="http://www.0xforee.top/2020/06/07/how-to-reproguard-by-mapping/"/>
+    <id>http://www.0xforee.top/2020/06/07/how-to-reproguard-by-mapping/</id>
     <published>2020-06-07T15:57:00.000Z</published>
     <updated>2023-08-12T10:13:21.469Z</updated>
     
@@ -123,19 +123,19 @@
     
     
     
-    <category term="Android" scheme="http://www.0xfree.top/categories/Android/"/>
+    <category term="Android" scheme="http://www.0xforee.top/categories/Android/"/>
     
     
-    <category term="android" scheme="http://www.0xfree.top/tags/android/"/>
+    <category term="android" scheme="http://www.0xforee.top/tags/android/"/>
     
-    <category term="compile" scheme="http://www.0xfree.top/tags/compile/"/>
+    <category term="compile" scheme="http://www.0xforee.top/tags/compile/"/>
     
   </entry>
   
   <entry>
     <title>一篇写给 Android 刚入门小伙伴的 JSBridge 文章</title>
-    <link href="http://www.0xfree.top/2019/11/11/android-jsbridge/"/>
-    <id>http://www.0xfree.top/2019/11/11/android-jsbridge/</id>
+    <link href="http://www.0xforee.top/2019/11/11/android-jsbridge/"/>
+    <id>http://www.0xforee.top/2019/11/11/android-jsbridge/</id>
     <published>2019-11-10T16:10:22.000Z</published>
     <updated>2023-08-12T06:57:23.435Z</updated>
     
@@ -146,21 +146,21 @@
     
     
     
-    <category term="Android" scheme="http://www.0xfree.top/categories/Android/"/>
+    <category term="Android" scheme="http://www.0xforee.top/categories/Android/"/>
     
     
-    <category term="android" scheme="http://www.0xfree.top/tags/android/"/>
+    <category term="android" scheme="http://www.0xforee.top/tags/android/"/>
     
-    <category term="jsbridge" scheme="http://www.0xfree.top/tags/jsbridge/"/>
+    <category term="jsbridge" scheme="http://www.0xforee.top/tags/jsbridge/"/>
     
-    <category term="html" scheme="http://www.0xfree.top/tags/html/"/>
+    <category term="html" scheme="http://www.0xforee.top/tags/html/"/>
     
   </entry>
   
   <entry>
     <title>Git 与 Gerrit</title>
-    <link href="http://www.0xfree.top/2019/08/31/git_and_gerrit/"/>
-    <id>http://www.0xfree.top/2019/08/31/git_and_gerrit/</id>
+    <link href="http://www.0xforee.top/2019/08/31/git_and_gerrit/"/>
+    <id>http://www.0xforee.top/2019/08/31/git_and_gerrit/</id>
     <published>2019-08-31T15:55:26.000Z</published>
     <updated>2023-08-12T06:57:04.851Z</updated>
     
@@ -169,48 +169,48 @@
     
     
     
-    <category term="效率工具" scheme="http://www.0xfree.top/categories/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/"/>
+    <category term="效率工具" scheme="http://www.0xforee.top/categories/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/"/>
     
     
-    <category term="android" scheme="http://www.0xfree.top/tags/android/"/>
+    <category term="android" scheme="http://www.0xforee.top/tags/android/"/>
     
-    <category term="Git" scheme="http://www.0xfree.top/tags/Git/"/>
+    <category term="Git" scheme="http://www.0xforee.top/tags/Git/"/>
     
-    <category term="Gerrit" scheme="http://www.0xfree.top/tags/Gerrit/"/>
+    <category term="Gerrit" scheme="http://www.0xforee.top/tags/Gerrit/"/>
     
   </entry>
   
   <entry>
     <title>你要知道的 ListView 5种滑动模式全在这里了</title>
-    <link href="http://www.0xfree.top/2019/08/12/listview-scrollmode-parse/"/>
-    <id>http://www.0xfree.top/2019/08/12/listview-scrollmode-parse/</id>
+    <link href="http://www.0xforee.top/2019/08/12/listview-scrollmode-parse/"/>
+    <id>http://www.0xforee.top/2019/08/12/listview-scrollmode-parse/</id>
     <published>2019-08-11T16:08:24.000Z</published>
-    <updated>2023-08-12T06:56:44.989Z</updated>
+    <updated>2023-08-19T06:04:35.565Z</updated>
     
     
     <summary type="html">&lt;p&gt;前段时间在使用 ListView 的过程中，需要对一个子 Item 优化横向 Bannar 的滑动体验，于是借此机会，深入了解了一下 ListView 滑动的一些知识，来探究一下，一个 View 滑动，究竟需要做哪些事情。&lt;/p&gt;</summary>
     
     
     
-    <category term="View解析" scheme="http://www.0xfree.top/categories/View%E8%A7%A3%E6%9E%90/"/>
+    <category term="View解析" scheme="http://www.0xforee.top/categories/View%E8%A7%A3%E6%9E%90/"/>
     
     
-    <category term="android" scheme="http://www.0xfree.top/tags/android/"/>
+    <category term="android" scheme="http://www.0xforee.top/tags/android/"/>
     
-    <category term="view" scheme="http://www.0xfree.top/tags/view/"/>
+    <category term="view" scheme="http://www.0xforee.top/tags/view/"/>
     
-    <category term="listView" scheme="http://www.0xfree.top/tags/listView/"/>
+    <category term="listView" scheme="http://www.0xforee.top/tags/listView/"/>
     
-    <category term="scrollMode" scheme="http://www.0xfree.top/tags/scrollMode/"/>
+    <category term="scrollMode" scheme="http://www.0xforee.top/tags/scrollMode/"/>
     
   </entry>
   
   <entry>
     <title>MeasureSpec 与 LayoutParams 不得不说的二三事</title>
-    <link href="http://www.0xfree.top/2019/07/01/android-measurespec-layoutparams/"/>
-    <id>http://www.0xfree.top/2019/07/01/android-measurespec-layoutparams/</id>
+    <link href="http://www.0xforee.top/2019/07/01/android-measurespec-layoutparams/"/>
+    <id>http://www.0xforee.top/2019/07/01/android-measurespec-layoutparams/</id>
     <published>2019-06-30T16:16:18.000Z</published>
-    <updated>2023-08-12T06:57:27.290Z</updated>
+    <updated>2023-08-19T06:03:41.452Z</updated>
     
     
     <summary type="html">&lt;blockquote&gt;
@@ -219,23 +219,23 @@
     
     
     
-    <category term="View解析" scheme="http://www.0xfree.top/categories/View%E8%A7%A3%E6%9E%90/"/>
+    <category term="View解析" scheme="http://www.0xforee.top/categories/View%E8%A7%A3%E6%9E%90/"/>
     
     
-    <category term="android" scheme="http://www.0xfree.top/tags/android/"/>
+    <category term="android" scheme="http://www.0xforee.top/tags/android/"/>
     
-    <category term="view" scheme="http://www.0xfree.top/tags/view/"/>
+    <category term="view" scheme="http://www.0xforee.top/tags/view/"/>
     
-    <category term="measureSpec" scheme="http://www.0xfree.top/tags/measureSpec/"/>
+    <category term="measureSpec" scheme="http://www.0xforee.top/tags/measureSpec/"/>
     
-    <category term="layoutParams" scheme="http://www.0xfree.top/tags/layoutParams/"/>
+    <category term="layoutParams" scheme="http://www.0xforee.top/tags/layoutParams/"/>
     
   </entry>
   
   <entry>
     <title>从零开始搭建Android源码调试环境</title>
-    <link href="http://www.0xfree.top/2019/04/22/how-to-build-android-source-code/"/>
-    <id>http://www.0xfree.top/2019/04/22/how-to-build-android-source-code/</id>
+    <link href="http://www.0xforee.top/2019/04/22/how-to-build-android-source-code/"/>
+    <id>http://www.0xforee.top/2019/04/22/how-to-build-android-source-code/</id>
     <published>2019-04-22T01:49:00.000Z</published>
     <updated>2023-08-12T10:13:45.574Z</updated>
     
@@ -244,23 +244,23 @@
     
     
     
-    <category term="Android编译系统解析" scheme="http://www.0xfree.top/categories/Android%E7%BC%96%E8%AF%91%E7%B3%BB%E7%BB%9F%E8%A7%A3%E6%9E%90/"/>
+    <category term="Android编译系统解析" scheme="http://www.0xforee.top/categories/Android%E7%BC%96%E8%AF%91%E7%B3%BB%E7%BB%9F%E8%A7%A3%E6%9E%90/"/>
     
     
-    <category term="android" scheme="http://www.0xfree.top/tags/android/"/>
+    <category term="android" scheme="http://www.0xforee.top/tags/android/"/>
     
-    <category term="compile" scheme="http://www.0xfree.top/tags/compile/"/>
+    <category term="compile" scheme="http://www.0xforee.top/tags/compile/"/>
     
-    <category term="ubuntu" scheme="http://www.0xfree.top/tags/ubuntu/"/>
+    <category term="ubuntu" scheme="http://www.0xforee.top/tags/ubuntu/"/>
     
   </entry>
   
   <entry>
     <title>invalidate 三部曲之历经 Choreographer</title>
-    <link href="http://www.0xfree.top/2018/12/18/invalidate-of-choreographer/"/>
-    <id>http://www.0xfree.top/2018/12/18/invalidate-of-choreographer/</id>
+    <link href="http://www.0xforee.top/2018/12/18/invalidate-of-choreographer/"/>
+    <id>http://www.0xforee.top/2018/12/18/invalidate-of-choreographer/</id>
     <published>2018-12-17T16:42:22.000Z</published>
-    <updated>2023-08-12T16:37:08.741Z</updated>
+    <updated>2023-08-19T06:04:03.509Z</updated>
     
     
     <summary type="html">&lt;blockquote&gt;
@@ -269,21 +269,21 @@
     
     
     
-    <category term="View解析" scheme="http://www.0xfree.top/categories/View%E8%A7%A3%E6%9E%90/"/>
+    <category term="View解析" scheme="http://www.0xforee.top/categories/View%E8%A7%A3%E6%9E%90/"/>
     
     
-    <category term="android" scheme="http://www.0xfree.top/tags/android/"/>
+    <category term="android" scheme="http://www.0xforee.top/tags/android/"/>
     
-    <category term="view" scheme="http://www.0xfree.top/tags/view/"/>
+    <category term="view" scheme="http://www.0xforee.top/tags/view/"/>
     
-    <category term="invalidate" scheme="http://www.0xfree.top/tags/invalidate/"/>
+    <category term="invalidate" scheme="http://www.0xforee.top/tags/invalidate/"/>
     
   </entry>
   
   <entry>
     <title>invalidate 三部曲之始于 invalidate</title>
-    <link href="http://www.0xfree.top/2018/10/13/invalidate-of-invalidate/"/>
-    <id>http://www.0xfree.top/2018/10/13/invalidate-of-invalidate/</id>
+    <link href="http://www.0xforee.top/2018/10/13/invalidate-of-invalidate/"/>
+    <id>http://www.0xforee.top/2018/10/13/invalidate-of-invalidate/</id>
     <published>2018-10-12T16:33:52.000Z</published>
     <updated>2018-11-22T11:57:12.000Z</updated>
     
@@ -294,44 +294,44 @@
     
     
     
-    <category term="View解析" scheme="http://www.0xfree.top/categories/View%E8%A7%A3%E6%9E%90/"/>
+    <category term="View解析" scheme="http://www.0xforee.top/categories/View%E8%A7%A3%E6%9E%90/"/>
     
     
-    <category term="android" scheme="http://www.0xfree.top/tags/android/"/>
+    <category term="android" scheme="http://www.0xforee.top/tags/android/"/>
     
-    <category term="view" scheme="http://www.0xfree.top/tags/view/"/>
+    <category term="view" scheme="http://www.0xforee.top/tags/view/"/>
     
-    <category term="invalidate" scheme="http://www.0xfree.top/tags/invalidate/"/>
+    <category term="invalidate" scheme="http://www.0xforee.top/tags/invalidate/"/>
     
   </entry>
   
   <entry>
     <title>invalidate 三部曲序</title>
-    <link href="http://www.0xfree.top/2018/10/12/trilogy-of-invalidate/"/>
-    <id>http://www.0xfree.top/2018/10/12/trilogy-of-invalidate/</id>
+    <link href="http://www.0xforee.top/2018/10/12/trilogy-of-invalidate/"/>
+    <id>http://www.0xforee.top/2018/10/12/trilogy-of-invalidate/</id>
     <published>2018-10-12T15:32:38.000Z</published>
-    <updated>2023-08-12T06:58:32.661Z</updated>
+    <updated>2023-08-19T06:04:44.791Z</updated>
     
     
     <summary type="html">&lt;p&gt;由于整个&lt;code&gt;invalidate()&lt;/code&gt;周期较长，继续深入会涉及屏幕刷新等底层知识，所以我们会分为三个部分来讲，分别为View发起绘制、系统处理绘制请求的逻辑、View执行真实绘制。  &lt;/p&gt;</summary>
     
     
     
-    <category term="View解析" scheme="http://www.0xfree.top/categories/View%E8%A7%A3%E6%9E%90/"/>
+    <category term="View解析" scheme="http://www.0xforee.top/categories/View%E8%A7%A3%E6%9E%90/"/>
     
     
-    <category term="android" scheme="http://www.0xfree.top/tags/android/"/>
+    <category term="android" scheme="http://www.0xforee.top/tags/android/"/>
     
-    <category term="view" scheme="http://www.0xfree.top/tags/view/"/>
+    <category term="view" scheme="http://www.0xforee.top/tags/view/"/>
     
-    <category term="invalidate" scheme="http://www.0xfree.top/tags/invalidate/"/>
+    <category term="invalidate" scheme="http://www.0xforee.top/tags/invalidate/"/>
     
   </entry>
   
   <entry>
     <title>为什么是VSYNC</title>
-    <link href="http://www.0xfree.top/2018/06/02/why-it-is-vsync/"/>
-    <id>http://www.0xfree.top/2018/06/02/why-it-is-vsync/</id>
+    <link href="http://www.0xforee.top/2018/06/02/why-it-is-vsync/"/>
+    <id>http://www.0xforee.top/2018/06/02/why-it-is-vsync/</id>
     <published>2018-06-02T15:31:52.000Z</published>
     <updated>2018-07-12T14:09:11.000Z</updated>
     
@@ -340,21 +340,21 @@
     
     
     
-    <category term="Android性能调优" scheme="http://www.0xfree.top/categories/Android%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/"/>
+    <category term="Android性能调优" scheme="http://www.0xforee.top/categories/Android%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/"/>
     
     
-    <category term="android" scheme="http://www.0xfree.top/tags/android/"/>
+    <category term="android" scheme="http://www.0xforee.top/tags/android/"/>
     
-    <category term="performance" scheme="http://www.0xfree.top/tags/performance/"/>
+    <category term="performance" scheme="http://www.0xforee.top/tags/performance/"/>
     
-    <category term="vsync" scheme="http://www.0xfree.top/tags/vsync/"/>
+    <category term="vsync" scheme="http://www.0xforee.top/tags/vsync/"/>
     
   </entry>
   
   <entry>
     <title>触摸事件分析</title>
-    <link href="http://www.0xfree.top/2018/01/09/android-touch-event-dispatch/"/>
-    <id>http://www.0xfree.top/2018/01/09/android-touch-event-dispatch/</id>
+    <link href="http://www.0xforee.top/2018/01/09/android-touch-event-dispatch/"/>
+    <id>http://www.0xforee.top/2018/01/09/android-touch-event-dispatch/</id>
     <published>2018-01-09T11:33:50.000Z</published>
     <updated>2018-04-22T12:22:12.000Z</updated>
     
@@ -363,21 +363,21 @@
     
     
     
-    <category term="View解析" scheme="http://www.0xfree.top/categories/View%E8%A7%A3%E6%9E%90/"/>
+    <category term="View解析" scheme="http://www.0xforee.top/categories/View%E8%A7%A3%E6%9E%90/"/>
     
     
-    <category term="android" scheme="http://www.0xfree.top/tags/android/"/>
+    <category term="android" scheme="http://www.0xforee.top/tags/android/"/>
     
-    <category term="view" scheme="http://www.0xfree.top/tags/view/"/>
+    <category term="view" scheme="http://www.0xforee.top/tags/view/"/>
     
-    <category term="touchevent" scheme="http://www.0xfree.top/tags/touchevent/"/>
+    <category term="touchevent" scheme="http://www.0xforee.top/tags/touchevent/"/>
     
   </entry>
   
   <entry>
     <title>低电量提醒</title>
-    <link href="http://www.0xfree.top/2017/08/07/android-powerui/"/>
-    <id>http://www.0xfree.top/2017/08/07/android-powerui/</id>
+    <link href="http://www.0xforee.top/2017/08/07/android-powerui/"/>
+    <id>http://www.0xforee.top/2017/08/07/android-powerui/</id>
     <published>2017-08-06T17:23:18.000Z</published>
     <updated>2017-08-06T17:24:08.000Z</updated>
     
@@ -386,21 +386,21 @@
     
     
     
-    <category term="SystemUI解析" scheme="http://www.0xfree.top/categories/SystemUI%E8%A7%A3%E6%9E%90/"/>
+    <category term="SystemUI解析" scheme="http://www.0xforee.top/categories/SystemUI%E8%A7%A3%E6%9E%90/"/>
     
     
-    <category term="android" scheme="http://www.0xfree.top/tags/android/"/>
+    <category term="android" scheme="http://www.0xforee.top/tags/android/"/>
     
-    <category term="PowerUI" scheme="http://www.0xfree.top/tags/PowerUI/"/>
+    <category term="PowerUI" scheme="http://www.0xforee.top/tags/PowerUI/"/>
     
-    <category term="SystemUI" scheme="http://www.0xfree.top/tags/SystemUI/"/>
+    <category term="SystemUI" scheme="http://www.0xforee.top/tags/SystemUI/"/>
     
   </entry>
   
   <entry>
     <title>快捷开关之无线网路</title>
-    <link href="http://www.0xfree.top/2017/04/14/android-quicksettings-wifi/"/>
-    <id>http://www.0xfree.top/2017/04/14/android-quicksettings-wifi/</id>
+    <link href="http://www.0xforee.top/2017/04/14/android-quicksettings-wifi/"/>
+    <id>http://www.0xforee.top/2017/04/14/android-quicksettings-wifi/</id>
     <published>2017-04-14T12:54:17.000Z</published>
     <updated>2017-04-20T14:32:58.000Z</updated>
     
@@ -409,23 +409,23 @@
     
     
     
-    <category term="SystemUI解析" scheme="http://www.0xfree.top/categories/SystemUI%E8%A7%A3%E6%9E%90/"/>
+    <category term="SystemUI解析" scheme="http://www.0xforee.top/categories/SystemUI%E8%A7%A3%E6%9E%90/"/>
     
     
-    <category term="android" scheme="http://www.0xfree.top/tags/android/"/>
+    <category term="android" scheme="http://www.0xforee.top/tags/android/"/>
     
-    <category term="quickSettings" scheme="http://www.0xfree.top/tags/quickSettings/"/>
+    <category term="quickSettings" scheme="http://www.0xforee.top/tags/quickSettings/"/>
     
-    <category term="wifiTIle" scheme="http://www.0xfree.top/tags/wifiTIle/"/>
+    <category term="wifiTIle" scheme="http://www.0xforee.top/tags/wifiTIle/"/>
     
-    <category term="wifi" scheme="http://www.0xfree.top/tags/wifi/"/>
+    <category term="wifi" scheme="http://www.0xforee.top/tags/wifi/"/>
     
   </entry>
   
   <entry>
     <title>快捷开关之移动数据</title>
-    <link href="http://www.0xfree.top/2017/03/05/android-quicksettings-mobiledata/"/>
-    <id>http://www.0xfree.top/2017/03/05/android-quicksettings-mobiledata/</id>
+    <link href="http://www.0xforee.top/2017/03/05/android-quicksettings-mobiledata/"/>
+    <id>http://www.0xforee.top/2017/03/05/android-quicksettings-mobiledata/</id>
     <published>2017-03-05T10:23:54.000Z</published>
     <updated>2017-03-07T14:24:19.000Z</updated>
     
@@ -434,23 +434,23 @@
     
     
     
-    <category term="SystemUI解析" scheme="http://www.0xfree.top/categories/SystemUI%E8%A7%A3%E6%9E%90/"/>
+    <category term="SystemUI解析" scheme="http://www.0xforee.top/categories/SystemUI%E8%A7%A3%E6%9E%90/"/>
     
     
-    <category term="android" scheme="http://www.0xfree.top/tags/android/"/>
+    <category term="android" scheme="http://www.0xforee.top/tags/android/"/>
     
-    <category term="quickSettings" scheme="http://www.0xfree.top/tags/quickSettings/"/>
+    <category term="quickSettings" scheme="http://www.0xforee.top/tags/quickSettings/"/>
     
-    <category term="mobileDataTile" scheme="http://www.0xfree.top/tags/mobileDataTile/"/>
+    <category term="mobileDataTile" scheme="http://www.0xforee.top/tags/mobileDataTile/"/>
     
-    <category term="mobileData" scheme="http://www.0xfree.top/tags/mobileData/"/>
+    <category term="mobileData" scheme="http://www.0xforee.top/tags/mobileData/"/>
     
   </entry>
   
   <entry>
     <title>关于PRODUCT_PROPERTY_OVERRIDES属性的解析</title>
-    <link href="http://www.0xfree.top/2016/03/29/android-build-system-parse-PRODUCT_PROPERTY_OVERRIDES/"/>
-    <id>http://www.0xfree.top/2016/03/29/android-build-system-parse-PRODUCT_PROPERTY_OVERRIDES/</id>
+    <link href="http://www.0xforee.top/2016/03/29/android-build-system-parse-PRODUCT_PROPERTY_OVERRIDES/"/>
+    <id>http://www.0xforee.top/2016/03/29/android-build-system-parse-PRODUCT_PROPERTY_OVERRIDES/</id>
     <published>2016-03-29T11:39:12.000Z</published>
     <updated>2016-04-28T15:23:49.000Z</updated>
     
@@ -459,21 +459,21 @@
     
     
     
-    <category term="Android编译系统解析" scheme="http://www.0xfree.top/categories/Android%E7%BC%96%E8%AF%91%E7%B3%BB%E7%BB%9F%E8%A7%A3%E6%9E%90/"/>
+    <category term="Android编译系统解析" scheme="http://www.0xforee.top/categories/Android%E7%BC%96%E8%AF%91%E7%B3%BB%E7%BB%9F%E8%A7%A3%E6%9E%90/"/>
     
     
-    <category term="android" scheme="http://www.0xfree.top/tags/android/"/>
+    <category term="android" scheme="http://www.0xforee.top/tags/android/"/>
     
-    <category term="build" scheme="http://www.0xfree.top/tags/build/"/>
+    <category term="build" scheme="http://www.0xforee.top/tags/build/"/>
     
-    <category term="PRODUCT_PROPERTY_OVERRIDES" scheme="http://www.0xfree.top/tags/PRODUCT-PROPERTY-OVERRIDES/"/>
+    <category term="PRODUCT_PROPERTY_OVERRIDES" scheme="http://www.0xforee.top/tags/PRODUCT-PROPERTY-OVERRIDES/"/>
     
   </entry>
   
   <entry>
     <title>PRODUCT_COPY_FILES语法解析</title>
-    <link href="http://www.0xfree.top/2016/02/24/android-build-system-parse-PRODUCT_COPY_FILES/"/>
-    <id>http://www.0xfree.top/2016/02/24/android-build-system-parse-PRODUCT_COPY_FILES/</id>
+    <link href="http://www.0xforee.top/2016/02/24/android-build-system-parse-PRODUCT_COPY_FILES/"/>
+    <id>http://www.0xforee.top/2016/02/24/android-build-system-parse-PRODUCT_COPY_FILES/</id>
     <published>2016-02-24T11:12:48.000Z</published>
     <updated>2016-03-05T15:20:36.000Z</updated>
     
@@ -482,14 +482,14 @@
     
     
     
-    <category term="Android编译系统解析" scheme="http://www.0xfree.top/categories/Android%E7%BC%96%E8%AF%91%E7%B3%BB%E7%BB%9F%E8%A7%A3%E6%9E%90/"/>
+    <category term="Android编译系统解析" scheme="http://www.0xforee.top/categories/Android%E7%BC%96%E8%AF%91%E7%B3%BB%E7%BB%9F%E8%A7%A3%E6%9E%90/"/>
     
     
-    <category term="android" scheme="http://www.0xfree.top/tags/android/"/>
+    <category term="android" scheme="http://www.0xforee.top/tags/android/"/>
     
-    <category term="build" scheme="http://www.0xfree.top/tags/build/"/>
+    <category term="build" scheme="http://www.0xforee.top/tags/build/"/>
     
-    <category term="PRODUCT_COPY_FILES" scheme="http://www.0xfree.top/tags/PRODUCT-COPY-FILES/"/>
+    <category term="PRODUCT_COPY_FILES" scheme="http://www.0xforee.top/tags/PRODUCT-COPY-FILES/"/>
     
   </entry>
   
