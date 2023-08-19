@@ -1,0 +1,619 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>http://www.0xforee.top/2018/10/12/trilogy-of-invalidate/</loc>
+    
+    <lastmod>2023-08-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/2019/08/12/listview-scrollmode-parse/</loc>
+    
+    <lastmod>2023-08-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/2018/12/18/invalidate-of-choreographer/</loc>
+    
+    <lastmod>2023-08-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/2019/07/01/android-measurespec-layoutparams/</loc>
+    
+    <lastmod>2023-08-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/2023/08/15/upgrade-my-site-config/</loc>
+    
+    <lastmod>2023-08-15</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/2019/04/22/how-to-build-android-source-code/</loc>
+    
+    <lastmod>2023-08-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/2020/06/07/how-to-reproguard-by-mapping/</loc>
+    
+    <lastmod>2023-08-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/2023/08/11/core_of_glide_code_design/</loc>
+    
+    <lastmod>2023-08-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/2023/07/02/begging_of_glide_code_design/</loc>
+    
+    <lastmod>2023-08-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/2023/08/01/how-to-use-kotlin-coroutine/</loc>
+    
+    <lastmod>2023-08-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/2019/11/11/android-jsbridge/</loc>
+    
+    <lastmod>2023-08-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/2019/08/31/git_and_gerrit/</loc>
+    
+    <lastmod>2023-08-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/2018/10/13/invalidate-of-invalidate/</loc>
+    
+    <lastmod>2018-11-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/2018/06/02/why-it-is-vsync/</loc>
+    
+    <lastmod>2018-07-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/about/index.html</loc>
+    
+    <lastmod>2018-07-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/2018/01/09/android-touch-event-dispatch/</loc>
+    
+    <lastmod>2018-04-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/2017/08/07/android-powerui/</loc>
+    
+    <lastmod>2017-08-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/2017/04/14/android-quicksettings-wifi/</loc>
+    
+    <lastmod>2017-04-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/2017/03/05/android-quicksettings-mobiledata/</loc>
+    
+    <lastmod>2017-03-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/2016/03/29/android-build-system-parse-PRODUCT_PROPERTY_OVERRIDES/</loc>
+    
+    <lastmod>2016-04-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/2016/02/24/android-build-system-parse-PRODUCT_COPY_FILES/</loc>
+    
+    <lastmod>2016-03-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/2016/01/08/android-build-systemui-keypoint-third/</loc>
+    
+    <lastmod>2016-01-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/2015/12/28/android-build-system-keypoint-second/</loc>
+    
+    <lastmod>2015-12-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/2015/12/22/android-build-system-keypoint-first/</loc>
+    
+    <lastmod>2015-12-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/2015/11/25/gentoo-local-overlay/</loc>
+    
+    <lastmod>2015-12-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/2015/12/08/android-build-system-make/</loc>
+    
+    <lastmod>2015-12-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/2015/11/05/android-build-system-envsetup/</loc>
+    
+    <lastmod>2015-12-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/2015/12/01/android-build-system-lunch/</loc>
+    
+    <lastmod>2015-12-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/2015/11/24/gentoo-basic-guide-ebuilds/</loc>
+    
+    <lastmod>2015-11-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+
+  <url>
+    <loc>http://www.0xforee.top/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  
+  <url>
+    <loc>http://www.0xforee.top/tags/lunch/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/tags/android/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/tags/compile/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/tags/envsetup/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/tags/build/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/tags/makefile/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/tags/make/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/tags/PRODUCT-PROPERTY-OVERRIDES/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/tags/PRODUCT-COPY-FILES/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/tags/jsbridge/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/tags/html/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/tags/view/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/tags/measureSpec/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/tags/layoutParams/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/tags/PowerUI/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/tags/SystemUI/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/tags/quickSettings/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/tags/mobileDataTile/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/tags/mobileData/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/tags/wifiTIle/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/tags/wifi/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/tags/touchevent/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/tags/glide/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/tags/gentoo/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/tags/ebuild/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/tags/linux/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/tags/overlay/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/tags/local/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/tags/Git/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/tags/Gerrit/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/tags/ubuntu/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/tags/kotlin/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/tags/coroutine/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/tags/invalidate/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/tags/listView/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/tags/scrollMode/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/tags/hexo/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/tags/performance/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/tags/vsync/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+
+  
+  <url>
+    <loc>http://www.0xforee.top/categories/Android%E7%BC%96%E8%AF%91%E7%B3%BB%E7%BB%9F%E8%A7%A3%E6%9E%90/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/categories/Android/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/categories/View%E8%A7%A3%E6%9E%90/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/categories/SystemUI%E8%A7%A3%E6%9E%90/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/categories/Glide/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/categories/Gentoo/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/categories/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/categories/kotlin/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/categories/Other/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/categories/Android%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/</loc>
+    <lastmod>2023-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+</urlset>
