@@ -463,20 +463,6 @@
   </url>
   
   <url>
-    <loc>http://www.0xforee.top/tags/Git/</loc>
-    <lastmod>2023-08-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.0xforee.top/tags/Gerrit/</loc>
-    <lastmod>2023-08-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://www.0xforee.top/tags/overlay/</loc>
     <lastmod>2023-08-20</lastmod>
     <changefreq>weekly</changefreq>
@@ -485,6 +471,20 @@
   
   <url>
     <loc>http://www.0xforee.top/tags/local/</loc>
+    <lastmod>2023-08-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/tags/Git/</loc>
+    <lastmod>2023-08-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/tags/Gerrit/</loc>
     <lastmod>2023-08-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
