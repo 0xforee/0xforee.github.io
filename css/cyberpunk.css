@@ -10835,9 +10835,14 @@ article.article .content pre {
   font-size: 0.85em;
 }
 article.article .content code {
-  padding: 0;
-  background: transparent;
+  padding: 0.2em;
+  background: #f1f2f3;
+  border-radius: 4px;
   overflow-wrap: break-word;
+}
+article.article .content blockquote {
+  border-left: 5px solid #638fd7;
+  background: #f5f8ff;
 }
 article.article .content blockquote.pullquote {
   float: right;
@@ -10848,12 +10853,33 @@ article.article .content blockquote.pullquote {
 article.article .content blockquote footer strong + cite {
   margin-left: 0.5em;
 }
+article.article .content p a {
+  color: #3273dc;
+  padding: 0.2em;
+  border-bottom: 2px dotted;
+}
+article.article .content p a:hover {
+  color: #000;
+}
 article.article .content .message.message-immersive {
   border-radius: 0;
   margin: 0 -1.5rem 1.5rem -1.5rem;
 }
 article.article .content .message.message-immersive .message-body {
   border: none;
+}
+article.article .content li a {
+  color: #3273dc;
+  padding: 0.2em;
+  border-bottom: 2px dotted;
+}
+article.article .content li a:hover {
+  color: #000;
+}
+article.article .content .gallery-item {
+  color: inherit;
+  border-bottom: 0px;
+  padding: 0px;
 }
 article.article .article-tags {
   display: flex;
@@ -10923,6 +10949,9 @@ article.article .article-tags {
 .article-licensing .licensing-meta a {
   color: inherit;
 }
+.article-licensing .licensing-meta a:hover {
+  color: #fcee09;
+}
 a.article-nav-prev span {
   text-align: left;
   flex-shrink: 1;
@@ -10982,6 +11011,9 @@ a.article-nav-next span {
   .navbar-main .navbar-end {
     margin-left: 0;
   }
+}
+.navbar-logo {
+  font-size: 1.3em;
 }
 .navbar-logo img {
   max-height: 1.75rem;
