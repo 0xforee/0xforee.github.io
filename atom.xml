@@ -6,7 +6,7 @@
   <link href="http://www.0xforee.top/atom.xml" rel="self"/>
   
   <link href="http://www.0xforee.top/"/>
-  <updated>2023-08-20T10:57:29.225Z</updated>
+  <updated>2023-08-21T15:58:39.998Z</updated>
   <id>http://www.0xforee.top/</id>
   
   <author>
@@ -17,11 +17,32 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>从代码设计看 Glide 系列</title>
+    <link href="http://www.0xforee.top/2023/08/21/contents-glide-code-design/"/>
+    <id>http://www.0xforee.top/2023/08/21/contents-glide-code-design/</id>
+    <published>2023-08-21T15:15:09.000Z</published>
+    <updated>2023-08-21T15:58:39.998Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;  &lt;strong&gt;【持续更新中】…&lt;/strong&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Glide" scheme="http://www.0xforee.top/categories/Glide/"/>
+    
+    
+    <category term="android" scheme="http://www.0xforee.top/tags/android/"/>
+    
+    <category term="glide" scheme="http://www.0xforee.top/tags/glide/"/>
+    
+  </entry>
+  
+  <entry>
     <title>从代码设计看 Glide 之生命周期（上）</title>
     <link href="http://www.0xforee.top/2023/08/18/lifecycle-i-of-glide-code-design/"/>
     <id>http://www.0xforee.top/2023/08/18/lifecycle-i-of-glide-code-design/</id>
     <published>2023-08-17T18:23:34.000Z</published>
-    <updated>2023-08-20T10:57:29.225Z</updated>
+    <updated>2023-08-21T15:56:00.971Z</updated>
     
     
     <summary type="html">&lt;p&gt;上期我们探索了一个具备核心功能的图片加载库该怎么设计。这一期我们来看看如何给这个图片加载库关联生命周期管理。&lt;/p&gt;</summary>
@@ -67,7 +88,7 @@
     <link href="http://www.0xforee.top/2023/08/11/core_of_glide_code_design/"/>
     <id>http://www.0xforee.top/2023/08/11/core_of_glide_code_design/</id>
     <published>2023-08-11T14:06:00.000Z</published>
-    <updated>2023-08-12T10:12:10.428Z</updated>
+    <updated>2023-08-21T15:23:16.849Z</updated>
     
     
     <summary type="html">&lt;p&gt;接上文。这篇我们主要关注于 Glide 的核心能力，来看一看构建出 Glide 核心的能力的模块或者类是哪些。&lt;/p&gt;</summary>
@@ -116,7 +137,7 @@
     <link href="http://www.0xforee.top/2023/07/02/begging_of_glide_code_design/"/>
     <id>http://www.0xforee.top/2023/07/02/begging_of_glide_code_design/</id>
     <published>2023-07-02T15:57:00.000Z</published>
-    <updated>2023-08-19T16:26:37.571Z</updated>
+    <updated>2023-08-21T15:23:20.552Z</updated>
     
     
     <summary type="html">你日常中一定遇到过，想要设计一个模块，但是力不从心，不知道如何下手，更别说随手撸一个图片加载器，网络，埋点通信，这种级别的库了。</summary>
@@ -465,29 +486,6 @@
     <category term="mobileDataTile" scheme="http://www.0xforee.top/tags/mobileDataTile/"/>
     
     <category term="mobileData" scheme="http://www.0xforee.top/tags/mobileData/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>关于PRODUCT_PROPERTY_OVERRIDES属性的解析</title>
-    <link href="http://www.0xforee.top/2016/03/29/android-build-system-parse-PRODUCT_PROPERTY_OVERRIDES/"/>
-    <id>http://www.0xforee.top/2016/03/29/android-build-system-parse-PRODUCT_PROPERTY_OVERRIDES/</id>
-    <published>2016-03-29T11:39:12.000Z</published>
-    <updated>2016-04-28T15:23:49.000Z</updated>
-    
-    
-    <summary type="html">PRODUCT_PROPERTY_OVERRIDES属性需要怎么理解才能正确被使用？</summary>
-    
-    
-    
-    <category term="Android编译系统解析" scheme="http://www.0xforee.top/categories/Android%E7%BC%96%E8%AF%91%E7%B3%BB%E7%BB%9F%E8%A7%A3%E6%9E%90/"/>
-    
-    
-    <category term="android" scheme="http://www.0xforee.top/tags/android/"/>
-    
-    <category term="build" scheme="http://www.0xforee.top/tags/build/"/>
-    
-    <category term="PRODUCT_PROPERTY_OVERRIDES" scheme="http://www.0xforee.top/tags/PRODUCT-PROPERTY-OVERRIDES/"/>
     
   </entry>
   

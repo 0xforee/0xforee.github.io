@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://www.0xforee.top/2023/08/01/how-to-use-kotlin-coroutine/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <loc>http://www.0xforee.top/2023/08/21/contents-glide-code-design/</loc>
+    <lastmod>2023-08-21</lastmod>
   </url>
   <url>
     <loc>http://www.0xforee.top/2023/08/18/lifecycle-i-of-glide-code-design/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
   </url>
   <url>
     <loc>http://www.0xforee.top/2023/07/02/begging_of_glide_code_design/</loc>
-    <lastmod>2023-08-19</lastmod>
+    <lastmod>2023-08-21</lastmod>
+  </url>
+  <url>
+    <loc>http://www.0xforee.top/2023/08/11/core_of_glide_code_design/</loc>
+    <lastmod>2023-08-21</lastmod>
+  </url>
+  <url>
+    <loc>http://www.0xforee.top/2023/08/01/how-to-use-kotlin-coroutine/</loc>
+    <lastmod>2023-08-20</lastmod>
   </url>
   <url>
     <loc>http://www.0xforee.top/2018/10/12/trilogy-of-invalidate/</loc>
@@ -38,10 +46,6 @@
   </url>
   <url>
     <loc>http://www.0xforee.top/2020/06/07/how-to-reproguard-by-mapping/</loc>
-    <lastmod>2023-08-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.0xforee.top/2023/08/11/core_of_glide_code_design/</loc>
     <lastmod>2023-08-12</lastmod>
   </url>
   <url>

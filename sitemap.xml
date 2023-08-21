@@ -2,9 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://www.0xforee.top/2023/08/01/how-to-use-kotlin-coroutine/</loc>
+    <loc>http://www.0xforee.top/2023/08/21/contents-glide-code-design/</loc>
     
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -13,7 +13,7 @@
   <url>
     <loc>http://www.0xforee.top/2023/08/18/lifecycle-i-of-glide-code-design/</loc>
     
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -22,7 +22,25 @@
   <url>
     <loc>http://www.0xforee.top/2023/07/02/begging_of_glide_code_design/</loc>
     
-    <lastmod>2023-08-19</lastmod>
+    <lastmod>2023-08-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/2023/08/11/core_of_glide_code_design/</loc>
+    
+    <lastmod>2023-08-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.0xforee.top/2023/08/01/how-to-use-kotlin-coroutine/</loc>
+    
+    <lastmod>2023-08-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -84,15 +102,6 @@
   
   <url>
     <loc>http://www.0xforee.top/2020/06/07/how-to-reproguard-by-mapping/</loc>
-    
-    <lastmod>2023-08-12</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.0xforee.top/2023/08/11/core_of_glide_code_design/</loc>
     
     <lastmod>2023-08-12</lastmod>
     
@@ -274,7 +283,7 @@
 
   <url>
     <loc>http://www.0xforee.top/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -282,273 +291,273 @@
   
   <url>
     <loc>http://www.0xforee.top/tags/lunch/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.0xforee.top/tags/android/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.0xforee.top/tags/compile/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.0xforee.top/tags/envsetup/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.0xforee.top/tags/build/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.0xforee.top/tags/makefile/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.0xforee.top/tags/make/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.0xforee.top/tags/PRODUCT-COPY-FILES/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.0xforee.top/tags/PRODUCT-PROPERTY-OVERRIDES/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.0xforee.top/tags/jsbridge/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.0xforee.top/tags/html/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.0xforee.top/tags/view/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.0xforee.top/tags/measureSpec/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.0xforee.top/tags/layoutParams/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.0xforee.top/tags/PowerUI/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.0xforee.top/tags/SystemUI/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.0xforee.top/tags/quickSettings/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.0xforee.top/tags/mobileDataTile/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.0xforee.top/tags/mobileData/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.0xforee.top/tags/wifiTIle/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.0xforee.top/tags/wifi/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.0xforee.top/tags/touchevent/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.0xforee.top/tags/glide/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.0xforee.top/tags/gentoo/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.0xforee.top/tags/ebuild/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.0xforee.top/tags/linux/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.0xforee.top/tags/overlay/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.0xforee.top/tags/local/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.0xforee.top/tags/Git/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.0xforee.top/tags/Gerrit/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.0xforee.top/tags/ubuntu/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.0xforee.top/tags/kotlin/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.0xforee.top/tags/coroutine/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.0xforee.top/tags/invalidate/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.0xforee.top/tags/listView/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.0xforee.top/tags/scrollMode/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.0xforee.top/tags/hexo/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.0xforee.top/tags/performance/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.0xforee.top/tags/vsync/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -557,70 +566,70 @@
   
   <url>
     <loc>http://www.0xforee.top/categories/Android%E7%BC%96%E8%AF%91%E7%B3%BB%E7%BB%9F%E8%A7%A3%E6%9E%90/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.0xforee.top/categories/Android/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.0xforee.top/categories/View%E8%A7%A3%E6%9E%90/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.0xforee.top/categories/SystemUI%E8%A7%A3%E6%9E%90/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.0xforee.top/categories/Glide/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.0xforee.top/categories/Gentoo/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.0xforee.top/categories/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.0xforee.top/categories/kotlin/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.0xforee.top/categories/Other/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.0xforee.top/categories/Android%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/</loc>
-    <lastmod>2023-08-20</lastmod>
+    <lastmod>2023-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
