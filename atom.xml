@@ -6,7 +6,7 @@
   <link href="http://www.0xforee.top/atom.xml" rel="self"/>
   
   <link href="http://www.0xforee.top/"/>
-  <updated>2023-08-21T15:58:39.998Z</updated>
+  <updated>2023-08-26T09:15:28.983Z</updated>
   <id>http://www.0xforee.top/</id>
   
   <author>
@@ -17,11 +17,32 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>从代码设计看 Glide 之生命周期（中）</title>
+    <link href="http://www.0xforee.top/2023/08/24/lifecycle-ii-of-glide-code-design/"/>
+    <id>http://www.0xforee.top/2023/08/24/lifecycle-ii-of-glide-code-design/</id>
+    <published>2023-08-24T14:58:39.000Z</published>
+    <updated>2023-08-26T09:15:28.983Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;上一期我们借用 Android 的 Lifecycle 库实现了生命周期的管理。但是其中有一个可能隐藏的坑不知道大家有没有发现？&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Glide" scheme="http://www.0xforee.top/categories/Glide/"/>
+    
+    
+    <category term="android" scheme="http://www.0xforee.top/tags/android/"/>
+    
+    <category term="glide" scheme="http://www.0xforee.top/tags/glide/"/>
+    
+  </entry>
+  
+  <entry>
     <title>从代码设计看 Glide 系列</title>
     <link href="http://www.0xforee.top/2023/08/21/contents-glide-code-design/"/>
     <id>http://www.0xforee.top/2023/08/21/contents-glide-code-design/</id>
     <published>2023-08-21T15:15:09.000Z</published>
-    <updated>2023-08-21T15:58:39.998Z</updated>
+    <updated>2023-08-24T15:07:39.079Z</updated>
     
     
     <summary type="html">&lt;p&gt;  &lt;strong&gt;【持续更新中】…&lt;/strong&gt;&lt;/p&gt;</summary>
@@ -461,31 +482,6 @@
     <category term="wifiTIle" scheme="http://www.0xforee.top/tags/wifiTIle/"/>
     
     <category term="wifi" scheme="http://www.0xforee.top/tags/wifi/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>快捷开关之移动数据</title>
-    <link href="http://www.0xforee.top/2017/03/05/android-quicksettings-mobiledata/"/>
-    <id>http://www.0xforee.top/2017/03/05/android-quicksettings-mobiledata/</id>
-    <published>2017-03-05T10:23:54.000Z</published>
-    <updated>2017-03-07T14:24:19.000Z</updated>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;概览&quot;&gt;&lt;a href=&quot;#概览&quot; class=&quot;headerlink&quot; title=&quot;概览&quot;&gt;&lt;/a&gt;概览&lt;/h2&gt;&lt;p&gt;移动数据开关作为快捷开关的三大金刚之一，重要性不言而喻。作为日常高频使用的开关之一，承载了及其重要的功能。在Flyme6之前，4G还未普及，流量金贵，所以切换菜单中加入了2G，3G，4G的功能，而在Flyme7的过渡中，双卡用户增加，所以将切换菜单中网络模式切换更换为主副卡切换功能。后续跟随用户反馈，可能会将这两个功能同时加入&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="SystemUI解析" scheme="http://www.0xforee.top/categories/SystemUI%E8%A7%A3%E6%9E%90/"/>
-    
-    
-    <category term="android" scheme="http://www.0xforee.top/tags/android/"/>
-    
-    <category term="quickSettings" scheme="http://www.0xforee.top/tags/quickSettings/"/>
-    
-    <category term="mobileDataTile" scheme="http://www.0xforee.top/tags/mobileDataTile/"/>
-    
-    <category term="mobileData" scheme="http://www.0xforee.top/tags/mobileData/"/>
     
   </entry>
   

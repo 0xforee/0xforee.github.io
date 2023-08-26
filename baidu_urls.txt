@@ -1,3 +1,4 @@
+http://www.0xforee.top/2023/08/24/lifecycle-ii-of-glide-code-design/
 http://www.0xforee.top/2023/08/21/contents-glide-code-design/
 http://www.0xforee.top/2023/08/18/lifecycle-i-of-glide-code-design/
 http://www.0xforee.top/2023/08/15/upgrade-my-site-config/
@@ -7,4 +8,3 @@ http://www.0xforee.top/2023/07/02/begging_of_glide_code_design/
 http://www.0xforee.top/2020/06/07/how-to-reproguard-by-mapping/
 http://www.0xforee.top/2019/11/11/android-jsbridge/
 http://www.0xforee.top/2019/08/31/git_and_gerrit/
-http://www.0xforee.top/2019/08/12/listview-scrollmode-parse/
