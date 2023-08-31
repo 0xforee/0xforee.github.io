@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="baidu-site-verification" content="codeva-4pzb7QQt07"><title>从代码设计看 Glide 之生命周期（下） - 0xforee&#039;s blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="0xforee&#039;s blog"><meta name="msapplication-TileImage" content="/img/fav_icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="0xforee&#039;s blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="终于来到我们生命周期的最后一期了。这一期，我们探究一下 Glide 在低版本 Android 上是如何实现生命周期监控的。"><meta property="og:type" content="blog"><meta property="og:title" content="从代码设计看 Glide 之生命周期（下）"><meta property="og:url" content="http://www.0xforee.top/2023/08/31/lifecycle-iii-of-glide-code-design/"><meta property="og:site_name" content="0xforee&#039;s blog"><meta property="og:description" content="终于来到我们生命周期的最后一期了。这一期，我们探究一下 Glide 在低版本 Android 上是如何实现生命周期监控的。"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://www.0xforee.top/2023/08/31/lifecycle-iii-of-glide-code-design/Untitled.png"><meta property="og:image" content="http://www.0xforee.top/2023/08/31/lifecycle-iii-of-glide-code-design/Untitled1.png"><meta property="og:image" content="http://www.0xforee.top/2023/08/31/lifecycle-iii-of-glide-code-design/Untitled2.png"><meta property="og:image" content="http://www.0xforee.top/2023/08/31/lifecycle-iii-of-glide-code-design/Glide-lifecycle.png"><meta property="article:published_time" content="2023-08-31T15:01:32.000Z"><meta property="article:modified_time" content="2023-08-31T15:11:20.977Z"><meta property="article:author" content="0xforee"><meta property="article:tag" content="android"><meta property="article:tag" content="glide"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://www.0xforee.top/2023/08/31/lifecycle-iii-of-glide-code-design/Untitled.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://www.0xforee.top/2023/08/31/lifecycle-iii-of-glide-code-design/"},"headline":"从代码设计看 Glide 之生命周期（下）","image":["http://www.0xforee.top/2023/08/31/lifecycle-iii-of-glide-code-design/Untitled.png","http://www.0xforee.top/2023/08/31/lifecycle-iii-of-glide-code-design/Untitled1.png","http://www.0xforee.top/2023/08/31/lifecycle-iii-of-glide-code-design/Untitled2.png","http://www.0xforee.top/2023/08/31/lifecycle-iii-of-glide-code-design/Glide-lifecycle.png"],"datePublished":"2023-08-31T15:01:32.000Z","dateModified":"2023-08-31T15:11:20.977Z","author":{"@type":"Person","name":"0xforee"},"publisher":{"@type":"Organization","name":"0xforee's blog","logo":{"@type":"ImageObject"}},"description":"终于来到我们生命周期的最后一期了。这一期，我们探究一下 Glide 在低版本 Android 上是如何实现生命周期监控的。"}</script><link rel="canonical" href="http://www.0xforee.top/2023/08/31/lifecycle-iii-of-glide-code-design/"><link rel="icon" href="/img/fav_icon.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><script>var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?8e6bb145a6bd99001a8efd90754c2fb0";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();</script><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=G-W64LLZYFJX" async></script><script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'G-W64LLZYFJX');</script><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="0xforee's blog" type="application/atom+xml">
+</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">0xforee&#039;s blog</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">首页</a><a class="navbar-item" href="/archives">时间轴</a><a class="navbar-item" href="/categories">栏目</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-9-tablet is-9-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-3 is-size-4-mobile">从代码设计看 Glide 之生命周期（下）</h1><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-08-31T15:01:32.000Z" title="8/31/2023, 11:01:32 PM">2023-08-31</time></span><span class="level-item"><a class="link-muted" href="/categories/Glide/">Glide</a></span><span class="level-item">20 分钟读完 (大约3044个字)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><div class="content"><p>终于来到我们生命周期的最后一期了。<br>这一期，我们探究一下 Glide 在低版本 Android 上是如何实现生命周期监控的。</p>
+<span id="more"></span>
+
+<blockquote>
+<p>从代码设计看 Glide 系列其他文章：<a href="/2023/08/21/contents-glide-code-design/" title="从代码设计看 Glide 系列">从代码设计看 Glide 系列</a></p>
+</blockquote>
+<p>那就让我们开始吧。</p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><blockquote>
+<p>冷知识：实际上 Glide 的生命周期监控能力是早于 Lifecycle 库的发布的。😎</p>
+</blockquote>
+<h2 id="先做一个小的思考"><a href="#先做一个小的思考" class="headerlink" title="先做一个小的思考"></a>先做一个小的思考</h2><p>如果在有 Lifecycle 库的情况下，我们的生命周期可以来源于 Lifecycle 给我们提供的回调。那没有这个库的情况下，我们自己要实现生命周期监控，需要怎么做呢？</p>
+<p>可能很多聪明的同学已经想到了，我们自己设计一个 Lifecycle 的框架，等 Activity 或者 Fragment 生命周期触发的时候，通知框架不就好了吗？</p>
+<p>我们进一步想，如果监控的范围是我们工程内所有的 Activity 或者 Fragment 呢？</p>
+<p>如果是我们自己的工程的话，我们可以实现一个 Base 基类，让所有的 Activity 和 Fragment 都继承。</p>
+<p>这个思路很正确，因为我们在前两期中讲到的 Lifecycle 库生命周期也是这么实现的。<br>但和 Lifecycle 库不一样的是，我们没法随意去修改整个 Activity 基类的实现。<br>而如果每个实现了生命周期监控的三方库都去实现一个 Activity 基类，那我们工程中的 Activity 改继承谁呢？</p>
+<p>不仅如此，这种实现方案对开源的三方库来说，还有以下这些缺点：</p>
+<ol>
+<li><strong>对业务代码有侵入性</strong>，稳定性需要考量</li>
+<li><strong>接入成本变高</strong>，不仅要在工程中使用图片加载功能，还得改造工程基类实现生命周期监控。</li>
+<li><strong>工程对 Glide 的依赖更重了</strong>，进一步导致后续迁移库的成本也会变高。</li>
+<li><strong>加剧接入成本</strong>，Android 有各个 support 库的变种，会进一步加剧接入成本</li>
+<li><strong>易用性下降</strong>，生命周期功能严格依赖使用者接入质量。</li>
+</ol>
+<p>这些缺点都会使得开发者在选型这个库时望而却步。</p>
+<blockquote>
+<p>这也是为什么绝大多数三方库都喜欢 hook 的方式。因为拥有侵入少、迁移成本低、接入快速、易用性好等优点。</p>
+</blockquote>
+<p>说了这么多，其实也想从另外一个角度来陈述（吹捧）一下 Glide 之所以流行的一些原因吧。大家后续想开源一个模块或者库的时候，也可以从这些角度衡量一下。</p>
+<p>回到正文。</p>
+<h2 id="如何实现？"><a href="#如何实现？" class="headerlink" title="如何实现？"></a>如何实现？</h2><blockquote>
+<p>在开始之前，我们先约定一下，Android 中的 Activity 和 Fragment 有 <code>android</code> 和 <code>androidx</code> 这两个 support 包的实现， Glide 针对这两个包做了两份相应的实现。这两个实现除了类名不一致外，逻辑都是一样的。下边我们只拿一个实现来说明，另外的实现大家可以参考代码。</p>
+</blockquote>
+<p>Glide 的生命周期监控的整体实现和我们上边的思路基本一致，不过他没有采用基类的方式。而是用了一个非常巧妙的办法，<strong>在 Activity 和 Fragment 中插入一个自定义的 Fragment</strong>。</p>
+<blockquote>
+<p>这里的设计简直惊为天人，还记得当初第一眼看到这个代码就震惊了。当时我们还在埋头苦干解决 Activity 中因为使用消息队列而导致的内存泄漏问题时，没想到 Glide 已经在源头上消灭了这类问题。🧎</p>
+</blockquote>
+<p>源码就放在这里，大家一定要去拜读一下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> RequestManagerFragment <span class="title function_">getRequestManagerFragment</span><span class="params">(</span></span><br><span class="line"><span class="params">      <span class="meta">@NonNull</span> <span class="keyword">final</span> android.app.FragmentManager fm, <span class="meta">@Nullable</span> android.app.Fragment parentHint)</span> &#123;</span><br><span class="line">    <span class="comment">// If we have a pending Fragment, we need to continue to use the pending Fragment. Otherwise</span></span><br><span class="line">    <span class="comment">// there&#x27;s a race where an old Fragment could be added and retrieved here before our logic to</span></span><br><span class="line">    <span class="comment">// add our pending Fragment notices. That can then result in both the pending Fragmeng and the</span></span><br><span class="line">    <span class="comment">// old Fragment having requests running for them, which is impossible to safely unwind.</span></span><br><span class="line">    <span class="type">RequestManagerFragment</span> <span class="variable">current</span> <span class="operator">=</span> pendingRequestManagerFragments.get(fm);</span><br><span class="line">    <span class="keyword">if</span> (current == <span class="literal">null</span>) &#123;</span><br><span class="line">      current = (RequestManagerFragment) fm.findFragmentByTag(FRAGMENT_TAG);</span><br><span class="line">      <span class="keyword">if</span> (current == <span class="literal">null</span>) &#123;</span><br><span class="line">        current = <span class="keyword">new</span> <span class="title class_">RequestManagerFragment</span>();</span><br><span class="line">        current.setParentFragmentHint(parentHint);</span><br><span class="line">        pendingRequestManagerFragments.put(fm, current);</span><br><span class="line">        fm.beginTransaction().add(current, FRAGMENT_TAG).commitAllowingStateLoss();</span><br><span class="line">        handler.obtainMessage(ID_REMOVE_FRAGMENT_MANAGER, fm).sendToTarget();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> current;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个方案中，插入的这个自定义 Fragment 会跟随所在宿主 Fragment 和 Activity 的生命周期。所以我们就可以通过这个自定义 Fragment 的生命周期来间接的感知到它所在的宿主 Fragment 和 Activity 的生命周期了。</p>
+<blockquote>
+<p>这段话如果不好理解，大家多读两遍。这个思路真的吹爆。</p>
+</blockquote>
+<p>除此之外，还有个好处，<strong>Fragment 会随着宿主销毁而销毁，所以我们也不需要关心是否会造成内存泄漏。</strong></p>
+<p>其实看到这里，这篇文章的主题就已经讲完了哈哈，不过，我们还是需要看看 Glide 的实现和代码结构。</p>
+<p>好。顺着我们上两期的思路。要实现这种生命周期监控的方案，我们需要 3 个角色：</p>
+<ol>
+<li><strong>RequestManagerFragment</strong>：生命周期提供者，就是我们的自定义 Fragment。</li>
+<li><strong>Lifecycle</strong>：生命周期接口 ，用来通知生命周期，和自定义的 Fragment 是绑定的关系。</li>
+<li><strong>ActivityFragmentLifecycle</strong>：生命周期接口注册和反注册的管理类，类似于我们上期说的 Registry 的职责</li>
+</ol>
+<p>我们将这 3 个角色补充到类图</p>
+<p><img src="/2023/08/31/lifecycle-iii-of-glide-code-design/Untitled.png" alt="类图"></p>
+<p>其中：</p>
+<ul>
+<li><p><strong>RequestManagerFragment</strong>：是 Glide 继承自 android.app.Fragment 的自定义 Fragment 实现。职责是提供其所在宿主 Activity 或者 Fragment 的生命周期</p>
+</li>
+<li><p><strong>ActivityFragmentLifecycle</strong>：生命周期接口注册和反注册，以及生命周期分发的管理类</p>
+</li>
+</ul>
+<p>其他的我们就不多介绍了。上期已经完整的介绍过了。</p>
+<h2 id="两种实现对比"><a href="#两种实现对比" class="headerlink" title="两种实现对比"></a>两种实现对比</h2><p>我们将基于自定义 Fragment 的实现和上期基于 Lifecycle 的实现来做一下对比<br><img src="/2023/08/31/lifecycle-iii-of-glide-code-design/Untitled1.png" alt="基于自定义 Fragment 的实现"></p>
+<p><img src="/2023/08/31/lifecycle-iii-of-glide-code-design/Untitled2.png" alt="基于 Lifecycle 的实现"></p>
+<blockquote>
+<p>注意：</p>
+<ol>
+<li>二者实现的差异，我用不同的颜色做了区分</li>
+<li>ApplicationLifecycle 的实现并没有依赖到原生的 Lifecycle 库，只依赖了 Glide 自己的接口，所以在两个实现中是相同的。</li>
+</ol>
+</blockquote>
+<p>两种实现中各个职责对应的角色如下表：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>基于自定义 Fragment 实现</th>
+<th>基于 Lifecycle 实现</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>生命周期提供者</td>
+<td>RequestManagerFragment</td>
+<td>LifecycleObserver</td>
+</tr>
+<tr>
+<td>生命周期接口管理者</td>
+<td>ActivityFragmentLifecycle</td>
+<td>LifecycleLifecycle</td>
+</tr>
+<tr>
+<td>获取 RequestManager 工具类</td>
+<td>LifecycleRequestManagerRetriver</td>
+<td>RequetManagerRetriver 兼任</td>
+</tr>
+</tbody></table>
+<p>这样他们的异同点是不是就一目了然呢。</p>
+<h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><p>目前的版本中，以上两种实现方案同时存在。具体使用哪种实现是通过开关控制。如下代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// com.bumptech.glide.manager.RequestManagerRetriever#get(androidx.fragment.app.Fragment)</span></span><br><span class="line"><span class="meta">@NonNull</span></span><br><span class="line"><span class="keyword">public</span> RequestManager <span class="title function_">get</span><span class="params">(<span class="meta">@NonNull</span> Fragment fragment)</span> &#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="type">FragmentManager</span> <span class="variable">fm</span> <span class="operator">=</span> fragment.getChildFragmentManager();</span><br><span class="line">  <span class="type">Context</span> <span class="variable">context</span> <span class="operator">=</span> fragment.getContext();</span><br><span class="line">  <span class="keyword">if</span> (useLifecycleInsteadOfInjectingFragments()) &#123;</span><br><span class="line">    <span class="type">Glide</span> <span class="variable">glide</span> <span class="operator">=</span> Glide.get(context.getApplicationContext());</span><br><span class="line">    <span class="keyword">return</span> lifecycleRequestManagerRetriever.getOrCreate(</span><br><span class="line">        context, glide, fragment.getLifecycle(), fm, fragment.isVisible());</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> supportFragmentGet(context, fm, fragment, fragment.isVisible());</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>useLifecycleInsteadOfInjectingFragments()</code> 这行就是控制是否使用新 Lifecycle 实现的关键。</p>
+<p>你可以通过使用 GlideBuilder 来打开这个新的特性，前提是你的工程中在用的是 AndroidX 的 Activity 和 Fragment。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// com.bumptech.glide.GlideBuilder#useLifecycleInsteadOfInjectingFragments</span></span><br><span class="line"><span class="keyword">public</span> GlideBuilder <span class="title function_">useLifecycleInsteadOfInjectingFragments</span><span class="params">(<span class="type">boolean</span> isEnabled)</span> &#123;</span><br><span class="line">    glideExperimentsBuilder.update(<span class="keyword">new</span> <span class="title class_">UseLifecycleInsteadOfInjectingFragments</span>(), isEnabled);</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="一些细节"><a href="#一些细节" class="headerlink" title="一些细节"></a>一些细节</h2><h3 id="Lifecycle-or-Context"><a href="#Lifecycle-or-Context" class="headerlink" title="Lifecycle or Context ?"></a>Lifecycle or Context ?</h3><p>不知道你有没有想过 LifecycleRequestManagerRetriver 类中为什么用 Lifecycle 映射 RequestManager，而不是 Context 呢？</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// com.bumptech.glide.manager.LifecycleRequestManagerRetriever</span></span><br><span class="line"><span class="meta">@Synthetic</span> <span class="keyword">final</span> Map&lt;Lifecycle, RequestManager&gt; lifecycleToRequestManager = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br></pre></td></tr></table></figure>
+<p>从唯一性来说，Lifecycle 和 Context 确实是一一对应的，也就是 Activity 或者 Fragment 同时也是一个 LifecycleRegistry（生命周期提供者）。所以拿来映射 RequestManager 也是完全可以的。</p>
+<p>但是用 Lifecycle 有两个好处：</p>
+<ol>
+<li>语义上很清晰，Retriever 和生命周期相关，与 Lifecycle 对象而不是 Context 对象绑定，会让角色职责非常清晰。</li>
+<li>Lifecycle 是接口，而不是实现。这就意味着我们可以实现 Lifecycle 接口来做自动化测试，而 Context 就会受限很多。</li>
+</ol>
+<blockquote>
+<p>其实在早期的时候 Glide 真的这么用过 Context。（大概在 15 年左右，大家可以查询这个 commitId 7858f3ce 看到具体提交记录）。当然那个时间点，Retriever 功能还比较简陋，职责并不需要拆分的这么细。<br>这也告诉我们，很多功能和设计其实是根据功能的演进来升级的，并不是一开始就长这个样子😎</p>
+</blockquote>
+<h3 id="RequestManagerTreeNode-？"><a href="#RequestManagerTreeNode-？" class="headerlink" title="RequestManagerTreeNode ？"></a>RequestManagerTreeNode ？</h3><p>在每个 RequestManager 中都有一个 <code>RequestManagerTreeNode</code> ，这个 TreeNode 会在 RequestManager 创建的时候传进来，是一个比较重要的参数，大家有没有想过，这个 <code>RequestManagerTreeNode</code> 是做什么的？</p>
+<p>其实比较简单，Android 为每个组件（Component）都提供了一个 <code>onTrimMemory()</code> 的回调通知，旨在系统内存不足时，通知大家都适当释放一些不用的内存，你好我好大家好。否则内存真的不够时，Android 系统就要痛下杀手了。</p>
+<p>那针对我们生命周期的这个场景来说，Fragment 是可以嵌套的，那么相对应的 RequestManager 就会大量存在，如果每个嵌套的 Fragment 中包含非常多的图片加载请求，势必会造成大量的内存占用，所以当系统内存告急时，我们需要通知这些 RequestManager 将加载的请求都缓一缓。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// com.bumptech.glide.RequestManager#onTrimMemory</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onTrimMemory</span><span class="params">(<span class="type">int</span> level)</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (level == TRIM_MEMORY_MODERATE &amp;&amp; pauseAllRequestsOnTrimMemoryModerate) &#123;</span><br><span class="line">    pauseAllRequestsRecursive();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>每个<code>RequestManagerTreeNode</code> 其实就关联了一个 RequestManager， 而每个 RequestManager 又关联了一个 Fragment，那么在 Fragment 嵌套的场景下就可以通过这些 TreeNode 来快速向下找到子节点们。这样，在内存不足时，可以递归通知子节点停止加载请求。</p>
+<blockquote>
+<p>这种细节也是只有世界级的开源库才会关注到。🤞</p>
+</blockquote>
+<h2 id="完整类图"><a href="#完整类图" class="headerlink" title="完整类图"></a>完整类图</h2><p>最后，我们来综合一下目前的解析结果，如下</p>
+<p><img src="/2023/08/31/lifecycle-iii-of-glide-code-design/Glide-lifecycle.png" alt="Glide 完整类图"></p>
+<p>类图包含内容有点多了，稍微有点糊。大家如果想要原始的高清图片，可以关注我的公众号 0xforee（也可以扫描底部二维码），回复 <code>Glide完整类图</code> 下载。</p>
+<h1 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h1><p>历经 3 周，生命周期的内容终于划上了句号😎。虽然写完这三篇文章后，对 Glide 的生命周期差不多可以倒背如流了，但对源码，我还是会不定期的翻一翻，因为总能发现一些新的东西。</p>
+<p>这 3 期的生命周期能力其实是一个相对独立的设计思想，我们不能仅停留在理解 Glide 的设计思想基础上，也要将这种思想迁移，去通关其他的框架和库的生命周期思想，比如我们熟知的 LiveData，ViewModel等，甚至还有 Kotlin 协程。</p>
+<p>我们更可以将这种设计思想，用到我们自己日常的代码中。</p>
+<ul>
+<li>结合 MVP 设计模式，可以让 Presenter 自动释放引用。</li>
+<li>结合数据库，可以在退出时停止读取数据。</li>
+<li>结合网络库，可以在页面退出时，相关的网络请求自动停止</li>
+<li>等等其他</li>
+</ul>
+<p>总之，生命周期是一个通用的设计思想，你可以加在你想要加的任何位置。快来思考一下，你现有的工程中，可以有哪些能改造的。</p>
+<p>如果你觉得这篇文章写得还不错，点个赞，点个收藏，点个关注吧。深夜码字不易😭</p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>从代码设计看 Glide 之生命周期（下）</p><p><a href="http://www.0xforee.top/2023/08/31/lifecycle-iii-of-glide-code-design/">http://www.0xforee.top/2023/08/31/lifecycle-iii-of-glide-code-design/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>0xforee</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2023-08-31</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2023-08-31</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/android/">android</a><a class="link-muted mr-2" rel="tag" href="/tags/glide/">glide</a></div><div class="article-tags is-size-7 mb-4"> <emoji-reaction availableArrayString="👍,thumbs-up;😄,smile-face;🎉,party-popper;😕,confused-face;❤️,red-heart;🚀,rocket;👀,eyes;"></emoji-reaction> </div><div class="mb-4" style="display:box;text-align:center"><hr><h1 class="is-size-17">欢迎关注我的公众号 0xforee，第一时间获取更多有价值的思考</h1><img src="/img/wechat_follow.png" style="max-width:50%; left:50%;right:50%"></div><div class="a2a_kit a2a_kit_size_32 a2a_default_style"><i class="fas fa-share-nodes fa-2xl" style="float:left;margin-right: 10px;"></i><a class="a2a_dd" target="_blank" rel="noopener" href="https://www.addtoany.com/share"></a><a class="a2a_button_wechat"></a><a class="a2a_button_telegram"></a><a class="a2a_button_evernote"></a><a class="a2a_button_pocket"></a><a class="a2a_button_flipboard"></a><a class="a2a_button_douban"></a><a class="a2a_button_instapaper"></a><a class="a2a_button_kindle_it"></a><a class="a2a_button_email"></a><a class="a2a_button_copy_link"></a><i class="fa-light fa-share"></i></div><script async src="https://static.addtoany.com/menu/page.js"></script><script src="https://static.addtoany.com/menu/page.js" defer></script></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="/img/alipay.jpg" alt="支付宝"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="/img/wechat.jpg" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2023/08/24/lifecycle-ii-of-glide-code-design/"><span class="level-item">从代码设计看 Glide 之生命周期（中）</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div class="content" id="valine-thread"></div><script src="//cdn.jsdelivr.net/npm/leancloud-storage@3/dist/av-min.js"></script><script src="https://cdn.jsdelivr.net/npm/valine@1.4.16/dist/Valine.min.js"></script><script>new Valine({
+            el: '#valine-thread',
+            appId: "syj6F1Y9iqTJ7vzM2sniKUYz-gzGzoHsz",
+            appKey: "Ox2jK9gEuEEsz0gyfOiCSf8P",
+            placeholder: "gogo",
+            avatar: "mm",
+            avatarForce: false,
+            meta: ["nick","mail","link"],
+            pageSize: 10,
+            lang: "zh-CN",
+            visitor: false,
+            highlight: true,
+            recordIP: false,
+            
+            
+            
+            enableQQ: false,
+            requiredFields: [],
+        });</script></div></div></div><!--!--><div class="column column-right is-3-tablet is-3-desktop is-3-widescreen  order-3"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/img/head.png" alt="0xforee"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">0xforee</p><p class="is-size-6 is-block">Read The Fuck Code</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Earth</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">32</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">栏目</p><a href="/categories"><p class="title">10</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">39</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/0xforee" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/0xforee"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="JueJin" href="https://juejin.cn/user/2518350422615987"><i class="fas fa-j"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="CSDN" href="https://blog.csdn.net/beijing2008lm?type=blog"><i class="fas fa-c"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Mail" href="mailto:0xforee@gmail.com"><i class="fas fa-envelope"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-08-31T15:01:32.000Z">2023-08-31</time></p><p class="title"><a href="/2023/08/31/lifecycle-iii-of-glide-code-design/">从代码设计看 Glide 之生命周期（下）</a></p><p class="categories"><a href="/categories/Glide/">Glide</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-08-24T14:58:39.000Z">2023-08-24</time></p><p class="title"><a href="/2023/08/24/lifecycle-ii-of-glide-code-design/">从代码设计看 Glide 之生命周期（中）</a></p><p class="categories"><a href="/categories/Glide/">Glide</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-08-21T15:15:09.000Z">2023-08-21</time></p><p class="title"><a href="/2023/08/21/contents-glide-code-design/">从代码设计看 Glide 系列</a></p><p class="categories"><a href="/categories/Glide/">Glide</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-08-17T18:23:34.000Z">2023-08-18</time></p><p class="title"><a href="/2023/08/18/lifecycle-i-of-glide-code-design/">从代码设计看 Glide 之生命周期（上）</a></p><p class="categories"><a href="/categories/Glide/">Glide</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-08-15T14:32:03.000Z">2023-08-15</time></p><p class="title"><a href="/2023/08/15/upgrade-my-site-config/">【公告】站点升级&amp;域名切换</a></p><p class="categories"><a href="/categories/Other/">Other</a></p></div></article></div></div><div class="card widget is-sticky" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#正文"><span class="level-left"><span class="level-item">1</span><span class="level-item">正文</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#先做一个小的思考"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">先做一个小的思考</span></span></a></li><li><a class="level is-mobile" href="#如何实现？"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">如何实现？</span></span></a></li><li><a class="level is-mobile" href="#两种实现对比"><span class="level-left"><span class="level-item">1.3</span><span class="level-item">两种实现对比</span></span></a></li><li><a class="level is-mobile" href="#使用场景"><span class="level-left"><span class="level-item">1.4</span><span class="level-item">使用场景</span></span></a></li><li><a class="level is-mobile" href="#一些细节"><span class="level-left"><span class="level-item">1.5</span><span class="level-item">一些细节</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Lifecycle-or-Context"><span class="level-left"><span class="level-item">1.5.1</span><span class="level-item">Lifecycle or Context ?</span></span></a></li><li><a class="level is-mobile" href="#RequestManagerTreeNode-？"><span class="level-left"><span class="level-item">1.5.2</span><span class="level-item">RequestManagerTreeNode ？</span></span></a></li></ul></li><li><a class="level is-mobile" href="#完整类图"><span class="level-left"><span class="level-item">1.6</span><span class="level-item">完整类图</span></span></a></li></ul></li><li><a class="level is-mobile" href="#结束语"><span class="level-left"><span class="level-item">2</span><span class="level-item">结束语</span></span></a></li></ul></div></div><script src="/js/toc.js" defer></script></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/">0xforee&#039;s blog</a><p class="is-size-7"><span>&copy; 2023 0xforee</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv"><span id="busuanzi_value_site_pv">0</span>次访问</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><script type="module" src="https://cdn.jsdelivr.net/gh/emaction/frontend.dist@1.0.9/bundle.js"></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"栏目","tags":"标签"});
+        });</script></body></html>
