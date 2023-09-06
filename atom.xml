@@ -6,7 +6,7 @@
   <link href="http://www.0xforee.top/atom.xml" rel="self"/>
   
   <link href="http://www.0xforee.top/"/>
-  <updated>2023-08-31T15:11:20.977Z</updated>
+  <updated>2023-09-06T15:37:46.774Z</updated>
   <id>http://www.0xforee.top/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>从代码设计看 Glide 之 Factory Or Builder？</title>
+    <link href="http://www.0xforee.top/2023/09/06/factory-or-builder-of-glide-code-design/"/>
+    <id>http://www.0xforee.top/2023/09/06/factory-or-builder-of-glide-code-design/</id>
+    <published>2023-09-06T14:54:30.000Z</published>
+    <updated>2023-09-06T15:37:46.774Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;还记得我们在生命周期（中）篇章里，讲到的 Factory （工厂）设计模式吗？&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Glide" scheme="http://www.0xforee.top/categories/Glide/"/>
+    
+    
+    <category term="android" scheme="http://www.0xforee.top/tags/android/"/>
+    
+    <category term="glide" scheme="http://www.0xforee.top/tags/glide/"/>
+    
+  </entry>
   
   <entry>
     <title>从代码设计看 Glide 之生命周期（下）</title>
@@ -455,29 +476,6 @@
     <category term="view" scheme="http://www.0xforee.top/tags/view/"/>
     
     <category term="touchevent" scheme="http://www.0xforee.top/tags/touchevent/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>低电量提醒</title>
-    <link href="http://www.0xforee.top/2017/08/07/android-powerui/"/>
-    <id>http://www.0xforee.top/2017/08/07/android-powerui/</id>
-    <published>2017-08-06T17:23:18.000Z</published>
-    <updated>2017-08-06T17:24:08.000Z</updated>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;概览&quot;&gt;&lt;a href=&quot;#概览&quot; class=&quot;headerlink&quot; title=&quot;概览&quot;&gt;&lt;/a&gt;概览&lt;/h1&gt;&lt;p&gt;PowerUI继承于SystemUI，用于电源管理，目前承载了电量提醒和温度提醒的业务内容：&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="SystemUI解析" scheme="http://www.0xforee.top/categories/SystemUI%E8%A7%A3%E6%9E%90/"/>
-    
-    
-    <category term="android" scheme="http://www.0xforee.top/tags/android/"/>
-    
-    <category term="PowerUI" scheme="http://www.0xforee.top/tags/PowerUI/"/>
-    
-    <category term="SystemUI" scheme="http://www.0xforee.top/tags/SystemUI/"/>
     
   </entry>
   
